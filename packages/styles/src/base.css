@@ -1,9 +1,9 @@
 .wend-container {
-  padding: var(--spacing-md);
+  padding: var(--spacing-200);
 }
 
 .wend-stack > * + * {
-  margin-top: var(--spacing-sm);
+  margin-top: var(--spacing-100);
 }
 
 .wend-surface {

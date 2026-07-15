@@ -38,7 +38,7 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 56px;
-  padding: 0 var(--spacing-lg);
+  padding: 0 var(--spacing-300);
   border-bottom: 1px solid var(--color-border-default);
   background-color: var(--color-surface-card);
 }
@@ -52,14 +52,14 @@ body {
 
 .wend-nav__links {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-300);
 }
 
 .wend-nav__links a {
   color: var(--color-text-secondary);
   text-decoration: none;
   font-size: var(--font-size-sm);
-  padding: var(--spacing-xs) 0;
+  padding: var(--spacing-50) 0;
 }
 
 .wend-nav__links a:hover {
@@ -74,45 +74,45 @@ body {
 .wend-page {
   max-width: 960px;
   margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-lg);
+  padding: var(--spacing-400) var(--spacing-300);
 }
 
 .wend-hero {
   text-align: center;
-  padding: var(--spacing-2xl) var(--spacing-lg);
+  padding: var(--spacing-600) var(--spacing-300);
 }
 
 .wend-hero h1 {
   font-size: var(--font-size-xl);
-  margin: 0 0 var(--spacing-sm);
+  margin: 0 0 var(--spacing-100);
 }
 
 .wend-hero p {
   color: var(--color-text-secondary);
   font-size: var(--font-size-md);
-  margin: 0 0 var(--spacing-lg);
+  margin: 0 0 var(--spacing-300);
 }
 
 .wend-hero__ctas {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-200);
   justify-content: center;
 }
 
 .wend-section {
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-600);
 }
 
 .wend-section h2 {
   font-size: var(--font-size-lg);
-  margin: 0 0 var(--spacing-md);
+  margin: 0 0 var(--spacing-200);
 }
 
 .wend-scale-row {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
+  gap: var(--spacing-200);
+  margin-bottom: var(--spacing-100);
 }
 
 .wend-scale-row__label {
@@ -126,13 +126,13 @@ body {
 }
 
 .wend-type-row {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-200);
 }
 
 .wend-type-row__label {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-50);
 }
 
 .wend-props-table {
@@ -143,7 +143,7 @@ body {
 .wend-props-table th,
 .wend-props-table td {
   text-align: left;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-100);
   border-bottom: 1px solid var(--color-border-default);
   font-size: var(--font-size-sm);
 }
@@ -151,7 +151,7 @@ body {
 .wend-code {
   background-color: var(--color-surface-canvas-recessed);
   border-radius: var(--radius-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-100) var(--spacing-200);
   font-family: monospace;
   font-size: var(--font-size-sm);
   overflow-x: auto;
@@ -330,7 +330,7 @@ git commit -m "add Get Started docs page"
 
 **Interfaces:**
 - Consumes: `/global/docs.css` classes from Task 1, including `wend-ramp-grid`/`wend-ramp-step-label`/`wend-ramp-name-label`/`wend-ramp-swatch`/`wend-ramp-swatch--base` (moved verbatim from the old `index.html`) and `wend-scale-row`/`wend-type-row`.
-- Consumes: token CSS custom properties — ramp colors (`--color-{linen,mist,citron,lilac,indigo,midnight}-{50..950}`), `--spacing-{xs,sm,md,lg,xl,2xl}`, `--radius-{sm,md,lg,full}`, `--font-size-{sm,md,lg,xl}`, `--font-weight-{regular,medium,bold}`, `--font-line-height-{tight,base}` — all already defined by `@wend-ui/tokens`' built CSS, loaded via the existing Stencil `globalStyle` bundle.
+- Consumes: token CSS custom properties — ramp colors (`--color-{linen,mist,citron,lilac,indigo,midnight}-{50..950}`), `--spacing-{50,100,200,300,400,600}` (representative steps from the full 21-step scale), `--radius-{sm,md,lg,full}`, `--font-size-{sm,md,lg,xl}`, `--font-weight-{regular,medium,bold}`, `--font-line-height-{tight,base}` — all already defined by `@wend-ui/tokens`' built CSS, loaded via the existing Stencil `globalStyle` bundle.
 - Consumes: `.wend-surface` class from `@wend-ui/styles`' existing `base.css` (already loaded via the same `globalStyle` bundle, not part of the new `docs.css`).
 
 - [ ] **Step 1: Create `packages/web-components/src/foundations.html`**
@@ -366,7 +366,7 @@ git commit -m "add Get Started docs page"
     <div class="wend-page">
       <div class="wend-section">
         <h2>Color</h2>
-        <p style="margin: 0 0 var(--spacing-sm)">Color ramps (global/color.json)</p>
+        <p style="margin: 0 0 var(--spacing-100)">Color ramps (global/color.json)</p>
         <div class="wend-ramp-grid">
           <span></span>
           <span class="wend-ramp-step-label">50</span>
@@ -383,14 +383,14 @@ git commit -m "add Get Started docs page"
         </div>
         <div id="ramp-rows"></div>
 
-        <div style="max-width: 360px; margin-top: var(--spacing-lg)">
-          <div class="wend-surface" style="padding: var(--spacing-md)">
-            <p style="margin: 0 0 var(--spacing-sm)">Card (color-surface-card)</p>
+        <div style="max-width: 360px; margin-top: var(--spacing-300)">
+          <div class="wend-surface" style="padding: var(--spacing-200)">
+            <p style="margin: 0 0 var(--spacing-100)">Card (color-surface-card)</p>
             <div
               style="
                 background-color: var(--color-surface-card-recessed);
                 border-radius: var(--radius-sm);
-                padding: var(--spacing-sm);
+                padding: var(--spacing-100);
               "
             >
               Recessed well (color-surface-card-recessed)
@@ -399,10 +399,10 @@ git commit -m "add Get Started docs page"
 
           <div
             style="
-              margin-top: var(--spacing-md);
+              margin-top: var(--spacing-200);
               background-color: var(--color-surface-canvas-recessed);
               border-radius: var(--radius-sm);
-              padding: var(--spacing-sm);
+              padding: var(--spacing-100);
             "
           >
             Recessed well on the page itself (color-surface-canvas-recessed)
@@ -413,28 +413,28 @@ git commit -m "add Get Started docs page"
       <div class="wend-section">
         <h2>Spacing</h2>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">spacing-xs (4px)</span>
-          <div class="wend-scale-row__box" style="width: var(--spacing-xs); height: 24px"></div>
+          <span class="wend-scale-row__label">spacing-50 (4px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-50); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">spacing-sm (8px)</span>
-          <div class="wend-scale-row__box" style="width: var(--spacing-sm); height: 24px"></div>
+          <span class="wend-scale-row__label">spacing-100 (8px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-100); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">spacing-md (16px)</span>
-          <div class="wend-scale-row__box" style="width: var(--spacing-md); height: 24px"></div>
+          <span class="wend-scale-row__label">spacing-200 (16px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-200); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">spacing-lg (24px)</span>
-          <div class="wend-scale-row__box" style="width: var(--spacing-lg); height: 24px"></div>
+          <span class="wend-scale-row__label">spacing-300 (24px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-300); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">spacing-xl (32px)</span>
-          <div class="wend-scale-row__box" style="width: var(--spacing-xl); height: 24px"></div>
+          <span class="wend-scale-row__label">spacing-400 (32px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-400); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">spacing-2xl (48px)</span>
-          <div class="wend-scale-row__box" style="width: var(--spacing-2xl); height: 24px"></div>
+          <span class="wend-scale-row__label">spacing-600 (48px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-600); height: 24px"></div>
         </div>
       </div>
 
@@ -463,7 +463,7 @@ git commit -m "add Get Started docs page"
 
       <div class="wend-section">
         <h2>Typography</h2>
-        <p style="margin: 0 0 var(--spacing-md)">
+        <p style="margin: 0 0 var(--spacing-200)">
           Font family: <code class="wend-code" style="display: inline">'Funnel Sans', sans-serif</code>
         </p>
 
@@ -601,19 +601,19 @@ git commit -m "add Foundations docs page (color, spacing, radius, typography)"
       <div class="wend-section">
         <h2>Button</h2>
 
-        <p style="margin: 0 0 var(--spacing-sm)">Examples</p>
-        <div class="wend-stack" style="margin-bottom: var(--spacing-lg)">
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
           <wend-button variant="primary">Primary button</wend-button>
           <wend-button variant="secondary">Secondary button</wend-button>
           <wend-button variant="primary" disabled>Disabled button</wend-button>
         </div>
 
-        <p style="margin: 0 0 var(--spacing-sm)">Usage</p>
-        <code class="wend-code" style="margin-bottom: var(--spacing-lg)"
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
           >&lt;wend-button variant="primary"&gt;Label&lt;/wend-button&gt;</code
         >
 
-        <p style="margin: 0 0 var(--spacing-sm)">Props</p>
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
         <table class="wend-props-table">
           <thead>
             <tr>

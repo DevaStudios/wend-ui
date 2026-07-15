@@ -15,6 +15,36 @@ tokens/
 
 Spacing/radius/typography are **global-only** — they don't have a light/dark dimension and don't need a semantic layer at this project's size, so components reference them directly. Color is the tier that actually needs all three, since meaning and mode-awareness both live there.
 
+## Spacing scale
+
+`tokens/global/spacing.json` defines a numeric scale — the key is not the pixel value itself, but roughly tracks it (key ≈ px × 12.5) so steps can be inserted later without renaming existing ones; two steps (`700`, `1000`) break that ratio on purpose to hit specific pixel targets (54px, 88px):
+
+| Token | px | rem |
+| --- | --- | --- |
+| `spacing-0` | 0 | `0` |
+| `spacing-25` | 2 | `0.125rem` |
+| `spacing-50` | 4 | `0.25rem` |
+| `spacing-100` | 8 | `0.5rem` |
+| `spacing-125` | 10 | `0.625rem` |
+| `spacing-150` | 12 | `0.75rem` |
+| `spacing-200` | 16 | `1rem` |
+| `spacing-250` | 20 | `1.25rem` |
+| `spacing-275` | 22 | `1.375rem` |
+| `spacing-300` | 24 | `1.5rem` |
+| `spacing-350` | 28 | `1.75rem` |
+| `spacing-400` | 32 | `2rem` |
+| `spacing-500` | 40 | `2.5rem` |
+| `spacing-550` | 44 | `2.75rem` |
+| `spacing-600` | 48 | `3rem` |
+| `spacing-700` | 54 | `3.375rem` |
+| `spacing-800` | 64 | `4rem` |
+| `spacing-1000` | 88 | `5.5rem` |
+| `spacing-1200` | 96 | `6rem` |
+| `spacing-1600` | 128 | `8rem` |
+| `spacing-3200` | 256 | `16rem` |
+
+Source values are unitless numbers representing px (e.g. `"16"`, not `"16px"`). The `css` and `scss` platforms convert them to `rem` (÷16, via the custom `size/spacing-rem` transform in `scripts/spacing-rem-transform.js`) so spacing respects the user's font-size settings — Style Dictionary's built-in `size/px`/`size/rem` transforms don't apply here, since they only fire on tokens with an explicit DTCG `"type": "dimension"`, which nothing in this repo sets. The `js` and `figma` platforms keep the raw px-equivalent numbers, since JS consumers may need the raw number for calculations and Figma variables don't understand `rem` strings.
+
 References use Style Dictionary's `{color.gray.900}` syntax and are preserved as CSS `var()` chains in the output (`outputReferences: true`) — e.g. `--button-background-primary: var(--color-action-primary)`. This is what makes dark mode work efficiently: overriding a handful of leaf `color.*` values under `[data-theme="dark"]` cascades through every semantic and component token that references them, with no dark-specific redeclaration needed at those tiers.
 
 ## Light/dark mode

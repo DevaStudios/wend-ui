@@ -47,7 +47,7 @@ Nav links: `Get Started` → `get-started.html`, `Foundations` → `foundations.
 ### `foundations.html`
 
 - Color: today's ramp grid (linen/mist/citron/lilac/indigo/midnight × 50–950) plus the semantic swatches (surface/card/recessed wells), moved verbatim from the current `index.html`
-- Spacing: visual reference for `spacing-xs` through `spacing-2xl` (a bar or box per step, labeled with the token name and pixel value)
+- Spacing: visual reference for representative steps across the numeric scale (`spacing-50` through `spacing-600`, matching the 6 values previously shown as `xs`–`2xl`), a bar or box per step, labeled with the token name and pixel value
 - Radius: visual reference for `radius-sm` through `radius-full` (a sample box per step, labeled)
 - Typography: Funnel Sans specimen — font sizes (`sm`/`md`/`lg`/`xl`), weights (`regular`/`medium`/`bold`), line-heights (`tight`/`base`), each labeled with its token name and value
 

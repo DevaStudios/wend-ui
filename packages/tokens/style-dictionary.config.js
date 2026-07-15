@@ -1,15 +1,20 @@
 const { figmaFlatTokensFormat } = require('./scripts/figma-format.js');
+const { spacingRemTransform } = require('./scripts/spacing-rem-transform.js');
 
 module.exports = {
   source: ['tokens/global/**/*.json', 'tokens/semantic/color.json', 'tokens/component/**/*.json'],
   hooks: {
     formats: {
       'figma/flat-tokens': figmaFlatTokensFormat
+    },
+    transforms: {
+      [spacingRemTransform.name]: spacingRemTransform
     }
   },
   platforms: {
     css: {
       transformGroup: 'css',
+      transforms: [spacingRemTransform.name],
       buildPath: 'build/css/',
       files: [
         {
@@ -24,6 +29,7 @@ module.exports = {
     },
     scss: {
       transformGroup: 'scss',
+      transforms: [spacingRemTransform.name],
       buildPath: 'build/scss/',
       files: [
         {

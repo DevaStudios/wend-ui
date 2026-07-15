@@ -1,4 +1,5 @@
 const { figmaFlatTokensFormat } = require('./scripts/figma-format.js');
+const { spacingRemTransform } = require('./scripts/spacing-rem-transform.js');
 
 // Separate config (rather than a second platform in style-dictionary.config.js) because
 // light and dark need genuinely different merged token trees — Style Dictionary's `source`
@@ -29,11 +30,15 @@ module.exports = {
   hooks: {
     formats: {
       'figma/flat-tokens': figmaFlatTokensFormat
+    },
+    transforms: {
+      [spacingRemTransform.name]: spacingRemTransform
     }
   },
   platforms: {
     css: {
       transformGroup: 'css',
+      transforms: [spacingRemTransform.name],
       buildPath: 'build/css/',
       files: [
         {

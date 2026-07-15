@@ -1,7 +1,7 @@
 {
   "button": {
-    "padding-block": { "value": "{spacing.sm}" },
-    "padding-inline": { "value": "{spacing.md}" },
+    "padding-block": { "value": "{spacing.100}" },
+    "padding-inline": { "value": "{spacing.200}" },
     "radius": { "value": "{radius.md}" },
     "font-size": { "value": "{font.size.md}" },
     "font-weight": { "value": "{font.weight.regular}" },

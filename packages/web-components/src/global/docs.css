@@ -14,7 +14,7 @@ body {
 
 .wend-nav__brand {
   font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-200);
   color: var(--color-text-primary);
   text-decoration: none;
 }
@@ -27,7 +27,7 @@ body {
 .wend-nav__links a {
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   padding: var(--spacing-50) 0;
 }
 
@@ -52,13 +52,13 @@ body {
 }
 
 .wend-hero h1 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-350);
   margin: 0 0 var(--spacing-100);
 }
 
 .wend-hero p {
   color: var(--color-text-secondary);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-200);
   margin: 0 0 var(--spacing-300);
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 .wend-section h2 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-250);
   margin: 0 0 var(--spacing-200);
 }
 
@@ -86,7 +86,7 @@ body {
 
 .wend-scale-row__label {
   width: 160px;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   color: var(--color-text-secondary);
 }
 
@@ -100,7 +100,7 @@ body {
 }
 
 .wend-type-row__label {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-50);
 }
@@ -115,7 +115,7 @@ body {
   text-align: left;
   padding: var(--spacing-100);
   border-bottom: 1px solid var(--color-border-default);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
 }
 
 .wend-code {
@@ -123,7 +123,7 @@ body {
   border-radius: var(--radius-sm);
   padding: var(--spacing-100) var(--spacing-200);
   font-family: monospace;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   overflow-x: auto;
   display: block;
 }

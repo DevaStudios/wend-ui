@@ -45,7 +45,7 @@ body {
 
 .wend-nav__brand {
   font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-200);
   color: var(--color-text-primary);
   text-decoration: none;
 }
@@ -58,7 +58,7 @@ body {
 .wend-nav__links a {
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   padding: var(--spacing-50) 0;
 }
 
@@ -83,13 +83,13 @@ body {
 }
 
 .wend-hero h1 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-350);
   margin: 0 0 var(--spacing-100);
 }
 
 .wend-hero p {
   color: var(--color-text-secondary);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-200);
   margin: 0 0 var(--spacing-300);
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 .wend-section h2 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-250);
   margin: 0 0 var(--spacing-200);
 }
 
@@ -117,7 +117,7 @@ body {
 
 .wend-scale-row__label {
   width: 160px;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   color: var(--color-text-secondary);
 }
 
@@ -130,7 +130,7 @@ body {
 }
 
 .wend-type-row__label {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-50);
 }
@@ -145,7 +145,7 @@ body {
   text-align: left;
   padding: var(--spacing-100);
   border-bottom: 1px solid var(--color-border-default);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
 }
 
 .wend-code {
@@ -153,7 +153,7 @@ body {
   border-radius: var(--radius-sm);
   padding: var(--spacing-100) var(--spacing-200);
   font-family: monospace;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-175);
   overflow-x: auto;
   display: block;
 }
@@ -330,7 +330,7 @@ git commit -m "add Get Started docs page"
 
 **Interfaces:**
 - Consumes: `/global/docs.css` classes from Task 1, including `wend-ramp-grid`/`wend-ramp-step-label`/`wend-ramp-name-label`/`wend-ramp-swatch`/`wend-ramp-swatch--base` (moved verbatim from the old `index.html`) and `wend-scale-row`/`wend-type-row`.
-- Consumes: token CSS custom properties — ramp colors (`--color-{linen,mist,citron,lilac,indigo,midnight}-{50..950}`), `--spacing-{50,100,200,300,400,600}` (representative steps from the full 21-step scale), `--radius-{sm,md,lg,full}`, `--font-size-{sm,md,lg,xl}`, `--font-weight-{regular,medium,bold}`, `--font-line-height-{tight,base}` — all already defined by `@wend-ui/tokens`' built CSS, loaded via the existing Stencil `globalStyle` bundle.
+- Consumes: token CSS custom properties — ramp colors (`--color-{linen,mist,citron,lilac,indigo,midnight}-{50..950}`), `--spacing-{50,100,200,300,400,600}` (representative steps from the full 21-step scale), `--radius-{sm,md,lg,full}`, `--font-size-{175,200,250,350}`, `--font-weight-{regular,medium,bold}`, `--font-line-height-{tight,base}` — all already defined by `@wend-ui/tokens`' built CSS, loaded via the existing Stencil `globalStyle` bundle.
 - Consumes: `.wend-surface` class from `@wend-ui/styles`' existing `base.css` (already loaded via the same `globalStyle` bundle, not part of the new `docs.css`).
 
 - [ ] **Step 1: Create `packages/web-components/src/foundations.html`**
@@ -468,50 +468,50 @@ git commit -m "add Get Started docs page"
         </p>
 
         <div class="wend-type-row">
-          <div class="wend-type-row__label">font-size-sm (14px)</div>
-          <div style="font-size: var(--font-size-sm)">The quick brown fox jumps over the lazy dog</div>
+          <div class="wend-type-row__label">font-size-175 (14px)</div>
+          <div style="font-size: var(--font-size-175)">The quick brown fox jumps over the lazy dog</div>
         </div>
         <div class="wend-type-row">
-          <div class="wend-type-row__label">font-size-md (16px)</div>
-          <div style="font-size: var(--font-size-md)">The quick brown fox jumps over the lazy dog</div>
+          <div class="wend-type-row__label">font-size-200 (16px)</div>
+          <div style="font-size: var(--font-size-200)">The quick brown fox jumps over the lazy dog</div>
         </div>
         <div class="wend-type-row">
-          <div class="wend-type-row__label">font-size-lg (20px)</div>
-          <div style="font-size: var(--font-size-lg)">The quick brown fox jumps over the lazy dog</div>
+          <div class="wend-type-row__label">font-size-250 (20px)</div>
+          <div style="font-size: var(--font-size-250)">The quick brown fox jumps over the lazy dog</div>
         </div>
         <div class="wend-type-row">
-          <div class="wend-type-row__label">font-size-xl (28px)</div>
-          <div style="font-size: var(--font-size-xl)">The quick brown fox jumps over the lazy dog</div>
+          <div class="wend-type-row__label">font-size-350 (28px)</div>
+          <div style="font-size: var(--font-size-350)">The quick brown fox jumps over the lazy dog</div>
         </div>
 
         <div class="wend-type-row">
           <div class="wend-type-row__label">font-weight-regular (400)</div>
-          <div style="font-weight: var(--font-weight-regular); font-size: var(--font-size-md)">
+          <div style="font-weight: var(--font-weight-regular); font-size: var(--font-size-200)">
             The quick brown fox jumps over the lazy dog
           </div>
         </div>
         <div class="wend-type-row">
           <div class="wend-type-row__label">font-weight-medium (500)</div>
-          <div style="font-weight: var(--font-weight-medium); font-size: var(--font-size-md)">
+          <div style="font-weight: var(--font-weight-medium); font-size: var(--font-size-200)">
             The quick brown fox jumps over the lazy dog
           </div>
         </div>
         <div class="wend-type-row">
           <div class="wend-type-row__label">font-weight-bold (700)</div>
-          <div style="font-weight: var(--font-weight-bold); font-size: var(--font-size-md)">
+          <div style="font-weight: var(--font-weight-bold); font-size: var(--font-size-200)">
             The quick brown fox jumps over the lazy dog
           </div>
         </div>
 
         <div class="wend-type-row">
           <div class="wend-type-row__label">font-line-height-tight (1.2)</div>
-          <div style="line-height: var(--font-line-height-tight); font-size: var(--font-size-md); max-width: 320px">
+          <div style="line-height: var(--font-line-height-tight); font-size: var(--font-size-200); max-width: 320px">
             The quick brown fox jumps over the lazy dog and keeps running past the fence line into the field beyond
           </div>
         </div>
         <div class="wend-type-row">
           <div class="wend-type-row__label">font-line-height-base (1.5)</div>
-          <div style="line-height: var(--font-line-height-base); font-size: var(--font-size-md); max-width: 320px">
+          <div style="line-height: var(--font-line-height-base); font-size: var(--font-size-200); max-width: 320px">
             The quick brown fox jumps over the lazy dog and keeps running past the fence line into the field beyond
           </div>
         </div>

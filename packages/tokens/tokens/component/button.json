@@ -3,7 +3,7 @@
     "padding-block": { "value": "{spacing.100}" },
     "padding-inline": { "value": "{spacing.200}" },
     "radius": { "value": "{radius.md}" },
-    "font-size": { "value": "{font.size.md}" },
+    "font-size": { "value": "{font.size.200}" },
     "font-weight": { "value": "{font.weight.regular}" },
     "background": {
       "primary": { "value": "{color.action.primary}" },

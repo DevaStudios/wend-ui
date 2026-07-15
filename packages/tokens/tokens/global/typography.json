@@ -4,10 +4,10 @@
       "base": { "value": "'Funnel Sans', sans-serif" }
     },
     "size": {
-      "sm": { "value": "14px" },
-      "md": { "value": "16px" },
-      "lg": { "value": "20px" },
-      "xl": { "value": "28px" }
+      "175": { "value": "14" },
+      "200": { "value": "16" },
+      "250": { "value": "20" },
+      "350": { "value": "28" }
     },
     "weight": {
       "regular": { "value": "400" },

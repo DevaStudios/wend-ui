@@ -8,5 +8,5 @@
 
 .wend-surface {
   background-color: var(--color-surface-card);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-medium);
 }

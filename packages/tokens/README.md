@@ -58,6 +58,23 @@ Source values are unitless numbers representing px (e.g. `"16"`, not `"16px"`). 
 
 Same conversion mechanism as spacing: unitless px-equivalent source values, converted to `rem` for `css`/`scss` only (via `size/font-size-rem` in `scripts/rem-transforms.js`), left as raw numbers for `js`/`figma`.
 
+## Radius scale
+
+`tokens/global/radius.json` uses named (not numeric) steps, unlike spacing/font-size:
+
+| Token | px |
+| --- | --- |
+| `radius-none` | 0 |
+| `radius-light` | 2 |
+| `radius-regular` | 4 |
+| `radius-medium` | 8 |
+| `radius-strong` | 16 |
+| `radius-pill` | 20 |
+| `radius-bold` | 32 |
+| `radius-circle` | 9999 |
+
+Source values are unitless numbers representing px (same convention as spacing/font-size). Unlike those two, radius resolves to **px, not rem** — corner radii don't need to scale with the user's font-size setting, so the `css`/`scss` platforms convert via the custom `size/radius-px` transform in `scripts/radius-px-transform.js` (appends `px`, no scaling; `0` stays unitless). The `js`/`figma` platforms keep the raw numbers, same as spacing/font-size.
+
 References use Style Dictionary's `{color.gray.900}` syntax and are preserved as CSS `var()` chains in the output (`outputReferences: true`) — e.g. `--button-background-primary: var(--color-action-primary)`. This is what makes dark mode work efficiently: overriding a handful of leaf `color.*` values under `[data-theme="dark"]` cascades through every semantic and component token that references them, with no dark-specific redeclaration needed at those tiers.
 
 ## Light/dark mode

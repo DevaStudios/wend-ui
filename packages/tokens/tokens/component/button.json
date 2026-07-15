@@ -2,7 +2,7 @@
   "button": {
     "padding-block": { "value": "{spacing.100}" },
     "padding-inline": { "value": "{spacing.200}" },
-    "radius": { "value": "{radius.md}" },
+    "radius": { "value": "{radius.medium}" },
     "font-size": { "value": "{font.size.200}" },
     "font-weight": { "value": "{font.weight.regular}" },
     "background": {

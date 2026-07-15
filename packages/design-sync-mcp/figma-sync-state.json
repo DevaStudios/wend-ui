@@ -9,10 +9,10 @@
       "variables": {
         "color-green-600": "VariableID:49:23",
         "color-red-600": "VariableID:49:27",
-        "radius-sm": "VariableID:49:28",
-        "radius-md": "VariableID:49:29",
-        "radius-lg": "VariableID:49:30",
-        "radius-full": "VariableID:49:31",
+        "radius-regular": "VariableID:49:28",
+        "radius-medium": "VariableID:49:29",
+        "radius-strong": "VariableID:49:30",
+        "radius-circle": "VariableID:49:31",
         "spacing-50": "VariableID:49:32",
         "spacing-100": "VariableID:49:33",
         "spacing-200": "VariableID:49:34",
@@ -109,7 +109,11 @@
         "spacing-1000": "VariableID:136:13",
         "spacing-1200": "VariableID:136:14",
         "spacing-1600": "VariableID:136:15",
-        "spacing-3200": "VariableID:136:16"
+        "spacing-3200": "VariableID:136:16",
+        "radius-none": "VariableID:154:2",
+        "radius-light": "VariableID:154:3",
+        "radius-bold": "VariableID:154:4",
+        "radius-pill": "VariableID:154:5"
       },
       "_orphaned": {
         "_comment": "Still resolvable via getVariableByIdAsync (referenced by an alias elsewhere) but detached from this collection's variableIds -- won't appear in a fresh collection dump. Leftover from an earlier cleanup that silently no-op'd. Harmless but unclean; see design-sync-mcp README.",

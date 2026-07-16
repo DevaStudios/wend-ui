@@ -3,8 +3,8 @@ const NUMERIC = /^-?\d+(\.\d+)?(px)?$/;
 
 /**
  * Infers the Figma variable type from the token's *resolved* value shape,
- * rather than its source category — needed because component tokens (e.g.
- * `button.background.primary`) don't live under `color`/`spacing`/`font`
+ * rather than its source category — needed because some component tokens (e.g.
+ * `button.padding-block`, `button.radius`) don't live under `color`/`spacing`/`font`
  * themselves, they just resolve (via references) to values that do.
  *
  * Shared between style-dictionary.config.js (light) and

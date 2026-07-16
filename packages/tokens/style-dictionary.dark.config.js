@@ -11,9 +11,9 @@ const { radiusPxTransform } = require('./scripts/radius-px-transform.js');
 // included here, in that order — Style Dictionary merges by path with later files winning,
 // so overridden tokens (e.g. surface.canvas) resolve to their dark value, while tokens
 // color.dark.json doesn't mention (e.g. text.on-primary) still resolve via the light file.
-// This is required for `component/**` to resolve at all: button.text.primary references
-// `{color.text.on-primary}`, which would be an unresolved reference if only color.dark.json
-// were in source.
+// This is required for `component/**` to resolve at all: color.button.primary.foreground.default
+// references `{color.text.on-primary}`, which would be an unresolved reference if only
+// color.dark.json were in source.
 module.exports = {
   // Both the token-path collisions (color.json vs color.dark.json intentionally defining
   // the same paths — that's the override mechanism) and the css platform's "filtered
@@ -63,7 +63,7 @@ module.exports = {
           // No filter here (unlike the css platform above) — this needs every token
           // fully resolved in the dark context, including ones whose dark value is
           // identical to light (e.g. spacing) or only *transitively* different via a
-          // component-tier reference (e.g. button.background.primary), so the merge
+          // component-tier reference (e.g. color.button.primary.background.default), so the merge
           // script can zip it 1:1 against tokens-light.json by name.
           destination: 'tokens-dark.json',
           format: 'figma/flat-tokens'

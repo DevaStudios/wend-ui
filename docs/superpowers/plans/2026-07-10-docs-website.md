@@ -67,7 +67,7 @@ body {
 }
 
 .wend-nav__links a[aria-current='page'] {
-  color: var(--color-action-primary);
+  color: var(--color-action-primary-background);
   font-weight: var(--font-weight-medium);
 }
 
@@ -122,7 +122,7 @@ body {
 }
 
 .wend-scale-row__box {
-  background-color: var(--color-action-primary);
+  background-color: var(--color-action-primary-background);
 }
 
 .wend-type-row {

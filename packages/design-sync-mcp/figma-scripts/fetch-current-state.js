@@ -6,13 +6,13 @@
 //
 // WHY THIS EXISTS: a hand-rolled version of this resolver was rewritten from memory twice
 // in one session and both times had the same bug -- when a variable's value is itself an
-// alias into ANOTHER multi-mode variable (e.g. button-background-primary -> action.primary,
-// both in the "semantic" collection), the nested lookup used that target's first mode
-// (modes[0], "Light") unconditionally instead of following whichever mode the outer call
-// was actually resolving. That silently produced wrong "dark" values for every variable
-// that chains through another multi-mode variable, showing up as false-positive drift in
-// diff_tokens. This version threads the mode name through every recursive hop so it can't
-// happen again -- use this file instead of re-deriving the resolver.
+// alias into ANOTHER multi-mode variable (e.g. color-button-primary-background-default ->
+// color-action-primary-background, both in the "semantic" collection), the nested lookup
+// used that target's first mode (modes[0], "Light") unconditionally instead of following
+// whichever mode the outer call was actually resolving. That silently produced wrong "dark"
+// values for every variable that chains through another multi-mode variable, showing up
+// as false-positive drift in diff_tokens. This version threads the mode name through every
+// recursive hop so it can't happen again -- use this file instead of re-deriving the resolver.
 
 function rgbToHex(c) {
   const h = (n) => Math.round(n * 255).toString(16).padStart(2, '0').toUpperCase();

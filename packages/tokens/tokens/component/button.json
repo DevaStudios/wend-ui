@@ -4,17 +4,27 @@
     "padding-inline": { "value": "{spacing.200}" },
     "radius": { "value": "{radius.medium}" },
     "font-size": { "value": "{font.size.200}" },
-    "font-weight": { "value": "{font.weight.regular}" },
-    "background": {
-      "primary": { "value": "{color.action.primary}" },
-      "primary-hover": { "value": "{color.action.primary-hover}" }
-    },
-    "text": {
-      "primary": { "value": "{color.text.on-primary}" },
-      "secondary": { "value": "{color.action.secondary}" }
-    },
-    "border": {
-      "secondary": { "value": "{color.action.secondary}" }
+    "font-weight": { "value": "{font.weight.regular}" }
+  },
+  "color": {
+    "button": {
+      "primary": {
+        "background": {
+          "default": { "value": "{color.action.primary.background}" },
+          "hover": { "value": "{color.action.primary.background-hover}" }
+        },
+        "foreground": {
+          "default": { "value": "{color.text.on-primary}" }
+        }
+      },
+      "secondary": {
+        "foreground": {
+          "default": { "value": "{color.action.secondary.foreground}" }
+        },
+        "border": {
+          "default": { "value": "{color.action.secondary.foreground}" }
+        }
+      }
     }
   }
 }

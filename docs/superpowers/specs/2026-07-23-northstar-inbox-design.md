@@ -125,6 +125,10 @@ This rule is scoped narrowly to 3-state items whose "closed" transition is a rea
 
 Depth: per the earlier scoping decision, this is specified as a rule plus one example list card — the follow-up item's own workflow panel is not designed in this pass.
 
+## Schema note (beyond this exercise)
+
+If this ranking model were implemented against a real backend, `impact_tier` / `urgency_tier` (and a short `reason` string) should live on each inbox item's payload — computed server-side when the item is created or updated — rather than re-derived by every client from raw `facts`/`due_at`. The §3 scoring already depends on judgment calls a client can't reliably infer from raw data alone (e.g. "a meeting with no attached dollar figure is Medium impact"); centralizing them avoids per-consumer drift and keeps the "why" reasoning authored once instead of reimplemented. Out of scope for this Figma-only exercise — noted here for whoever builds this against a real backend.
+
 ## Open questions for the Figma build
 
 - Exact copy/tone for AI-drafted summaries beyond the three examples given here.

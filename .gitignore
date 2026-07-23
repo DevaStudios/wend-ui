@@ -152,3 +152,5 @@ packages/web-components/.stencil
 packages/manifest/dist
 packages/design-sync-mcp/dist
 packages/react/dist
+
+.superpowers/

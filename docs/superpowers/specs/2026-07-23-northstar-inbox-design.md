@@ -54,7 +54,20 @@ Located on `inbox_005` rather than `inbox_006` (Jules's email) because it reinfo
 
 ## 3. List hierarchy — ordering and visual treatment
 
-**Ordering: time urgency.** Soonest deadline/signal first, matching the existing mock (meeting in 30 min → hiring due tomorrow → cash risk → board in 10 days → messages, which carry no deadline and sort last). Chosen over financial-stakes ordering (the $184k risk or the runway-impacting hire could outrank a routine meeting, but this reframes the product's core promise from "what's due" to "what matters," a bigger change than this exercise calls for) and over a hybrid scored model (more sophisticated, more surface area to justify, not needed to answer the brief's actual question).
+**Ordering: blended risk score — impact × urgency, both weighted together.** Rather than pure chronology (soonest deadline wins) or pure stakes (biggest number wins), each item gets an **Impact** tier (financial magnitude: dollar amount, runway delta, or absence of a direct figure) and an **Urgency** tier (time to required action, where "already overdue/active" counts as maximally urgent, same as an imminent deadline). The two combine into one score, so a high-stakes item with no fixed deadline can still outrank a low-stakes item that happens to be due sooner, and vice versa.
+
+| Item | Impact | Urgency | Score |
+|---|---|---|---|
+| Cash risk | High — $184k | Immediate — overdue now | 9 |
+| Meeting prep | Medium — forecast signal, no direct figure | Immediate — 30 min | 6 |
+| Hiring decision | High — runway −2.6mo | Today — due tomorrow | 6 |
+| Board materials | Medium — admin deadline, no active risk figure | This week — 10 days | 2 |
+| Ben's message | Low — no figure | None | 0 |
+| Jules's email | None | None | 0 |
+
+Resulting order: **Cash risk → Meeting prep → Hiring decision → Board materials → Ben's message → Jules's email.** Meeting and Hiring tie numerically (6 each); the tie resolves toward whichever has less slack — 30 minutes beats a full day, so the meeting stays just ahead. Ties elsewhere (Ben vs. Jules, both 0) fall back to time-urgency as the secondary sort, matching the earlier chronological model.
+
+This was chosen over a pure-chronological sort (undersells real financial stakes — a $184k active risk with no calendar deadline would sort behind everything that merely has one) and over pure-stakes ordering (ignores the fact that a 30-minute meeting genuinely has less slack than a same-day decision, even if its own number is smaller). The visual chip system doesn't need to change to carry this — the dollar/runway figures already on each card make the "why" legible from the number itself, without adding a separate score badge.
 
 **Visual treatment: typed icon + front-loaded signal chip**, one per `source.type`:
 
@@ -106,7 +119,7 @@ When the meeting closes (§4), Northstar creates a new OPEN item using the **sam
 - Title: "Log outcomes: Sales forecast review"
 - Meta: "Pipeline, Evergreen, forecast gaps · from today's meeting"
 - Icon: 🔁, with a "new" chip to distinguish it from items that were already in the queue
-- Sorts into the time-urgency ordering like any other item (no due date yet assigned at generation time — falls in wherever "no deadline" items sort, same as the two message-type items)
+- Scores like any other item under the §3 blended model: no dollar/runway figure and no deadline at generation time, so Impact = Low and Urgency = None — it sorts near the bottom alongside the two messages until/unless a real figure or deadline gets attached to it
 
 This rule is scoped narrowly to 3-state items whose "closed" transition is a real calendar/deadline event (the meeting) — it is **not** a general "every closed item spawns a follow-up" rule. Cash risk closing (invoices paid) and board materials closing (due-date passes) do not spawn anything in this spec; only the meeting does, because "log outcomes" only makes sense where something was actually discussed live. Extending the rule to other 3-state items is a reasonable future direction but is out of scope here (see Non-goals).
 

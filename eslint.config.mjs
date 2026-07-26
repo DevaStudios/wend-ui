@@ -25,7 +25,11 @@ export default tseslint.config(
         projectService: {
           // Root-level tooling configs (e.g. stencil.config.ts) that live outside
           // their package's `rootDir` and so aren't part of any real tsconfig project.
-          allowDefaultProject: ['packages/web-components/stencil.config.ts']
+          allowDefaultProject: [
+            'packages/web-components/stencil.config.ts',
+            '.storybook/main.ts',
+            '.storybook/preview.ts'
+          ]
         },
         tsconfigRootDir: import.meta.dirname
       }

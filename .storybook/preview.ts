@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/react-vite';
-import { defineCustomElements } from '@wend-ui/web-components/loader';
+import { defineCustomElement } from '@wend-ui/web-components/dist/components/wend-button.js';
 import '@wend-ui/styles';
 
-defineCustomElements();
+defineCustomElement();
 
 const preview: Preview = {};
 

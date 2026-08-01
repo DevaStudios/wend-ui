@@ -17,7 +17,7 @@ wend-ui's design tokens are the source of truth (`packages/tokens/tokens/**/*.js
 
 ## Steps
 
-1. **Rebuild:** `npm run build -w packages/tokens`. Fix reference errors first — a renamed/removed key breaks any `{token.path}` reference elsewhere; grep the old name across `tokens/**/*.json` before rebuilding again.
+1. **Rebuild:** `npm run build -w packages/tokens`. This also runs `scripts/validate-color-taxonomy.js` first, which fails the build with a specific per-token error if a *color* token's JSON shape doesn't match the naming taxonomy in README.md's "Color token naming" section (bare leaf where a property/state split is required, an unrecognized category, a stray `-default` at the semantic tier, a missing `default` state at the component tier). Fix reference errors first — a renamed/removed key breaks any `{token.path}` reference elsewhere; grep the old name across `tokens/**/*.json` before rebuilding again.
 
 2. **Pull current state from both sides:**
    - Project tokens: `mcp__wend-ui-design-sync__get_tokens` (auto-rebuilds from source if stale).
@@ -45,3 +45,5 @@ wend-ui's design tokens are the source of truth (`packages/tokens/tokens/**/*.js
 - Skipping the `scopes` check when creating a new variable — defaults to `ALL_SCOPES`, which may not match this collection's convention.
 - Treating every `onlyInFigma` diff entry as dead weight to delete — confirm with the user first.
 - Stopping at `packages/tokens/README.md` and skipping the repo-wide grep — planning docs under `docs/superpowers/` reference token names in example CSS/HTML and go stale silently, with no build step to catch it.
+- Assuming the repo-wide grep only needs to check docs — real shipped CSS (`packages/styles/src/components/*.css`, `packages/web-components/styles/src/components/*.css` — note these are a tracked *duplicate pair*, not build output, so fix both — and `packages/web-components/src/global/docs.css`) references token names directly too, and a stale reference there is a live rendering bug, not just documentation drift.
+- The color taxonomy validator only catches shape violations (missing property/state segment, wrong category) — it can't catch a token that's shaped correctly but semantically wrong (e.g. picking `foreground` for a token that's actually used as a background). Match the property name to how the token is actually consumed, not just to what passes validation.

@@ -1,5 +1,6 @@
 const { figmaFlatTokensFormat } = require('./scripts/figma-format.js');
 const { spacingRemTransform, fontSizeRemTransform } = require('./scripts/rem-transforms.js');
+const { radiusPxTransform } = require('./scripts/radius-px-transform.js');
 
 module.exports = {
   source: ['tokens/global/**/*.json', 'tokens/semantic/color.json', 'tokens/component/**/*.json'],
@@ -9,13 +10,14 @@ module.exports = {
     },
     transforms: {
       [spacingRemTransform.name]: spacingRemTransform,
-      [fontSizeRemTransform.name]: fontSizeRemTransform
+      [fontSizeRemTransform.name]: fontSizeRemTransform,
+      [radiusPxTransform.name]: radiusPxTransform
     }
   },
   platforms: {
     css: {
       transformGroup: 'css',
-      transforms: [spacingRemTransform.name, fontSizeRemTransform.name],
+      transforms: [spacingRemTransform.name, fontSizeRemTransform.name, radiusPxTransform.name],
       buildPath: 'build/css/',
       files: [
         {
@@ -30,7 +32,7 @@ module.exports = {
     },
     scss: {
       transformGroup: 'scss',
-      transforms: [spacingRemTransform.name, fontSizeRemTransform.name],
+      transforms: [spacingRemTransform.name, fontSizeRemTransform.name, radiusPxTransform.name],
       buildPath: 'build/scss/',
       files: [
         {

@@ -22,6 +22,7 @@
         <a href="get-started.html">Get Started</a>
         <a href="foundations.html">Foundations</a>
         <a href="components.html" aria-current="page">Components</a>
+        <a href="storybook/index.html">Storybook</a>
       </div>
     </nav>
 
@@ -34,6 +35,26 @@
           <wend-button variant="primary">Primary button</wend-button>
           <wend-button variant="secondary">Secondary button</wend-button>
           <wend-button variant="primary" disabled>Disabled button</wend-button>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">States (primary)</p>
+        <p style="margin: 0 0 var(--spacing-100); color: var(--color-text-secondary); font-size: var(--font-size-175)">
+          Hover and Active are shown as static swatches here since they're pointer-driven pseudo-states — try
+          the Default button above to see them live.
+        </p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-button variant="primary">Default</wend-button>
+          <wend-button
+            variant="primary"
+            style="--color-button-primary-background-default: var(--color-button-primary-background-hover)"
+            >Hover</wend-button
+          >
+          <wend-button
+            variant="primary"
+            style="--color-button-primary-background-default: var(--color-button-primary-background-active)"
+            >Active</wend-button
+          >
+          <wend-button variant="primary" disabled>Disabled</wend-button>
         </div>
 
         <p style="margin: 0 0 var(--spacing-100)">Usage</p>

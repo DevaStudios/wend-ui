@@ -25,7 +25,11 @@ export default tseslint.config(
         projectService: {
           // Root-level tooling configs (e.g. stencil.config.ts) that live outside
           // their package's `rootDir` and so aren't part of any real tsconfig project.
-          allowDefaultProject: ['packages/web-components/stencil.config.ts']
+          allowDefaultProject: [
+            'packages/web-components/stencil.config.ts',
+            '.storybook/main.ts',
+            '.storybook/preview.ts'
+          ]
         },
         tsconfigRootDir: import.meta.dirname
       }
@@ -78,7 +82,7 @@ export default tseslint.config(
     }
   },
   {
-    files: ['packages/react/**/*.{ts,tsx}'],
+    files: ['packages/react/**/*.{ts,tsx}', 'packages/web-components/stories/**/*.{ts,tsx}'],
     plugins: { react, 'react-hooks': reactHooks },
     rules: {
       ...react.configs.recommended.rules,
@@ -91,6 +95,16 @@ export default tseslint.config(
     },
     settings: {
       react: { version: 'detect' }
+    }
+  },
+  {
+    // Augmenting the global `JSX.IntrinsicElements` namespace to type a raw custom
+    // element (e.g. `wend-button`) is TypeScript's standard mechanism for this and has
+    // no ES2015-module equivalent — `no-namespace`'s default `allowDeclarations: false`
+    // otherwise flags the required `declare global { namespace JSX { ... } }` block.
+    files: ['packages/web-components/stories/**/*.{ts,tsx}'],
+    rules: {
+      '@typescript-eslint/no-namespace': 'off'
     }
   },
   prettierConfig

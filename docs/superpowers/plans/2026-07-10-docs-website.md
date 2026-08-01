@@ -67,7 +67,7 @@ body {
 }
 
 .wend-nav__links a[aria-current='page'] {
-  color: var(--color-action-primary);
+  color: var(--color-action-primary-background);
   font-weight: var(--font-weight-medium);
 }
 
@@ -122,7 +122,7 @@ body {
 }
 
 .wend-scale-row__box {
-  background-color: var(--color-action-primary);
+  background-color: var(--color-action-primary-background);
 }
 
 .wend-type-row {
@@ -150,7 +150,7 @@ body {
 
 .wend-code {
   background-color: var(--color-surface-canvas-recessed);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-regular);
   padding: var(--spacing-100) var(--spacing-200);
   font-family: monospace;
   font-size: var(--font-size-175);
@@ -180,7 +180,7 @@ body {
 
 .wend-ramp-swatch {
   height: 32px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-regular);
   border: 1px solid var(--color-border-default);
 }
 
@@ -330,7 +330,7 @@ git commit -m "add Get Started docs page"
 
 **Interfaces:**
 - Consumes: `/global/docs.css` classes from Task 1, including `wend-ramp-grid`/`wend-ramp-step-label`/`wend-ramp-name-label`/`wend-ramp-swatch`/`wend-ramp-swatch--base` (moved verbatim from the old `index.html`) and `wend-scale-row`/`wend-type-row`.
-- Consumes: token CSS custom properties — ramp colors (`--color-{linen,mist,citron,lilac,indigo,midnight}-{50..950}`), `--spacing-{50,100,200,300,400,600}` (representative steps from the full 21-step scale), `--radius-{sm,md,lg,full}`, `--font-size-{175,200,250,350}`, `--font-weight-{regular,medium,bold}`, `--font-line-height-{tight,base}` — all already defined by `@wend-ui/tokens`' built CSS, loaded via the existing Stencil `globalStyle` bundle.
+- Consumes: token CSS custom properties — ramp colors (`--color-{linen,mist,citron,lilac,indigo,midnight}-{50..950}`), `--spacing-{0,25,50,100,125,150,200,250,275,300,350,400,500,550,600,700,800,1000,1200,1600,3200}` (the full 21-step scale), `--radius-{none,light,regular,medium,strong,pill,bold,circle}` (the full 8-step scale), `--font-size-{175,200,250,350}`, `--font-weight-{regular,medium,bold}`, `--font-line-height-{tight,base}` — all already defined by `@wend-ui/tokens`' built CSS, loaded via the existing Stencil `globalStyle` bundle.
 - Consumes: `.wend-surface` class from `@wend-ui/styles`' existing `base.css` (already loaded via the same `globalStyle` bundle, not part of the new `docs.css`).
 
 - [ ] **Step 1: Create `packages/web-components/src/foundations.html`**
@@ -389,7 +389,7 @@ git commit -m "add Get Started docs page"
             <div
               style="
                 background-color: var(--color-surface-card-recessed);
-                border-radius: var(--radius-sm);
+                border-radius: var(--radius-regular);
                 padding: var(--spacing-100);
               "
             >
@@ -401,7 +401,7 @@ git commit -m "add Get Started docs page"
             style="
               margin-top: var(--spacing-200);
               background-color: var(--color-surface-canvas-recessed);
-              border-radius: var(--radius-sm);
+              border-radius: var(--radius-regular);
               padding: var(--spacing-100);
             "
           >
@@ -413,6 +413,14 @@ git commit -m "add Get Started docs page"
       <div class="wend-section">
         <h2>Spacing</h2>
         <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-0 (0px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-0); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-25 (2px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-25); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
           <span class="wend-scale-row__label">spacing-50 (4px)</span>
           <div class="wend-scale-row__box" style="width: var(--spacing-50); height: 24px"></div>
         </div>
@@ -421,42 +429,113 @@ git commit -m "add Get Started docs page"
           <div class="wend-scale-row__box" style="width: var(--spacing-100); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-125 (10px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-125); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-150 (12px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-150); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
           <span class="wend-scale-row__label">spacing-200 (16px)</span>
           <div class="wend-scale-row__box" style="width: var(--spacing-200); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-250 (20px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-250); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-275 (22px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-275); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
           <span class="wend-scale-row__label">spacing-300 (24px)</span>
           <div class="wend-scale-row__box" style="width: var(--spacing-300); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-350 (28px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-350); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
           <span class="wend-scale-row__label">spacing-400 (32px)</span>
           <div class="wend-scale-row__box" style="width: var(--spacing-400); height: 24px"></div>
         </div>
         <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-500 (40px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-500); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-550 (44px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-550); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
           <span class="wend-scale-row__label">spacing-600 (48px)</span>
           <div class="wend-scale-row__box" style="width: var(--spacing-600); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-700 (54px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-700); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-800 (64px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-800); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-1000 (88px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-1000); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-1200 (96px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-1200); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-1600 (128px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-1600); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-3200 (256px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-3200); height: 24px"></div>
         </div>
       </div>
 
       <div class="wend-section">
         <h2>Radius</h2>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">radius-sm (4px)</span>
-          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-sm)"></div>
+          <span class="wend-scale-row__label">radius-none (0px)</span>
+          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-none)"></div>
         </div>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">radius-md (8px)</span>
-          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-md)"></div>
+          <span class="wend-scale-row__label">radius-light (2px)</span>
+          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-light)"></div>
         </div>
         <div class="wend-scale-row">
-          <span class="wend-scale-row__label">radius-lg (16px)</span>
-          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-lg)"></div>
-        </div>
-        <div class="wend-scale-row">
-          <span class="wend-scale-row__label">radius-full (9999px)</span>
+          <span class="wend-scale-row__label">radius-regular (4px)</span>
           <div
             class="wend-scale-row__box"
-            style="width: 48px; height: 48px; border-radius: var(--radius-full)"
+            style="width: 48px; height: 48px; border-radius: var(--radius-regular)"
+          ></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">radius-medium (8px)</span>
+          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-medium)"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">radius-strong (16px)</span>
+          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-strong)"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">radius-pill (20px)</span>
+          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-pill)"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">radius-bold (32px)</span>
+          <div class="wend-scale-row__box" style="width: 48px; height: 48px; border-radius: var(--radius-bold)"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">radius-circle (9999px)</span>
+          <div
+            class="wend-scale-row__box"
+            style="width: 48px; height: 48px; border-radius: var(--radius-circle)"
           ></div>
         </div>
       </div>

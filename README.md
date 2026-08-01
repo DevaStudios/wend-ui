@@ -29,6 +29,17 @@ npm run build
 npm run dev:components
 ```
 
+## Storybook
+
+Storybook covers both `@wend-ui/web-components` (raw `<wend-button>` usage) and `@wend-ui/react` (`<WendButton>` wrapper usage) from a single instance at the repo root:
+
+```sh
+npm run storybook        # dev server at http://localhost:6006
+npm run build-storybook  # static build (storybook-static/)
+```
+
+Like `npm run dev:components`, both scripts import `@wend-ui/styles`'s and `@wend-ui/web-components`'s built output, which is gitignored and not checked in — run `npm run build` (or at least `packages/tokens`, `packages/styles`, `packages/web-components`, and `packages/react`) at least once on a fresh clone before running either script. Both scripts also rebuild `packages/web-components` and `packages/react` automatically before starting Storybook, so you don't need to re-run those two manually after the first `npm run build`.
+
 ## Code quality
 
 ESLint (flat config, TypeScript- and React-aware) and Prettier run across the whole monorepo from the root:

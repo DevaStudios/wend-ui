@@ -18,7 +18,8 @@
     "action": {
       "primary": {
         "background": { "value": "{color.midnight.500}" },
-        "background-hover": { "value": "{color.midnight.400}" }
+        "background-hover": { "value": "{color.indigo.600}" },
+        "background-active": { "value": "{color.midnight.700}" }
       },
       "secondary": {
         "foreground": { "value": "{color.indigo.500}" }

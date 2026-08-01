@@ -11,7 +11,8 @@
       "primary": {
         "background": {
           "default": { "value": "{color.action.primary.background}" },
-          "hover": { "value": "{color.action.primary.background-hover}" }
+          "hover": { "value": "{color.action.primary.background-hover}" },
+          "active": { "value": "{color.action.primary.background-active}" }
         },
         "foreground": {
           "default": { "value": "{color.text.on-primary}" }

@@ -1,0 +1,99 @@
+<h2>How should the other 5 items look in the list?</h2>
+<p class="subtitle">Same time-urgency order both ways. The question is whether each item's type/signal should be visually distinct, or uniform like the starting mock.</p>
+
+<div class="split">
+
+  <div class="mockup">
+    <div class="mockup-header">A — Uniform (current style)</div>
+    <div class="mockup-body" style="font-size:11px;">
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;">
+        <div style="font-weight:600;">Meeting in 30 minutes</div>
+        <div style="color:#888;">Sales · Maya + Ben · Example available</div>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;">
+        <div style="font-weight:600;">Hiring decision due tomorrow</div>
+        <div style="color:#888;">2 hires · Runway 14.2 → 11.6 months</div>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;">
+        <div style="font-weight:600;">$184k cash risk detected</div>
+        <div style="color:#888;">3 invoices overdue · Forecast changed</div>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;">
+        <div style="font-weight:600;">Board materials due in 10 days</div>
+        <div style="color:#888;">Revenue, cash flow, runway · 2 sections open</div>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;">
+        <div style="font-weight:600;">Ben Ortiz</div>
+        <div style="color:#888;">Evergreen is looking good. Procurement is...</div>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;">
+        <div style="font-weight:600;">Jules Martin</div>
+        <div style="color:#888;">Could we swing a team offsite in October?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">B — Typed, with signal chips</div>
+    <div class="mockup-body" style="font-size:11px;">
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+        <span style="opacity:.5;">📅</span>
+        <div style="flex:1;">
+          <div style="font-weight:600;">Meeting in 30 minutes</div>
+          <div style="color:#888;">Sales forecast review · Maya + Ben</div>
+        </div>
+        <span style="background:#fde68a;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">30 min</span>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+        <span style="opacity:.5;">✓</span>
+        <div style="flex:1;">
+          <div style="font-weight:600;">Hiring decision due tomorrow</div>
+          <div style="color:#888;">2 hires proposed</div>
+        </div>
+        <span style="background:#fecaca;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">runway −2.6mo</span>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+        <span style="opacity:.5;">⚠</span>
+        <div style="flex:1;">
+          <div style="font-weight:600;">Cash collection risk</div>
+          <div style="color:#888;">3 invoices, 30+ days overdue</div>
+        </div>
+        <span style="background:#fecaca;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">$184k</span>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+        <span style="opacity:.5;">📄</span>
+        <div style="flex:1;">
+          <div style="font-weight:600;">Board materials</div>
+          <div style="color:#888;">2 of 4 sections need work</div>
+        </div>
+        <span style="background:#f3f4f6;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">10 days</span>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+        <span style="opacity:.5;">💬</span>
+        <div style="flex:1;">
+          <div style="font-weight:600;">Ben Ortiz</div>
+          <div style="color:#888;">Evergreen is looking good...</div>
+        </div>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:8px;display:flex;gap:6px;align-items:flex-start;">
+        <span style="opacity:.5;">✉</span>
+        <div style="flex:1;">
+          <div style="font-weight:600;">Jules Martin</div>
+          <div style="color:#888;">Team offsite in October?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="options" style="margin-top:16px;">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content"><h3>Uniform</h3><p>Reads as one clean inbox; type is implied by the words, not decoration.</p></div>
+  </div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content"><h3>Typed + signal chips</h3><p>Icon per source type, a front-loaded chip for the number that matters (time, $, runway delta). More scannable at a glance, more visual weight.</p></div>
+  </div>
+</div>

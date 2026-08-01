@@ -1,0 +1,75 @@
+<h2>Blended ranking: impact × urgency</h2>
+<p class="subtitle">Two tiers, combined. Ties break toward whichever has less slack (the tighter deadline wins).</p>
+
+<div class="mockup">
+  <div class="mockup-header">Scoring rubric</div>
+  <div class="mockup-body" style="font-size:11px;">
+    <table style="width:100%;border-collapse:collapse;">
+      <tr style="border-bottom:1px solid #ddd;color:#888;text-align:left;">
+        <th style="padding:4px;">Item</th><th style="padding:4px;">Impact</th><th style="padding:4px;">Urgency</th><th style="padding:4px;">Score</th>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;background:#fef2f2;">
+        <td style="padding:4px;font-weight:600;">Cash risk</td><td style="padding:4px;">High — $184k</td><td style="padding:4px;">Immediate — overdue now</td><td style="padding:4px;font-weight:600;">9</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:4px;font-weight:600;">Meeting prep</td><td style="padding:4px;">Medium — forecast signal</td><td style="padding:4px;">Immediate — 30 min</td><td style="padding:4px;font-weight:600;">6</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:4px;font-weight:600;">Hiring decision</td><td style="padding:4px;">High — runway −2.6mo</td><td style="padding:4px;">Today — due tomorrow</td><td style="padding:4px;font-weight:600;">6</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:4px;font-weight:600;">Board materials</td><td style="padding:4px;">Medium — admin deadline</td><td style="padding:4px;">This week — 10 days</td><td style="padding:4px;">2</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:4px;font-weight:600;">Ben's message</td><td style="padding:4px;">Low — no figure</td><td style="padding:4px;">None</td><td style="padding:4px;">0</td>
+      </tr>
+      <tr>
+        <td style="padding:4px;font-weight:600;">Jules's email</td><td style="padding:4px;">None</td><td style="padding:4px;">None</td><td style="padding:4px;">0</td>
+      </tr>
+    </table>
+    <div style="margin-top:6px;color:#888;">Meeting and Hiring tie at 6 — Meeting wins the tiebreak (30 min of slack beats a day of slack).</div>
+  </div>
+</div>
+
+<div class="mockup" style="margin-top:12px;">
+  <div class="mockup-header">Resulting OPEN order</div>
+  <div class="mockup-body" style="font-size:11px;">
+
+    <div style="border:1.5px solid #fca5a5;background:#fef2f2;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+      <span style="opacity:.6;">⚠</span>
+      <div style="flex:1;"><div style="font-weight:600;">Cash collection risk</div><div style="color:#888;">3 invoices, 30+ days overdue</div></div>
+      <span style="background:#fecaca;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">$184k</span>
+    </div>
+
+    <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+      <span style="opacity:.5;">📅</span>
+      <div style="flex:1;"><div style="font-weight:600;">Meeting in 30 minutes</div><div style="color:#888;">Sales forecast review · Maya + Ben</div></div>
+      <span style="background:#fde68a;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">30 min</span>
+    </div>
+
+    <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+      <span style="opacity:.5;">✓</span>
+      <div style="flex:1;"><div style="font-weight:600;">Hiring decision due tomorrow</div><div style="color:#888;">2 hires proposed</div></div>
+      <span style="background:#fecaca;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">runway −2.6mo</span>
+    </div>
+
+    <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+      <span style="opacity:.5;">📄</span>
+      <div style="flex:1;"><div style="font-weight:600;">Board materials</div><div style="color:#888;">2 of 4 sections need work</div></div>
+      <span style="background:#f3f4f6;border-radius:10px;padding:1px 6px;font-size:9px;white-space:nowrap;">10 days</span>
+    </div>
+
+    <div style="border:1px solid #ddd;border-radius:6px;padding:8px;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;">
+      <span style="opacity:.5;">💬</span>
+      <div style="flex:1;"><div style="font-weight:600;">Ben Ortiz</div><div style="color:#888;">Evergreen is looking good...</div></div>
+    </div>
+
+    <div style="border:1px solid #ddd;border-radius:6px;padding:8px;display:flex;gap:6px;align-items:flex-start;">
+      <span style="opacity:.5;">✉</span>
+      <div style="flex:1;"><div style="font-weight:600;">Jules Martin</div><div style="color:#888;">Team offsite in October?</div></div>
+    </div>
+
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:16px;">Cash risk now leads (highest raw stakes + already active), meeting stays close behind on urgency, hiring right after on stakes. Same icon/chip visual system as before — only the sort order and the rationale behind it changed. Does this order feel right, or should the tie resolve the other way (hiring before meeting)?</p>

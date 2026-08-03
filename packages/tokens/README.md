@@ -75,6 +75,33 @@ Same conversion mechanism as spacing: unitless px-equivalent source values, conv
 
 Source values are unitless numbers representing px (same convention as spacing/font-size). Unlike those two, radius resolves to **px, not rem** — corner radii don't need to scale with the user's font-size setting, so the `css`/`scss` platforms convert via the custom `size/radius-px` transform in `scripts/radius-px-transform.js` (appends `px`, no scaling; `0` stays unitless). The `js`/`figma` platforms keep the raw numbers, same as spacing/font-size.
 
+## Color scale
+
+`tokens/global/color.json`'s `gray` ramp is the core neutral scale everything else builds on:
+
+| Token | Hex | Note |
+| --- | --- | --- |
+| `color-gray-25` | `#FFFFFF` | pure white — dark-mode primary button's active/pressed state |
+| `color-gray-50` | `#FAFAF9` | lightest general-purpose step (canvas, card) |
+| `color-gray-100` | `#F9F8F7` | |
+| `color-gray-200` | `#F6F6F3` | |
+| `color-gray-300` | `#F4F3EF` | |
+| `color-gray-400` | `#F1F0EB` | |
+| `color-gray-500` | `#F0EEE9` | |
+| `color-gray-600` | `#DCDAD5` | recessed surfaces |
+| `color-gray-650` | `#CCCCCC` | dark-mode primary button's default state (white − 20% black) |
+| `color-gray-675` | `#B2B2B2` | dark-mode primary button's hover state (white − 30% black) |
+| `color-gray-700` | `#AFADAA` | default border |
+| `color-gray-800` | `#787774` | secondary text, secondary action foreground |
+| `color-gray-850` | `#4D4D4D` | light-mode primary button's hover state (black + 30% white) |
+| `color-gray-900` | `#393837` | primary text |
+| `color-gray-925` | `#333333` | light-mode primary button's default state (black + 20% white) |
+| `color-gray-950` | `#000000` | pure black — light-mode primary button's active/pressed state |
+
+The `650`/`675`/`850`/`925` steps (and the `25` endpoint) exist specifically so the primary button's default/hover/active states are exact percentage mixes toward black (light mode) or white (dark mode) rather than arbitrary hand-picked colors — they aren't meant to be a general-purpose part of the visual scale (the docs site's Foundations page ramp grid deliberately only displays the 11 "plain" steps, `50`–`950` by hundreds).
+
+`amber` (`500` = `#F5A623`, `600` = `#C97F00`) is the warning notification color, alongside the unrelated `green`/`red` ramps for success/danger — all three are minimal 2-shade ramps, not part of the neutral scale.
+
 ## Color token naming
 
 Semantic and component color tokens follow `color-{scope}-{variant}-{property}[-{state}]`, where `{scope}` is a semantic category (`text`, `surface`, `border`, `action`, `feedback`) or a component name (`button`):

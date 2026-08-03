@@ -71,7 +71,8 @@
         "_comment": "Still resolvable via getVariableByIdAsync (referenced by an alias elsewhere) but detached from this collection's variableIds -- won't appear in a fresh collection dump. Leftover from an earlier cleanup that silently no-op'd. Harmless but unclean; see design-sync-mcp README. Re-verified live during Task 5 (2026-08-03): both still resolve to their original colors and are now aliased-to by color-feedback-success-background/color-feedback-danger-background's Dark mode.",
         "color-green-500": "VariableID:49:22",
         "color-red-500": "VariableID:49:26"
-      }
+      },
+      "_naming_note": "This collection also mixes naming conventions, but by prefix rather than slash/dash style: gray-* and amber-* are unprefixed (gray-500, amber-600), while the green/red feedback variables are prefixed (color-green-600, color-red-600). Code's token names are color-gray-*/color-amber-*, so a diff_tokens comparison against this collection's bare gray-*/amber-* names will always report those as onlyInProject/onlyInFigma purely due to the naming mismatch, even when the resolved hex values are identical. That's expected -- not real drift -- so don't treat it as a token discrepancy to fix."
     },
     "semantic": {
       "collectionId": "VariableCollectionId:49:48",

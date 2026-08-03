@@ -3,7 +3,7 @@
 // (right-click a mode > Import mode > select file). Import is per collection+mode, so
 // this produces one file per mode: global/Value, semantic/Light, semantic/Dark.
 //
-// Values here are literal resolved hex, not DTCG alias syntax ({color.linen.500}) --
+// Values here are literal resolved hex, not DTCG alias syntax ({color.gray.925}) --
 // each file targets a single mode in a single collection, and cross-collection aliasing
 // isn't reliably preserved through this import path. If you want semantic variables to
 // stay live-aliased to global ones (as they are when pushed via use_figma), that still

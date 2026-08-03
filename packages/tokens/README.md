@@ -82,23 +82,23 @@ Source values are unitless numbers representing px (same convention as spacing/f
 | Token | Hex | Note |
 | --- | --- | --- |
 | `color-gray-25` | `#FFFFFF` | pure white — dark-mode primary button's active/pressed state |
-| `color-gray-50` | `#FAFAF9` | lightest general-purpose step (canvas, card) |
-| `color-gray-100` | `#F9F8F7` | |
-| `color-gray-200` | `#F6F6F3` | |
-| `color-gray-300` | `#F4F3EF` | |
-| `color-gray-400` | `#F1F0EB` | |
-| `color-gray-500` | `#F0EEE9` | |
-| `color-gray-600` | `#DCDAD5` | recessed surfaces |
-| `color-gray-650` | `#CCCCCC` | dark-mode primary button's default state (white − 20% black) |
-| `color-gray-675` | `#B2B2B2` | dark-mode primary button's hover state (white − 30% black) |
-| `color-gray-700` | `#AFADAA` | default border |
-| `color-gray-800` | `#787774` | secondary text, secondary action foreground |
-| `color-gray-850` | `#4D4D4D` | light-mode primary button's hover state (black + 30% white) |
-| `color-gray-900` | `#393837` | primary text |
-| `color-gray-925` | `#333333` | light-mode primary button's default state (black + 20% white) |
+| `color-gray-50` | `#FCFAF6` | lightest general-purpose step (canvas, card) |
+| `color-gray-100` | `#E6E4E0` | |
+| `color-gray-200` | `#C9C7C3` | |
+| `color-gray-300` | `#A9A7A3` | |
+| `color-gray-400` | `#8C8A87` | |
+| `color-gray-500` | `#73716E` | |
+| `color-gray-600` | `#5E5C58` | recessed surfaces |
+| `color-gray-650` | `#4D4B48` | dark-mode primary button's default state |
+| `color-gray-675` | `#3D3C38` | dark-mode primary button's hover state |
+| `color-gray-700` | `#2F2E2A` | default border |
+| `color-gray-800` | `#1C1A17` | secondary text, secondary action foreground |
+| `color-gray-850` | `#0E0D0A` | light-mode primary button's hover state |
+| `color-gray-900` | `#040403` | primary text |
+| `color-gray-925` | `#010000` | light-mode primary button's default state |
 | `color-gray-950` | `#000000` | pure black — light-mode primary button's active/pressed state |
 
-The `650`/`675`/`850`/`925` steps (and the `25` endpoint) exist specifically so the primary button's default/hover/active states are exact percentage mixes toward black (light mode) or white (dark mode) rather than arbitrary hand-picked colors — they aren't meant to be a general-purpose part of the visual scale (the docs site's Foundations page ramp grid deliberately only displays the 11 "plain" steps, `50`–`950` by hundreds).
+`25`–`500` and `800`–`950` each have deliberately larger gaps than the steps in between (see [2026-08-03-gray-ramp-spacing-fix-design.md](../../docs/superpowers/specs/2026-08-03-gray-ramp-spacing-fix-design.md) for why: the first version of this ramp clustered too tightly at both ends). `650`/`675`/`850`/`925` are used for the primary button's default/hover states in dark/light mode respectively, but — unlike the original version of this ramp — are no longer derived from an exact percentage-mix formula; they're chosen as part of the overall ramp's spacing, with the button happening to use them. `25`/`950` remain pure white/black. The docs site's Foundations page ramp grid still only displays the 11 "plain" steps, `50`–`950` by hundreds.
 
 `amber` (`500` = `#F5A623`, `600` = `#C97F00`) is the warning notification color, alongside the unrelated `green`/`red` ramps for success/danger — all three are minimal 2-shade ramps, not part of the neutral scale.
 

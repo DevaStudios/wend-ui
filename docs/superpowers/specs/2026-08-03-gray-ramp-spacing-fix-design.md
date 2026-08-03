@@ -35,17 +35,20 @@ Computed in OKLCH (hue ≈ 85°, a small constant chroma of 0.006 for warmth, dr
 | `650` | `#CCCCCC` | `#4D4B48` |
 | `675` | `#B2B2B2` | `#3D3C38` |
 | `700` | `#AFADAA` | `#2F2E2A` |
-| `800` | `#787774` | `#252421` |
+| `800` | `#787774` | `#282623` |
 | `850` | `#4D4D4D` | `#211F1C` |
-| `900` | `#393837` | `#151411` |
-| `925` | `#333333` | `#0A0907` |
+| `900` | `#393837` | `#1C1A17` |
+| `925` | `#333333` | `#171613` |
 | `950` | `#000000` | `#000000` (unchanged) |
 
 Note the ordering by lightness is unchanged (same 16 names, same relative position), so no semantic token needs to change which step it aliases — only `packages/tokens/tokens/global/color.json`'s leaf values change. Every downstream artifact (semantic tokens, component tokens, CSS, Figma) picks up the new colors automatically through the existing alias chain, exactly the same mechanism that made the original palette swap propagate cleanly.
 
 `650`/`675`/`850`/`925` (the button hover/default states) get new values as a side effect of this fix, since they sit in the same clusters being corrected. This was confirmed acceptable during design — the button's exact look was already approved once during the original palette work, but "the whole ramp reads as one coherent scale" was judged more important than preserving those four exact values unchanged.
 
-**Correction made during implementation:** the `800`/`850`/`900`/`925` values above were revised once from an initial pass. The first computed set (`800`=`#1C1A17`, `850`=`#0E0D0A`, `900`=`#040403`, `925`=`#010000`) still left `925` and `950` only 1 unit apart in the red channel (`#010000` vs `#000000`) — nearly indistinguishable, which matters a lot here since `gray-925`/`gray-950` are exactly the light-mode primary button's default and active/pressed states, shown in direct sequence on the same element. The values in the table are the corrected version, reprioritized so the three states actually used in a button's interaction sequence — `850` (hover), `925` (default), `950` (active) — get strong mutual separation, even at the cost of `800`/`900` (general-purpose steps not shown side-by-side with anything) sitting a little closer to their neighbors than an evenly-spaced ideal would give them.
+**Two corrections made during implementation**, both to the `800`/`850`/`900`/`925` cluster (never to `25`–`700` or `950`, which were correct from the start):
+
+1. The first computed set (`800`=`#1C1A17`, `850`=`#0E0D0A`, `900`=`#040403`, `925`=`#010000`) left `925` and `950` only 1 unit apart in the red channel (`#010000` vs `#000000`) — nearly indistinguishable, defeating the purpose for exactly the pair that matters most (`gray-925`/`gray-950` are the light-mode primary button's default and active/pressed states, shown in direct sequence on the same element).
+2. A second pass (`800`=`#252421`, `850`=`#211F1C`, `900`=`#151411`, `925`=`#0A0907`) fixed the worst of it (ΔL* between `925`/`950` went from ≈0.06 to ≈2.5 — a real improvement) but a task reviewer correctly flagged that ΔL*≈2.5 was still the ramp's weakest gap, marginal rather than clearly distinguishable, for the single pair this task most needed to fix. The values in the table above are the final, rebalanced version: `850` (hover) stays put, but `900`/`925` shift lighter so the *actual* button sequence — `850` (hover) → `925` (default) → `950` (active), per `packages/tokens/tokens/semantic/color.json`'s `action.primary.background-hover`/`background`/`background-active` — gets real, comparable gaps at both transitions (ΔL*≈4.6 between `850`/`925`, ΔL*≈7.25 between `925`/`950`, now the *largest* gap in the whole `700`–`950` cluster). `900` (used only for `text.primary`, never shown side-by-side with the button) absorbed the tightest resulting gaps, since it has no adjacent-comparison role to protect.
 
 ## Verification plan
 

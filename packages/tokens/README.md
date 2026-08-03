@@ -92,10 +92,10 @@ Source values are unitless numbers representing px (same convention as spacing/f
 | `color-gray-650` | `#4D4B48` | dark-mode primary button's default state |
 | `color-gray-675` | `#3D3C38` | dark-mode primary button's hover state |
 | `color-gray-700` | `#2F2E2A` | default border |
-| `color-gray-800` | `#252421` | secondary text, secondary action foreground |
+| `color-gray-800` | `#282623` | secondary text, secondary action foreground |
 | `color-gray-850` | `#211F1C` | light-mode primary button's hover state |
-| `color-gray-900` | `#151411` | primary text |
-| `color-gray-925` | `#0A0907` | light-mode primary button's default state |
+| `color-gray-900` | `#1C1A17` | primary text |
+| `color-gray-925` | `#171613` | light-mode primary button's default state |
 | `color-gray-950` | `#000000` | pure black — light-mode primary button's active/pressed state |
 
 `25`–`500` and `800`–`950` each have deliberately larger gaps than the steps in between (see [2026-08-03-gray-ramp-spacing-fix-design.md](../../docs/superpowers/specs/2026-08-03-gray-ramp-spacing-fix-design.md) for why: the first version of this ramp clustered too tightly at both ends). `650`/`675`/`850`/`925` are used for the primary button's default/hover states in dark/light mode respectively, but — unlike the original version of this ramp — are no longer derived from an exact percentage-mix formula; they're chosen as part of the overall ramp's spacing, with the button happening to use them. `25`/`950` remain pure white/black. The docs site's Foundations page ramp grid still only displays the 11 "plain" steps, `50`–`950` by hundreds.

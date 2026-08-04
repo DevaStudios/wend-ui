@@ -4,7 +4,8 @@
       "primary": { "value": "{color.gray.50}" },
       "secondary": { "value": "{color.gray.600}" },
       "on-primary": { "value": "{color.gray.950}" },
-      "on-secondary": { "value": "{color.gray.950}" }
+      "on-secondary": { "value": "{color.gray.950}" },
+      "disabled": { "value": "{color.gray.700}" }
     },
     "surface": {
       "canvas": { "value": "{color.gray.950}" },
@@ -19,7 +20,8 @@
       "primary": {
         "background": { "value": "{color.gray.700}" },
         "background-hover": { "value": "{color.gray.600}" },
-        "background-active": { "value": "{color.gray.25}" }
+        "background-active": { "value": "{color.gray.25}" },
+        "background-disabled": { "value": "{color.gray.900}" }
       },
       "secondary": {
         "foreground": { "value": "{color.gray.600}" }

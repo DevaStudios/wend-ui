@@ -12,10 +12,12 @@
         "background": {
           "default": { "value": "{color.action.primary.background}" },
           "hover": { "value": "{color.action.primary.background-hover}" },
-          "active": { "value": "{color.action.primary.background-active}" }
+          "active": { "value": "{color.action.primary.background-active}" },
+          "disabled": { "value": "{color.action.primary.background-disabled}" }
         },
         "foreground": {
-          "default": { "value": "{color.text.on-primary}" }
+          "default": { "value": "{color.text.on-primary}" },
+          "disabled": { "value": "{color.text.disabled}" }
         }
       },
       "secondary": {

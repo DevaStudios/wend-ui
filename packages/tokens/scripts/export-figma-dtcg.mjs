@@ -3,7 +3,7 @@
 // (right-click a mode > Import mode > select file). Import is per collection+mode, so
 // this produces one file per mode: global/Value, semantic/Light, semantic/Dark.
 //
-// Values here are literal resolved hex, not DTCG alias syntax ({color.linen.500}) --
+// Values here are literal resolved hex, not DTCG alias syntax ({color.gray.925}) --
 // each file targets a single mode in a single collection, and cross-collection aliasing
 // isn't reliably preserved through this import path. If you want semantic variables to
 // stay live-aliased to global ones (as they are when pushed via use_figma), that still
@@ -17,20 +17,20 @@ function colorEntry(hex) {
   return { $type: 'color', $value: hex };
 }
 
-// global/Value -- the six named ramps (50-950) plus the two feedback-only exceptions.
-const rampNames = ['linen', 'mist', 'citron', 'lilac', 'indigo', 'midnight'];
-const steps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'];
+// global/Value -- the single gray ramp (25-975) plus the feedback/accent-only exceptions.
+const steps = ['25', '50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950', '975'];
 
-const global = { color: {} };
-for (const name of rampNames) {
-  global.color[name] = {};
-  for (const step of steps) {
-    const token = byName.get(`color-${name}-${step}`);
-    global.color[name][step] = colorEntry(token.values.light);
-  }
+const global = { color: { gray: {} } };
+for (const step of steps) {
+  const token = byName.get(`color-gray-${step}`);
+  global.color.gray[step] = colorEntry(token.values.light);
 }
 global.color.green = { 600: colorEntry(byName.get('color-green-600').values.light) };
 global.color.red = { 600: colorEntry(byName.get('color-red-600').values.light) };
+global.color.amber = {
+  500: colorEntry(byName.get('color-amber-500').values.light),
+  600: colorEntry(byName.get('color-amber-600').values.light)
+};
 
 // semantic/Light and semantic/Dark -- same group shape as tokens/semantic/color*.json,
 // one file per mode with that mode's resolved literal value.

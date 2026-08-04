@@ -29,7 +29,7 @@
     <div class="wend-page">
       <div class="wend-section">
         <h2>Color</h2>
-        <p style="margin: 0 0 var(--spacing-100)">Color ramps (global/color.json)</p>
+        <p style="margin: 0 0 var(--spacing-100)">Neutral scale (global/color.json)</p>
         <div class="wend-ramp-grid">
           <span></span>
           <span class="wend-ramp-step-label">50</span>
@@ -43,8 +43,17 @@
           <span class="wend-ramp-step-label">800</span>
           <span class="wend-ramp-step-label">900</span>
           <span class="wend-ramp-step-label">950</span>
+          <span class="wend-ramp-step-label">975</span>
         </div>
         <div id="ramp-rows"></div>
+
+        <p style="margin: var(--spacing-300) 0 var(--spacing-100)">Notification colors (global/color.json)</p>
+        <div class="wend-ramp-grid" style="grid-template-columns: 90px repeat(2, 1fr); max-width: 300px">
+          <span></span>
+          <span class="wend-ramp-step-label">500</span>
+          <span class="wend-ramp-step-label">600</span>
+        </div>
+        <div id="notification-rows"></div>
 
         <div style="max-width: 360px; margin-top: var(--spacing-300)">
           <div class="wend-surface" style="padding: var(--spacing-200)">
@@ -261,8 +270,8 @@
     </div>
 
     <script>
-      const ramps = ['linen', 'mist', 'citron', 'lilac', 'indigo', 'midnight'];
-      const steps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'];
+      const ramps = ['gray'];
+      const steps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950', '975'];
       const rows = document.getElementById('ramp-rows');
       for (const name of ramps) {
         const row = document.createElement('div');
@@ -279,6 +288,27 @@
           row.appendChild(swatch);
         }
         rows.appendChild(row);
+      }
+
+      const notificationRamps = ['amber', 'green', 'red'];
+      const notificationSteps = ['500', '600'];
+      const notificationRows = document.getElementById('notification-rows');
+      for (const name of notificationRamps) {
+        const row = document.createElement('div');
+        row.className = 'wend-ramp-grid';
+        row.style.gridTemplateColumns = '90px repeat(2, 1fr)';
+        row.style.maxWidth = '300px';
+        const label = document.createElement('span');
+        label.textContent = name;
+        label.className = 'wend-ramp-name-label';
+        row.appendChild(label);
+        for (const step of notificationSteps) {
+          const swatch = document.createElement('div');
+          swatch.className = 'wend-ramp-swatch';
+          swatch.style.backgroundColor = `var(--color-${name}-${step})`;
+          row.appendChild(swatch);
+        }
+        notificationRows.appendChild(row);
       }
     </script>
   </body>

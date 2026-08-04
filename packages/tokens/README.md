@@ -75,13 +75,40 @@ Same conversion mechanism as spacing: unitless px-equivalent source values, conv
 
 Source values are unitless numbers representing px (same convention as spacing/font-size). Unlike those two, radius resolves to **px, not rem** — corner radii don't need to scale with the user's font-size setting, so the `css`/`scss` platforms convert via the custom `size/radius-px` transform in `scripts/radius-px-transform.js` (appends `px`, no scaling; `0` stays unitless). The `js`/`figma` platforms keep the raw numbers, same as spacing/font-size.
 
+## Color scale
+
+`tokens/global/color.json`'s `gray` ramp is the core neutral scale everything else builds on:
+
+| Token | Hex | Note |
+| --- | --- | --- |
+| `color-gray-25` | `#FFFFFF` | pure white — dark-mode primary button's active/pressed state |
+| `color-gray-50` | `#FAF9F9` | lightest general-purpose step — light-mode canvas/card, light-mode text-on-primary/on-secondary, dark-mode primary text |
+| `color-gray-100` | `#F4F2F2` | |
+| `color-gray-200` | `#E8E3E3` | |
+| `color-gray-300` | `#DBD7D7` | |
+| `color-gray-400` | `#CDCBCB` | |
+| `color-gray-500` | `#B4B1B1` | |
+| `color-gray-600` | `#9A9898` | light-mode recessed surfaces; dark-mode secondary text, secondary action foreground, primary button's hover state |
+| `color-gray-700` | `#8D8B8B` | default border (both modes); dark-mode primary button's default state |
+| `color-gray-800` | `#676565` | light-mode secondary text, secondary action foreground |
+| `color-gray-900` | `#4D4C4C` | light-mode primary text, primary button's default state; dark-mode recessed surfaces |
+| `color-gray-950` | `#333333` | light-mode primary button's default state |
+| `color-gray-975` | `#1A1A1A` | light-mode primary button's hover state |
+| `color-gray-1000` | `#000000` | pure-black endpoint — light-mode primary button's active/pressed state only |
+
+`1000` (pure black) sits below `975` and is reserved for the primary button's active state in light mode — it isn't used as a general-purpose text/surface color. `25` (pure white) is still the lightest step.
+
+`amber` (`500` = `#F5A623`, `600` = `#C97F00`) is the warning notification color, alongside the unrelated `green`/`red` ramps for success/danger — all three are minimal 2-shade ramps, not part of the neutral scale.
+
 ## Color token naming
 
 Semantic and component color tokens follow `color-{scope}-{variant}-{property}[-{state}]`, where `{scope}` is a semantic category (`text`, `surface`, `border`, `action`, `feedback`) or a component name (`button`):
 
 - **`text`/`surface`/`border`** — the category name already says which CSS property the token feeds, so no property segment is added: `color-text-primary`, `color-surface-canvas`, `color-border-default`.
-- **`action`/`feedback`** (role-based, ambiguous property) — get an explicit property segment (`background` or `foreground`, matching how the token is actually used today) and a `-hover`/`-active` suffix only when a non-default state exists: `color-action-primary-background`, `color-action-primary-background-hover`, `color-action-primary-background-active`, `color-action-secondary-foreground`, `color-feedback-success-background`.
-- **`button`** (and future components) — every color token gets both a property segment and an explicit state segment, even for the default case: `color-button-primary-background-default`, `color-button-primary-background-hover`, `color-button-primary-background-active`, `color-button-primary-foreground-default`, `color-button-secondary-foreground-default`, `color-button-secondary-border-default`.
+- **`action`/`feedback`** (role-based, ambiguous property) — get an explicit property segment (`background` or `foreground`, matching how the token is actually used today) and a `-hover`/`-active`/`-disabled` suffix only when a non-default state exists: `color-action-primary-background`, `color-action-primary-background-hover`, `color-action-primary-background-active`, `color-action-primary-background-disabled`, `color-action-secondary-foreground`, `color-feedback-success-background`.
+- **`button`** (and future components) — every color token gets both a property segment and an explicit state segment, even for the default case: `color-button-primary-background-default`, `color-button-primary-background-hover`, `color-button-primary-background-active`, `color-button-primary-background-disabled`, `color-button-primary-foreground-default`, `color-button-primary-foreground-disabled`, `color-button-secondary-foreground-default`, `color-button-secondary-border-default`.
+
+`text.disabled` (`color-text-disabled`) is a new semantic leaf alongside `text.primary`/`text.secondary`/etc., feeding `color-button-primary-foreground-disabled`.
 
 `npm run build -w packages/tokens` runs `scripts/validate-color-taxonomy.js` first and fails the build with a specific, per-token error if a new color token doesn't fit this shape (bare leaf where a property/state split is required, an unrecognized category, a stray `-default` suffix at the semantic tier, a missing `default` state at the component tier, etc.) — run `npm run validate-taxonomy -w packages/tokens` to check without doing a full build. Adding a genuinely new semantic category requires registering it as `SELF_EVIDENT_CATEGORIES` or `ROLE_BASED_CATEGORIES` in that script first (the validator treats an unregistered category as an error, not a silent pass).
 

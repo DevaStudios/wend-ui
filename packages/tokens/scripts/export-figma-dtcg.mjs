@@ -17,8 +17,8 @@ function colorEntry(hex) {
   return { $type: 'color', $value: hex };
 }
 
-// global/Value -- the single gray ramp (25-950) plus the feedback/accent-only exceptions.
-const steps = ['25', '50', '100', '200', '300', '400', '500', '600', '650', '675', '700', '800', '850', '900', '925', '950'];
+// global/Value -- the single gray ramp (25-975) plus the feedback/accent-only exceptions.
+const steps = ['25', '50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950', '975'];
 
 const global = { color: { gray: {} } };
 for (const step of steps) {

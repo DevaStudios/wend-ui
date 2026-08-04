@@ -17,9 +17,9 @@
     },
     "action": {
       "primary": {
-        "background": { "value": "{color.gray.925}" },
-        "background-hover": { "value": "{color.gray.850}" },
-        "background-active": { "value": "{color.gray.950}" }
+        "background": { "value": "{color.gray.900}" },
+        "background-hover": { "value": "{color.gray.950}" },
+        "background-active": { "value": "{color.gray.975}" }
       },
       "secondary": {
         "foreground": { "value": "{color.gray.800}" }

@@ -130,7 +130,7 @@ body {
 
 .wend-ramp-grid {
   display: grid;
-  grid-template-columns: 90px repeat(11, 1fr);
+  grid-template-columns: 90px repeat(12, 1fr);
   gap: 4px;
   align-items: center;
   max-width: 720px;

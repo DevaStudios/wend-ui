@@ -30,6 +30,12 @@ button.primary:not(:disabled):active {
   background-color: var(--color-button-primary-background-active, #1c3aa8);
 }
 
+button.primary:disabled {
+  background-color: var(--color-button-primary-background-disabled, #cccccc);
+  color: var(--color-button-primary-foreground-disabled, #888888);
+  opacity: 1;
+}
+
 button.secondary {
   background-color: transparent;
   color: var(--color-button-secondary-foreground-default, #6b46c1);

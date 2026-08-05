@@ -98,7 +98,22 @@ Source values are unitless numbers representing px (same convention as spacing/f
 
 `1000` (pure black) sits below `975` and is reserved for the primary button's active state in light mode — it isn't used as a general-purpose text/surface color. `25` (pure white) is still the lightest step.
 
-`amber` (`500` = `#F5A623`, `600` = `#C97F00`) is the warning notification color, alongside the unrelated `green`/`red` ramps for success/danger — all three are minimal 2-shade ramps, not part of the neutral scale.
+`amber`, `green`, and `red` are the feedback colors (warning/success/danger) — each a full 10-step scale (`50`→`900`), unrelated to the neutral `gray` scale. Only `500`/`600` are currently consumed (by `color-feedback-warning/success/danger-background`); the rest of the ramp exists for future feedback UI (badges, alert intensities, etc.):
+
+| Step | Amber | Green | Red |
+| --- | --- | --- | --- |
+| `50` | `#FBF6EF` | `#F0F9F5` | `#FAF0EF` |
+| `100` | `#F9EDD7` | `#DBF5E9` | `#F7DCD9` |
+| `200` | `#F8DDAF` | `#BAEED5` | `#F3BBB4` |
+| `300` | `#F9C976` | `#8AE5BB` | `#EE8C81` |
+| `400` | `#FBB53C` | `#5ADDA0` | `#E95D4E` |
+| `500` | `#FDA308` | `#30D588` | `#E43421` |
+| `600` | `#D18605` | `#27B070` | `#BB2B1B` |
+| `700` | `#A36B0A` | `#238B5A` | `#93261A` |
+| `800` | `#7B530F` | `#206A47` | `#702219` |
+| `900` | `#543C12` | `#1C4A35` | `#4F1D17` |
+
+Generated in HSL — fixed hue per color (amber ≈38°, green ≈152°, red ≈6°, calibrated from the original `500`/`600` anchors), a shared lightness curve across all three (`96, 91, 83, 72, 61, 51, 42, 34, 27, 20` for `50`→`900`), and per-hue saturation tapering at both extremes. See [`docs/superpowers/specs/2026-08-04-color-ramp-expansion-design.md`](../../docs/superpowers/specs/2026-08-04-color-ramp-expansion-design.md) for the full design rationale.
 
 ## Color token naming
 

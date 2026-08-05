@@ -48,10 +48,18 @@
         <div id="ramp-rows"></div>
 
         <p style="margin: var(--spacing-300) 0 var(--spacing-100)">Notification colors (global/color.json)</p>
-        <div class="wend-ramp-grid" style="grid-template-columns: 90px repeat(2, 1fr); max-width: 300px">
+        <div class="wend-ramp-grid">
           <span></span>
+          <span class="wend-ramp-step-label">50</span>
+          <span class="wend-ramp-step-label">100</span>
+          <span class="wend-ramp-step-label">200</span>
+          <span class="wend-ramp-step-label">300</span>
+          <span class="wend-ramp-step-label">400</span>
           <span class="wend-ramp-step-label">500</span>
           <span class="wend-ramp-step-label">600</span>
+          <span class="wend-ramp-step-label">700</span>
+          <span class="wend-ramp-step-label">800</span>
+          <span class="wend-ramp-step-label">900</span>
         </div>
         <div id="notification-rows"></div>
 
@@ -291,13 +299,11 @@
       }
 
       const notificationRamps = ['amber', 'green', 'red'];
-      const notificationSteps = ['500', '600'];
+      const notificationSteps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
       const notificationRows = document.getElementById('notification-rows');
       for (const name of notificationRamps) {
         const row = document.createElement('div');
         row.className = 'wend-ramp-grid';
-        row.style.gridTemplateColumns = '90px repeat(2, 1fr)';
-        row.style.maxWidth = '300px';
         const label = document.createElement('span');
         label.textContent = name;
         label.className = 'wend-ramp-name-label';
@@ -306,6 +312,7 @@
           const swatch = document.createElement('div');
           swatch.className = 'wend-ramp-swatch';
           swatch.style.backgroundColor = `var(--color-${name}-${step})`;
+          if (step === '500') swatch.classList.add('wend-ramp-swatch--base');
           row.appendChild(swatch);
         }
         notificationRows.appendChild(row);

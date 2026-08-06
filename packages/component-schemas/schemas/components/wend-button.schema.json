@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-button.schema.json",
+  "title": "WendButton",
+  "description": "A clickable button.",
+  "type": "object",
+  "x-wend-component": "wend-button",
+  "x-wend-slots": [{ "name": "default", "description": "Button label content." }],
+  "x-wend-tokens": [
+    "button.padding-block",
+    "button.padding-inline",
+    "button.radius",
+    "button.font-size",
+    "button.font-weight",
+    "color.button.primary.background.default",
+    "color.button.primary.background.hover",
+    "color.button.primary.background.active",
+    "color.button.primary.background.disabled",
+    "color.button.primary.foreground.default",
+    "color.button.primary.foreground.disabled",
+    "color.button.secondary.foreground.default",
+    "color.button.secondary.border.default"
+  ],
+  "properties": {
+    "variant": {
+      "type": "string",
+      "enum": ["primary", "secondary"],
+      "default": "primary",
+      "description": "Visual style of the button."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the button."
+    }
+  },
+  "additionalProperties": false
+}

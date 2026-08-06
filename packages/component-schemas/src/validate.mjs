@@ -13,3 +13,12 @@ export function validateComponentSchema(schema) {
   const valid = validate(schema);
   return { valid, errors: validate.errors ?? [] };
 }
+
+export function createPropsValidator(schema) {
+  const ajv = new Ajv2020({ strict: false });
+  const validate = ajv.compile(schema);
+  return (props) => {
+    const valid = validate(props);
+    return { valid, errors: validate.errors ?? [] };
+  };
+}

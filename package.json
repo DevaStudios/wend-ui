@@ -12,14 +12,14 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "npm run build -w packages/tokens && npm run build -w packages/styles && npm run build -w packages/web-components && npm run build -w packages/react && npm run build -w packages/design-sync-mcp && npm run build -w packages/manifest",
+    "build": "npm run build -w packages/tokens && npm run build -w packages/styles && npm run build -w packages/web-components && npm run build -w packages/react && npm run build -w packages/design-sync-mcp && npm run build -w packages/manifest && npm run build -w packages/component-schemas",
     "clean": "npm run clean --workspaces --if-present",
     "dev:components": "npm run start -w packages/web-components",
     "storybook": "npm run build -w packages/web-components && npm run build -w packages/react && storybook dev -p 6006",
     "build-storybook": "npm run build -w packages/web-components && npm run build -w packages/react && storybook build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "npm run test -w packages/manifest",
+    "test": "npm run test -w packages/manifest && npm run test -w packages/component-schemas",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",

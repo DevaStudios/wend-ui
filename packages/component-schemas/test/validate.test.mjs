@@ -58,3 +58,62 @@ test('validateComponentSchema rejects a property definition missing a descriptio
   const result = validateComponentSchema(schema);
   assert.equal(result.valid, false);
 });
+
+test('validateComponentSchema rejects a property definition with an unrecognized keyword', () => {
+  const schema = {
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    $id: 'https://schemas.wend-ui.dev/components/wend-test.schema.json',
+    title: 'WendTest',
+    description: 'A test component.',
+    type: 'object',
+    'x-wend-component': 'wend-test',
+    'x-wend-slots': [],
+    'x-wend-tokens': [],
+    properties: {
+      size: { type: 'string', description: 'Size of the thing.', enumm: ['small', 'large'] }
+    },
+    additionalProperties: false
+  };
+
+  const result = validateComponentSchema(schema);
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.length > 0);
+});
+
+test('validateComponentSchema rejects an empty x-wend-slots[].name', () => {
+  const schema = {
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    $id: 'https://schemas.wend-ui.dev/components/wend-test.schema.json',
+    title: 'WendTest',
+    description: 'A test component.',
+    type: 'object',
+    'x-wend-component': 'wend-test',
+    'x-wend-slots': [{ name: '', description: 'Content.' }],
+    'x-wend-tokens': [],
+    properties: {},
+    additionalProperties: false
+  };
+
+  const result = validateComponentSchema(schema);
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.length > 0);
+});
+
+test('validateComponentSchema rejects a malformed $id', () => {
+  const schema = {
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    $id: 'not a valid uri !!!',
+    title: 'WendTest',
+    description: 'A test component.',
+    type: 'object',
+    'x-wend-component': 'wend-test',
+    'x-wend-slots': [],
+    'x-wend-tokens': [],
+    properties: {},
+    additionalProperties: false
+  };
+
+  const result = validateComponentSchema(schema);
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.length > 0);
+});

@@ -47,4 +47,4 @@ Internal tool package (`private: true`), not published — matches `@wend-ui/des
 - A `design-sync-mcp` tool that surfaces these schemas directly to the Figma-generation workflow.
 - A CI check diffing Stencil's generated `docs.json` against a component's schema here, to catch drift once schema-first components exist alongside evolving code.
 
-This package is expected to eventually drop `private: true`, gain a `publishConfig`, and join the root `.changeset/config.json` `fixed` group once there's a real client-side consumer (e.g. an SDUI renderer) for `createPropsValidator`.
+This package is expected to eventually drop `private: true`, gain a `publishConfig`, and join the root `.changeset/config.json` `fixed` group once there's a real client-side consumer (e.g. an SDUI renderer) for `createPropsValidator` — at that point it must also be removed from `.changeset/config.json`'s `ignore` array, since being listed in both `ignore` and `fixed` would be contradictory.

@@ -92,19 +92,19 @@ A JSON Schema that validates the *shape* of a component schema document itself: 
   "x-wend-component": "wend-button",
   "x-wend-slots": [{ "name": "default", "description": "Button label content." }],
   "x-wend-tokens": [
-    "component.button.padding-block",
-    "component.button.padding-inline",
-    "component.button.radius",
-    "component.button.font-size",
-    "component.button.font-weight",
-    "component.color.button.primary.background.default",
-    "component.color.button.primary.background.hover",
-    "component.color.button.primary.background.active",
-    "component.color.button.primary.background.disabled",
-    "component.color.button.primary.foreground.default",
-    "component.color.button.primary.foreground.disabled",
-    "component.color.button.secondary.foreground.default",
-    "component.color.button.secondary.border.default"
+    "button.padding-block",
+    "button.padding-inline",
+    "button.radius",
+    "button.font-size",
+    "button.font-weight",
+    "color.button.primary.background.default",
+    "color.button.primary.background.hover",
+    "color.button.primary.background.active",
+    "color.button.primary.background.disabled",
+    "color.button.primary.foreground.default",
+    "color.button.primary.foreground.disabled",
+    "color.button.secondary.foreground.default",
+    "color.button.secondary.border.default"
   ],
   "properties": {
     "variant": {

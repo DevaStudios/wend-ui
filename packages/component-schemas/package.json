@@ -1,0 +1,20 @@
+{
+  "name": "@wend-ui/component-schemas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Schema-first JSON Schema definitions for wend-ui components — the spec components are built against, and a validator for component prop objects",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "ajv": "^8.17.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  }
+}

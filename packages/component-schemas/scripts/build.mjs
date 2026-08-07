@@ -9,6 +9,31 @@ const packageDir = path.resolve(here, '..');
 const schemasDir = path.join(packageDir, 'schemas');
 const componentsDir = path.join(schemasDir, 'components');
 const distDir = path.join(packageDir, 'dist');
+const tokensComponentDir = path.resolve(packageDir, '../tokens/tokens/component');
+
+function collectLeafPaths(node, prefix, paths) {
+  if (node && typeof node === 'object' && 'value' in node) {
+    paths.add(prefix.join('.'));
+    return;
+  }
+  if (node && typeof node === 'object') {
+    for (const [key, value] of Object.entries(node)) {
+      collectLeafPaths(value, [...prefix, key], paths);
+    }
+  }
+}
+
+function loadValidTokenPaths(dir) {
+  const paths = new Set();
+  const tokenFiles = readdirSync(dir).filter((file) => file.endsWith('.json'));
+  for (const file of tokenFiles) {
+    const tokens = JSON.parse(readFileSync(path.join(dir, file), 'utf8'));
+    collectLeafPaths(tokens, [], paths);
+  }
+  return paths;
+}
+
+const validTokenPaths = loadValidTokenPaths(tokensComponentDir);
 
 const componentFiles = readdirSync(componentsDir).filter((file) => file.endsWith('.schema.json'));
 
@@ -18,6 +43,16 @@ for (const file of componentFiles) {
   if (!result.valid) {
     console.error(`Invalid component schema: ${file}`);
     console.error(JSON.stringify(result.errors, null, 2));
+    process.exit(1);
+  }
+
+  const unresolvedTokens = (schema['x-wend-tokens'] ?? []).filter((token) => !validTokenPaths.has(token));
+  if (unresolvedTokens.length > 0) {
+    console.error(`Invalid component schema: ${file}`);
+    console.error(`Unresolved x-wend-tokens (no matching token in packages/tokens/tokens/component/*.json):`);
+    for (const token of unresolvedTokens) {
+      console.error(`  - ${token}`);
+    }
     process.exit(1);
   }
 }

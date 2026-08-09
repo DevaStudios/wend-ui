@@ -5,7 +5,10 @@ const meta: Meta<typeof WendButton> = {
   title: 'React/Button',
   component: WendButton,
   argTypes: {
-    variant: { control: 'select', options: ['primary', 'secondary'] },
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary']
+    },
     disabled: { control: 'boolean' },
     children: { control: 'text' }
   },
@@ -25,6 +28,22 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: { children: 'Secondary button', variant: 'secondary' }
+};
+
+export const Tertiary: Story = {
+  args: { children: 'Tertiary button', variant: 'tertiary' }
+};
+
+export const DestructivePrimary: Story = {
+  args: { children: 'Destructive primary button', variant: 'destructive-primary' }
+};
+
+export const DestructiveSecondary: Story = {
+  args: { children: 'Destructive secondary button', variant: 'destructive-secondary' }
+};
+
+export const DestructiveTertiary: Story = {
+  args: { children: 'Destructive tertiary button', variant: 'destructive-tertiary' }
 };
 
 export const Disabled: Story = {

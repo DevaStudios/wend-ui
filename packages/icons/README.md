@@ -15,7 +15,9 @@ Copies every file in `src/svg/*.svg` into `dist/svg/`, and writes `dist/manifest
 Every icon file is named `wend-icon-<name>.svg`:
 
 ```js
-import manifest from '@wend-ui/icons';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const manifest = require('@wend-ui/icons');
 // { "icons": ["add", "add-circle", "admin", ...] }
 ```
 

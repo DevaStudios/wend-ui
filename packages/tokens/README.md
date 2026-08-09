@@ -82,23 +82,23 @@ Source values are unitless numbers representing px (same convention as spacing/f
 | Token | Hex | Note |
 | --- | --- | --- |
 | `color-gray-25` | `#FFFFFF` | pure white — dark-mode primary button's active/pressed state |
-| `color-gray-50` | `#FAF9F9` | lightest general-purpose step — light-mode canvas/card, light-mode text-on-primary/on-secondary, dark-mode primary text |
-| `color-gray-100` | `#F4F2F2` | |
-| `color-gray-200` | `#E8E3E3` | |
+| `color-gray-50` | `#FAF9F9` | lightest general-purpose step — light-mode canvas/card, light-mode text-on-primary/on-secondary, dark-mode primary text, dark-mode tertiary action foreground-hover |
+| `color-gray-100` | `#F4F2F2` | light-mode secondary action/button background |
+| `color-gray-200` | `#E8E3E3` | light-mode secondary action/button background-hover |
 | `color-gray-300` | `#DBD7D7` | |
 | `color-gray-400` | `#CDCBCB` | |
 | `color-gray-500` | `#B4B1B1` | |
-| `color-gray-600` | `#9A9898` | light-mode recessed surfaces; dark-mode secondary text, secondary action foreground, primary button's hover state |
+| `color-gray-600` | `#9A9898` | light-mode recessed surfaces; dark-mode secondary text, secondary action foreground, primary button's hover state, tertiary action foreground |
 | `color-gray-700` | `#8D8B8B` | default border (both modes); dark-mode primary button's default state |
-| `color-gray-800` | `#676565` | light-mode secondary text, secondary action foreground |
-| `color-gray-900` | `#4D4C4C` | light-mode primary text, primary button's default state; dark-mode recessed surfaces |
+| `color-gray-800` | `#676565` | light-mode secondary text, secondary action foreground, tertiary action foreground; dark-mode secondary action/button background-hover |
+| `color-gray-900` | `#4D4C4C` | light-mode primary text, primary button's default state, tertiary action foreground-hover; dark-mode recessed surfaces, secondary action/button background |
 | `color-gray-950` | `#333333` | light-mode primary button's default state |
 | `color-gray-975` | `#1A1A1A` | light-mode primary button's hover state |
 | `color-gray-1000` | `#000000` | pure-black endpoint — light-mode primary button's active/pressed state only |
 
 `1000` (pure black) sits below `975` and is reserved for the primary button's active state in light mode — it isn't used as a general-purpose text/surface color. `25` (pure white) is still the lightest step.
 
-`amber`, `green`, and `red` are the feedback colors (warning/success/danger) — each a full 10-step scale (`50`→`900`), unrelated to the neutral `gray` scale. Only `500`/`600` are currently consumed (by `color-feedback-warning/success/danger-background`); the rest of the ramp exists for future feedback UI (badges, alert intensities, etc.):
+`amber`, `green`, and `red` are the feedback colors (warning/success/danger) — each a full 10-step scale (`50`→`900`), unrelated to the neutral `gray` scale. `amber`/`green` still only consume `500`/`600` (by `color-feedback-warning/success-background`); the rest of those two ramps exists for future feedback UI (badges, alert intensities, etc.). `red` is more heavily used: `600` still backs `color-feedback-danger-background`, and the destructive button variants (`destructive-primary`/`destructive-secondary`/`destructive-tertiary`) additionally consume `50`, `100`, `300`, `400`, `500`, `700`, `800`, `900` across the `color-action-destructive*` tokens (light/dark, default/hover) — see [Color token naming](#color-token-naming) below.
 
 | Step | Amber | Green | Red |
 | --- | --- | --- | --- |
@@ -120,8 +120,8 @@ Generated in HSL — fixed hue per color (amber ≈38°, green ≈152°, red ≈
 Semantic and component color tokens follow `color-{scope}-{variant}-{property}[-{state}]`, where `{scope}` is a semantic category (`text`, `surface`, `border`, `action`, `feedback`) or a component name (`button`):
 
 - **`text`/`surface`/`border`** — the category name already says which CSS property the token feeds, so no property segment is added: `color-text-primary`, `color-surface-canvas`, `color-border-default`.
-- **`action`/`feedback`** (role-based, ambiguous property) — get an explicit property segment (`background` or `foreground`, matching how the token is actually used today) and a `-hover`/`-active`/`-disabled` suffix only when a non-default state exists: `color-action-primary-background`, `color-action-primary-background-hover`, `color-action-primary-background-active`, `color-action-primary-background-disabled`, `color-action-secondary-foreground`, `color-feedback-success-background`.
-- **`button`** (and future components) — every color token gets both a property segment and an explicit state segment, even for the default case: `color-button-primary-background-default`, `color-button-primary-background-hover`, `color-button-primary-background-active`, `color-button-primary-background-disabled`, `color-button-primary-foreground-default`, `color-button-primary-foreground-disabled`, `color-button-secondary-foreground-default`, `color-button-secondary-border-default`.
+- **`action`/`feedback`** (role-based, ambiguous property) — get an explicit property segment (`background` or `foreground`, matching how the token is actually used today) and a `-hover`/`-active`/`-disabled` suffix only when a non-default state exists: `color-action-primary-background`, `color-action-primary-background-hover`, `color-action-primary-background-active`, `color-action-primary-background-disabled`, `color-action-secondary-foreground`, `color-action-secondary-background`, `color-action-secondary-background-hover`, `color-action-tertiary-foreground`, `color-action-tertiary-foreground-hover`, `color-action-destructive-background`, `color-action-destructive-background-hover`, `color-action-destructive-secondary-background`, `color-action-destructive-tertiary-foreground`, `color-feedback-success-background`.
+- **`button`** (and future components) — every color token gets both a property segment and an explicit state segment, even for the default case: `color-button-primary-background-default`, `color-button-primary-background-hover`, `color-button-primary-background-active`, `color-button-primary-background-disabled`, `color-button-primary-foreground-default`, `color-button-primary-foreground-disabled`, `color-button-secondary-foreground-default`, `color-button-secondary-background-default`, `color-button-secondary-background-hover`, `color-button-secondary-border-default`, `color-button-tertiary-foreground-default`, `color-button-tertiary-foreground-hover`, `color-button-destructive-primary-background-default`, `color-button-destructive-secondary-background-default`, `color-button-destructive-tertiary-foreground-default`. `destructive-primary`/`destructive-secondary`/`destructive-tertiary` are themselves the `{variant}` segment (a hyphenated variant name, not an extra taxonomy level).
 
 `text.disabled` (`color-text-disabled`) is a new semantic leaf alongside `text.primary`/`text.secondary`/etc., feeding `color-button-primary-foreground-disabled`.
 

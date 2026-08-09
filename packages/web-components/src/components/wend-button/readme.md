@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                 | Type                       | Default     |
-| ---------- | ---------- | --------------------------- | -------------------------- | ----------- |
-| `disabled` | `disabled` | Disables the button.        | `boolean`                  | `false`     |
-| `variant`  | `variant`  | Visual style of the button. | `"primary" \| "secondary"` | `'primary'` |
+| Property   | Attribute  | Description                 | Type                                                                                                                   | Default     |
+| ---------- | ---------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `disabled` | `disabled` | Disables the button.        | `boolean`                                                                                                              | `false`     |
+| `variant`  | `variant`  | Visual style of the button. | `"destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "primary" \| "secondary" \| "tertiary"` | `'primary'` |
 
 
 ----------------------------------------------

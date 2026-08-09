@@ -37,7 +37,47 @@ button.primary:disabled {
 }
 
 button.secondary {
+  background-color: var(--color-button-secondary-background-default, #f4f2f2);
+  color: var(--color-button-secondary-foreground-default, #676565);
+  border: 1px solid var(--color-button-secondary-border-default, #676565);
+}
+
+button.secondary:not(:disabled):hover {
+  background-color: var(--color-button-secondary-background-hover, #e8e3e3);
+}
+
+button.tertiary {
   background-color: transparent;
-  color: var(--color-button-secondary-foreground-default, #6b46c1);
-  border: 1px solid var(--color-button-secondary-border-default, #6b46c1);
+  color: var(--color-button-tertiary-foreground-default, #676565);
+}
+
+button.tertiary:not(:disabled):hover {
+  color: var(--color-button-tertiary-foreground-hover, #4d4c4c);
+}
+
+button.destructive-primary {
+  background-color: var(--color-button-destructive-primary-background-default, #bb2b1b);
+  color: var(--color-button-destructive-primary-foreground-default, #faf9f9);
+}
+
+button.destructive-primary:not(:disabled):hover {
+  background-color: var(--color-button-destructive-primary-background-hover, #93261a);
+}
+
+button.destructive-secondary {
+  background-color: var(--color-button-destructive-secondary-background-default, #faf0ef);
+  color: var(--color-button-destructive-secondary-foreground-default, #bb2b1b);
+}
+
+button.destructive-secondary:not(:disabled):hover {
+  background-color: var(--color-button-destructive-secondary-background-hover, #f7dcd9);
+}
+
+button.destructive-tertiary {
+  background-color: transparent;
+  color: var(--color-button-destructive-tertiary-foreground-default, #bb2b1b);
+}
+
+button.destructive-tertiary:not(:disabled):hover {
+  color: var(--color-button-destructive-tertiary-foreground-hover, #93261a);
 }

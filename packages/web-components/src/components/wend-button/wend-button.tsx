@@ -1,6 +1,12 @@
 import { Component, Prop, h } from '@stencil/core';
 
-export type WendButtonVariant = 'primary' | 'secondary';
+export type WendButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'destructive-primary'
+  | 'destructive-secondary'
+  | 'destructive-tertiary';
 
 @Component({
   tag: 'wend-button',

@@ -16,7 +16,14 @@ test('wend-button.schema.json is a well-formed component schema', () => {
 
 test("wend-button.schema.json declares the current implementation's props", () => {
   assert.deepEqual(Object.keys(buttonSchema.properties).sort(), ['disabled', 'variant']);
-  assert.deepEqual(buttonSchema.properties.variant.enum, ['primary', 'secondary']);
+  assert.deepEqual(buttonSchema.properties.variant.enum, [
+    'primary',
+    'secondary',
+    'tertiary',
+    'destructive-primary',
+    'destructive-secondary',
+    'destructive-tertiary'
+  ]);
 });
 
 const validateButtonProps = createPropsValidator(buttonSchema);
@@ -28,7 +35,7 @@ test('a valid button props object passes', () => {
 });
 
 test('an unknown variant value fails', () => {
-  const result = validateButtonProps({ variant: 'tertiary' });
+  const result = validateButtonProps({ variant: 'quaternary' });
   assert.equal(result.valid, false);
   assert.ok(result.errors.some((error) => error.instancePath === '/variant'));
 });

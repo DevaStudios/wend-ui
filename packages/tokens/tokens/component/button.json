@@ -24,8 +24,42 @@
         "foreground": {
           "default": { "value": "{color.action.secondary.foreground}" }
         },
+        "background": {
+          "default": { "value": "{color.action.secondary.background}" },
+          "hover": { "value": "{color.action.secondary.background-hover}" }
+        },
         "border": {
           "default": { "value": "{color.action.secondary.foreground}" }
+        }
+      },
+      "tertiary": {
+        "foreground": {
+          "default": { "value": "{color.action.tertiary.foreground}" },
+          "hover": { "value": "{color.action.tertiary.foreground-hover}" }
+        }
+      },
+      "destructive-primary": {
+        "foreground": {
+          "default": { "value": "{color.action.destructive.foreground}" }
+        },
+        "background": {
+          "default": { "value": "{color.action.destructive.background}" },
+          "hover": { "value": "{color.action.destructive.background-hover}" }
+        }
+      },
+      "destructive-secondary": {
+        "foreground": {
+          "default": { "value": "{color.action.destructive-secondary.foreground}" }
+        },
+        "background": {
+          "default": { "value": "{color.action.destructive-secondary.background}" },
+          "hover": { "value": "{color.action.destructive-secondary.background-hover}" }
+        }
+      },
+      "destructive-tertiary": {
+        "foreground": {
+          "default": { "value": "{color.action.destructive-tertiary.foreground}" },
+          "hover": { "value": "{color.action.destructive-tertiary.foreground-hover}" }
         }
       }
     }

@@ -19,12 +19,24 @@
     "color.button.primary.foreground.default",
     "color.button.primary.foreground.disabled",
     "color.button.secondary.foreground.default",
-    "color.button.secondary.border.default"
+    "color.button.secondary.background.default",
+    "color.button.secondary.background.hover",
+    "color.button.secondary.border.default",
+    "color.button.tertiary.foreground.default",
+    "color.button.tertiary.foreground.hover",
+    "color.button.destructive-primary.foreground.default",
+    "color.button.destructive-primary.background.default",
+    "color.button.destructive-primary.background.hover",
+    "color.button.destructive-secondary.foreground.default",
+    "color.button.destructive-secondary.background.default",
+    "color.button.destructive-secondary.background.hover",
+    "color.button.destructive-tertiary.foreground.default",
+    "color.button.destructive-tertiary.foreground.hover"
   ],
   "properties": {
     "variant": {
       "type": "string",
-      "enum": ["primary", "secondary"],
+      "enum": ["primary", "secondary", "tertiary", "destructive-primary", "destructive-secondary", "destructive-tertiary"],
       "default": "primary",
       "description": "Visual style of the button."
     },

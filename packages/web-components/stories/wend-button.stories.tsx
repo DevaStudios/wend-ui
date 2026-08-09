@@ -4,7 +4,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       'wend-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        variant?: 'primary' | 'secondary';
+        variant?: 'primary' | 'secondary' | 'tertiary' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary';
         disabled?: boolean;
       };
     }
@@ -13,7 +13,7 @@ declare global {
 
 interface WendButtonArgs {
   label: string;
-  variant: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary' | 'tertiary' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary';
   disabled: boolean;
 }
 
@@ -25,7 +25,10 @@ const meta: Meta<WendButtonArgs> = {
     </wend-button>
   ),
   argTypes: {
-    variant: { control: 'select', options: ['primary', 'secondary'] },
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary']
+    },
     disabled: { control: 'boolean' },
     label: { control: 'text' }
   },
@@ -45,6 +48,22 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: { label: 'Secondary button', variant: 'secondary' }
+};
+
+export const Tertiary: Story = {
+  args: { label: 'Tertiary button', variant: 'tertiary' }
+};
+
+export const DestructivePrimary: Story = {
+  args: { label: 'Destructive primary button', variant: 'destructive-primary' }
+};
+
+export const DestructiveSecondary: Story = {
+  args: { label: 'Destructive secondary button', variant: 'destructive-secondary' }
+};
+
+export const DestructiveTertiary: Story = {
+  args: { label: 'Destructive tertiary button', variant: 'destructive-tertiary' }
 };
 
 export const Disabled: Story = {

@@ -34,6 +34,10 @@
         <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
           <wend-button variant="primary">Primary button</wend-button>
           <wend-button variant="secondary">Secondary button</wend-button>
+          <wend-button variant="tertiary">Tertiary button</wend-button>
+          <wend-button variant="destructive-primary">Destructive primary button</wend-button>
+          <wend-button variant="destructive-secondary">Destructive secondary button</wend-button>
+          <wend-button variant="destructive-tertiary">Destructive tertiary button</wend-button>
           <wend-button variant="primary" disabled>Disabled button</wend-button>
         </div>
 
@@ -85,7 +89,12 @@
               <td><code>variant</code></td>
               <td><code>variant</code></td>
               <td>Visual style of the button.</td>
-              <td><code>"primary" | "secondary"</code></td>
+              <td>
+                <code
+                  >"primary" | "secondary" | "tertiary" | "destructive-primary" | "destructive-secondary" |
+                  "destructive-tertiary"</code
+                >
+              </td>
               <td><code>'primary'</code></td>
             </tr>
           </tbody>

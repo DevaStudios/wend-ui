@@ -152,6 +152,7 @@ packages/web-components/.stencil
 packages/manifest/dist
 packages/design-sync-mcp/dist
 packages/react/dist
+packages/icons/dist
 storybook-static
 
 .superpowers/

@@ -9,5 +9,5 @@
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@wend-ui/design-sync-mcp", "@wend-ui/component-schemas"]
+  "ignore": ["@wend-ui/design-sync-mcp", "@wend-ui/component-schemas", "@wend-ui/icons"]
 }

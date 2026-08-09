@@ -1,0 +1,26 @@
+{
+  "name": "@wend-ui/icons",
+  "version": "0.1.0",
+  "description": "Curated SVG icon set for the wend-ui design system",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "type": "module",
+  "main": "dist/manifest.json",
+  "exports": {
+    ".": "./dist/manifest.json",
+    "./svg/*.svg": "./dist/svg/*.svg"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  }
+}

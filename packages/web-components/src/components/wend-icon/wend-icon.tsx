@@ -8,7 +8,7 @@ import { getIconSvg } from '@wend-ui/icons/get-icon-svg';
   scoped: false
 })
 export class WendIcon {
-  /** Name of the icon to render, matching a @wend-ui/icons manifest entry. */
+  /** Name of the icon to render, matching a name in the wend-ui icons manifest. */
   @Prop() name!: string;
 
   /** Icon size, as a CSS length. */

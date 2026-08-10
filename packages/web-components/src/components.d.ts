@@ -27,8 +27,7 @@ export namespace Components {
          */
         "color": string;
         /**
-          * Name of the icon to render, matching a
-          * @wend-ui /icons manifest entry.
+          * Name of the icon to render, matching a name in the wend-ui icons manifest.
          */
         "name": string;
         /**
@@ -78,8 +77,7 @@ declare namespace LocalJSX {
          */
         "color"?: string;
         /**
-          * Name of the icon to render, matching a
-          * @wend-ui /icons manifest entry.
+          * Name of the icon to render, matching a name in the wend-ui icons manifest.
          */
         "name": string;
         /**

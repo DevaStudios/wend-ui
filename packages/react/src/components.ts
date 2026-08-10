@@ -5,3 +5,4 @@
 
 /* eslint-disable */
 export { WendButton } from "./wend-button.js";
+export { WendIcon } from "./wend-icon.js";

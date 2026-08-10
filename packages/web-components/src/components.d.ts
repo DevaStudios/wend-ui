@@ -20,6 +20,23 @@ export namespace Components {
          */
         "variant": WendButtonVariant;
     }
+    interface WendIcon {
+        /**
+          * Icon fill color, as a CSS color.
+          * @default 'currentColor'
+         */
+        "color": string;
+        /**
+          * Name of the icon to render, matching a
+          * @wend-ui /icons manifest entry.
+         */
+        "name": string;
+        /**
+          * Icon size, as a CSS length.
+          * @default '1em'
+         */
+        "size": string;
+    }
 }
 declare global {
     interface HTMLWendButtonElement extends Components.WendButton, HTMLStencilElement {
@@ -28,11 +45,20 @@ declare global {
         prototype: HTMLWendButtonElement;
         new (): HTMLWendButtonElement;
     };
+    interface HTMLWendIconElement extends Components.WendIcon, HTMLStencilElement {
+    }
+    var HTMLWendIconElement: {
+        prototype: HTMLWendIconElement;
+        new (): HTMLWendIconElement;
+    };
     interface HTMLElementTagNameMap {
         "wend-button": HTMLWendButtonElement;
+        "wend-icon": HTMLWendIconElement;
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface WendButton {
         /**
           * Disables the button.
@@ -45,14 +71,37 @@ declare namespace LocalJSX {
          */
         "variant"?: WendButtonVariant;
     }
+    interface WendIcon {
+        /**
+          * Icon fill color, as a CSS color.
+          * @default 'currentColor'
+         */
+        "color"?: string;
+        /**
+          * Name of the icon to render, matching a
+          * @wend-ui /icons manifest entry.
+         */
+        "name": string;
+        /**
+          * Icon size, as a CSS length.
+          * @default '1em'
+         */
+        "size"?: string;
+    }
 
     interface WendButtonAttributes {
         "variant": WendButtonVariant;
         "disabled": boolean;
     }
+    interface WendIconAttributes {
+        "name": string;
+        "size": string;
+        "color": string;
+    }
 
     interface IntrinsicElements {
         "wend-button": Omit<WendButton, keyof WendButtonAttributes> & { [K in keyof WendButton & keyof WendButtonAttributes]?: WendButton[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `attr:${K}`]?: WendButtonAttributes[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `prop:${K}`]?: WendButton[K] };
+        "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
     }
 }
 export { LocalJSX as JSX };
@@ -60,6 +109,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "wend-button": LocalJSX.IntrinsicElements["wend-button"] & JSXBase.HTMLAttributes<HTMLWendButtonElement>;
+            "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
         }
     }
 }

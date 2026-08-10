@@ -21,10 +21,10 @@ export class WendButton {
   /** Disables the button. */
   @Prop() disabled = false;
 
-  /** Name of a @wend-ui/icons icon to render on the left of the button label. */
+  /** Name of a wend-ui icon to render on the left of the button label. */
   @Prop() iconLeft?: string;
 
-  /** Name of a @wend-ui/icons icon to render on the right of the button label. */
+  /** Name of a wend-ui icon to render on the right of the button label. */
   @Prop() iconRight?: string;
 
   render() {

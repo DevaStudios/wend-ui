@@ -15,13 +15,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Name of a
-          * @wend-ui /icons icon to render on the left of the button label.
+          * Name of a wend-ui icon to render on the left of the button label.
          */
         "iconLeft"?: string;
         /**
-          * Name of a
-          * @wend-ui /icons icon to render on the right of the button label.
+          * Name of a wend-ui icon to render on the right of the button label.
          */
         "iconRight"?: string;
         /**
@@ -75,13 +73,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Name of a
-          * @wend-ui /icons icon to render on the left of the button label.
+          * Name of a wend-ui icon to render on the left of the button label.
          */
         "iconLeft"?: string;
         /**
-          * Name of a
-          * @wend-ui /icons icon to render on the right of the button label.
+          * Name of a wend-ui icon to render on the right of the button label.
          */
         "iconRight"?: string;
         /**

@@ -6,8 +6,8 @@ declare global {
       'wend-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
         variant?: 'primary' | 'secondary' | 'tertiary' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary';
         disabled?: boolean;
-        iconLeft?: string;
-        iconRight?: string;
+        'icon-left'?: string;
+        'icon-right'?: string;
       };
     }
   }
@@ -24,7 +24,7 @@ interface WendButtonArgs {
 const meta: Meta<WendButtonArgs> = {
   title: 'Web Components/Button',
   render: (args) => (
-    <wend-button variant={args.variant} disabled={args.disabled} iconLeft={args.iconLeft} iconRight={args.iconRight}>
+    <wend-button variant={args.variant} disabled={args.disabled} icon-left={args.iconLeft} icon-right={args.iconRight}>
       {args.label}
     </wend-button>
   ),

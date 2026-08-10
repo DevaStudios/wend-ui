@@ -10,7 +10,8 @@
   "main": "dist/manifest.json",
   "exports": {
     ".": "./dist/manifest.json",
-    "./svg/*.svg": "./dist/svg/*.svg"
+    "./svg/*.svg": "./dist/svg/*.svg",
+    "./svg-strings": "./dist/svg-strings.json"
   },
   "files": [
     "dist"

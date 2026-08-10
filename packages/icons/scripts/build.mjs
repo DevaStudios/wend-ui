@@ -30,4 +30,9 @@ writeFileSync(path.join(distDir, 'manifest.json'), JSON.stringify(manifest, null
 const svgStrings = buildSvgStrings(entries);
 writeFileSync(path.join(distDir, 'svg-strings.json'), JSON.stringify(svgStrings, null, 2) + '\n');
 
-console.log(`Wrote packages/icons/dist (${svgFiles.length} icons, manifest.json + svg-strings.json)`);
+copyFileSync(path.join(packageDir, 'src/get-icon-svg.mjs'), path.join(distDir, 'get-icon-svg.mjs'));
+copyFileSync(path.join(packageDir, 'src/get-icon-svg.d.ts'), path.join(distDir, 'get-icon-svg.d.ts'));
+
+console.log(
+  `Wrote packages/icons/dist (${svgFiles.length} icons, manifest.json + svg-strings.json + get-icon-svg.mjs)`
+);

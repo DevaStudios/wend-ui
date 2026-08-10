@@ -11,7 +11,11 @@
   "exports": {
     ".": "./dist/manifest.json",
     "./svg/*.svg": "./dist/svg/*.svg",
-    "./svg-strings": "./dist/svg-strings.json"
+    "./svg-strings": "./dist/svg-strings.json",
+    "./get-icon-svg": {
+      "types": "./dist/get-icon-svg.d.ts",
+      "import": "./dist/get-icon-svg.mjs"
+    }
   },
   "files": [
     "dist"

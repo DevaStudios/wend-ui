@@ -12,6 +12,7 @@
     "button.radius",
     "button.font-size",
     "button.font-weight",
+    "button.gap",
     "color.button.primary.background.default",
     "color.button.primary.background.hover",
     "color.button.primary.background.active",
@@ -39,6 +40,14 @@
       "enum": ["primary", "secondary", "tertiary", "destructive-primary", "destructive-secondary", "destructive-tertiary"],
       "default": "primary",
       "description": "Visual style of the button."
+    },
+    "icon-left": {
+      "type": "string",
+      "description": "Name of a @wend-ui/icons icon to render on the left of the button label."
+    },
+    "icon-right": {
+      "type": "string",
+      "description": "Name of a @wend-ui/icons icon to render on the right of the button label."
     },
     "disabled": {
       "type": "boolean",

@@ -4,7 +4,8 @@
     "padding-inline": { "value": "{spacing.200}" },
     "radius": { "value": "{radius.medium}" },
     "font-size": { "value": "{font.size.200}" },
-    "font-weight": { "value": "{font.weight.regular}" }
+    "font-weight": { "value": "{font.weight.regular}" },
+    "gap": { "value": "{spacing.100}" }
   },
   "color": {
     "button": {

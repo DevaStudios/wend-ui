@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-icon.schema.json",
+  "title": "WendIcon",
+  "description": "Renders a single icon from the @wend-ui/icons set as inline SVG.",
+  "type": "object",
+  "x-wend-component": "wend-icon",
+  "x-wend-slots": [],
+  "x-wend-tokens": [],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the icon to render, matching an entry in @wend-ui/icons' manifest (e.g. \"add\", \"arrow-right\")."
+    },
+    "size": {
+      "type": "string",
+      "default": "1em",
+      "description": "Icon size, as a CSS length (applied to both width and height)."
+    },
+    "color": {
+      "type": "string",
+      "default": "currentColor",
+      "description": "Icon fill color, as a CSS color."
+    }
+  },
+  "additionalProperties": false
+}

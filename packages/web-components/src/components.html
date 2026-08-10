@@ -41,6 +41,13 @@
           <wend-button variant="primary" disabled>Disabled button</wend-button>
         </div>
 
+        <p style="margin: 0 0 var(--spacing-100)">With icons</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-button variant="primary" icon-left="add">Save</wend-button>
+          <wend-button variant="secondary" icon-right="arrow-right">Next</wend-button>
+          <wend-button variant="tertiary" icon-left="synchronize-arrows" icon-right="arrow-right">Sync</wend-button>
+        </div>
+
         <p style="margin: 0 0 var(--spacing-100)">States (primary)</p>
         <p style="margin: 0 0 var(--spacing-100); color: var(--color-text-secondary); font-size: var(--font-size-175)">
           Hover and Active are shown as static swatches here since they're pointer-driven pseudo-states — try
@@ -96,6 +103,72 @@
                 >
               </td>
               <td><code>'primary'</code></td>
+            </tr>
+            <tr>
+              <td><code>iconLeft</code></td>
+              <td><code>icon-left</code></td>
+              <td>Name of a wend-ui icon to render on the left of the label.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>iconRight</code></td>
+              <td><code>icon-right</code></td>
+              <td>Name of a wend-ui icon to render on the right of the label.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wend-section">
+        <h2>Icon</h2>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-icon name="add"></wend-icon>
+          <wend-icon name="star" size="32px"></wend-icon>
+          <wend-icon name="alert-circle" color="#bb2b1b"></wend-icon>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-icon name="add"&gt;&lt;/wend-icon&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>name</code></td>
+              <td><code>name</code></td>
+              <td>Name of the icon to render, matching a @wend-ui/icons manifest entry.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>size</code></td>
+              <td><code>size</code></td>
+              <td>Icon size, as a CSS length.</td>
+              <td><code>string</code></td>
+              <td><code>'1em'</code></td>
+            </tr>
+            <tr>
+              <td><code>color</code></td>
+              <td><code>color</code></td>
+              <td>Icon fill color, as a CSS color.</td>
+              <td><code>string</code></td>
+              <td><code>'currentColor'</code></td>
             </tr>
           </tbody>
         </table>

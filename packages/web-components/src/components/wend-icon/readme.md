@@ -14,6 +14,19 @@
 | `size`              | `size`    | Icon size, as a CSS length.                                                | `string` | `'1em'`          |
 
 
+## Dependencies
+
+### Used by
+
+ - [wend-button](../wend-button)
+
+### Graph
+```mermaid
+graph TD;
+  wend-button --> wend-icon
+  style wend-icon fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

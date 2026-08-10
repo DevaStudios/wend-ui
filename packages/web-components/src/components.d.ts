@@ -15,6 +15,16 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Name of a
+          * @wend-ui /icons icon to render on the left of the button label.
+         */
+        "iconLeft"?: string;
+        /**
+          * Name of a
+          * @wend-ui /icons icon to render on the right of the button label.
+         */
+        "iconRight"?: string;
+        /**
           * Visual style of the button.
           * @default 'primary'
          */
@@ -65,6 +75,16 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Name of a
+          * @wend-ui /icons icon to render on the left of the button label.
+         */
+        "iconLeft"?: string;
+        /**
+          * Name of a
+          * @wend-ui /icons icon to render on the right of the button label.
+         */
+        "iconRight"?: string;
+        /**
           * Visual style of the button.
           * @default 'primary'
          */
@@ -90,6 +110,8 @@ declare namespace LocalJSX {
     interface WendButtonAttributes {
         "variant": WendButtonVariant;
         "disabled": boolean;
+        "iconLeft": string;
+        "iconRight": string;
     }
     interface WendIconAttributes {
         "name": string;

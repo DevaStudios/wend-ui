@@ -21,10 +21,18 @@ export class WendButton {
   /** Disables the button. */
   @Prop() disabled = false;
 
+  /** Name of a @wend-ui/icons icon to render on the left of the button label. */
+  @Prop() iconLeft?: string;
+
+  /** Name of a @wend-ui/icons icon to render on the right of the button label. */
+  @Prop() iconRight?: string;
+
   render() {
     return (
       <button class={{ [this.variant]: true }} disabled={this.disabled}>
+        {this.iconLeft && <wend-icon name={this.iconLeft} />}
         <slot />
+        {this.iconRight && <wend-icon name={this.iconRight} />}
       </button>
     );
   }

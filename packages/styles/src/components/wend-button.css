@@ -3,6 +3,9 @@
 }
 
 button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--button-gap, 8px);
   font-family: var(--font-family-base, sans-serif);
   font-size: var(--button-font-size, 16px);
   font-weight: var(--button-font-weight, 500);
@@ -10,6 +13,10 @@ button {
   border-radius: var(--button-radius, 8px);
   border: none;
   cursor: pointer;
+}
+
+button wend-icon {
+  flex-shrink: 0;
 }
 
 button:disabled {

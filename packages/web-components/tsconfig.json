@@ -3,7 +3,7 @@
     "target": "es2019",
     "lib": ["dom", "es2019"],
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "strict": true,
     "noUnusedLocals": true,

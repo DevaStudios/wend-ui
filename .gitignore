@@ -153,6 +153,7 @@ packages/manifest/dist
 packages/design-sync-mcp/dist
 packages/react/dist
 packages/icons/dist
+packages/web-components/styles
 storybook-static
 
 .superpowers/

@@ -6,6 +6,8 @@ declare global {
       'wend-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
         variant?: 'primary' | 'secondary' | 'tertiary' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary';
         disabled?: boolean;
+        'icon-left'?: string;
+        'icon-right'?: string;
       };
     }
   }
@@ -15,12 +17,14 @@ interface WendButtonArgs {
   label: string;
   variant: 'primary' | 'secondary' | 'tertiary' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary';
   disabled: boolean;
+  iconLeft: string;
+  iconRight: string;
 }
 
 const meta: Meta<WendButtonArgs> = {
   title: 'Web Components/Button',
   render: (args) => (
-    <wend-button variant={args.variant} disabled={args.disabled}>
+    <wend-button variant={args.variant} disabled={args.disabled} icon-left={args.iconLeft} icon-right={args.iconRight}>
       {args.label}
     </wend-button>
   ),
@@ -30,12 +34,16 @@ const meta: Meta<WendButtonArgs> = {
       options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary']
     },
     disabled: { control: 'boolean' },
-    label: { control: 'text' }
+    label: { control: 'text' },
+    iconLeft: { control: 'text' },
+    iconRight: { control: 'text' }
   },
   args: {
     label: 'Button',
     variant: 'primary',
-    disabled: false
+    disabled: false,
+    iconLeft: '',
+    iconRight: ''
   }
 };
 
@@ -68,4 +76,16 @@ export const DestructiveTertiary: Story = {
 
 export const Disabled: Story = {
   args: { label: 'Disabled button', variant: 'primary', disabled: true }
+};
+
+export const WithIconLeft: Story = {
+  args: { label: 'Save', variant: 'primary', iconLeft: 'add' }
+};
+
+export const WithIconRight: Story = {
+  args: { label: 'Next', variant: 'secondary', iconRight: 'arrow-right' }
+};
+
+export const WithBothIcons: Story = {
+  args: { label: 'Sync', variant: 'tertiary', iconLeft: 'synchronize-arrows', iconRight: 'arrow-right' }
 };

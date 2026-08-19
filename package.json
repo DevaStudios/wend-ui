@@ -12,7 +12,7 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "npm run build -w packages/tokens && npm run build -w packages/styles && npm run build -w packages/web-components && npm run build -w packages/react && npm run build -w packages/design-sync-mcp && npm run build -w packages/manifest && npm run build -w packages/component-schemas && npm run build -w packages/icons",
+    "build": "npm run build -w packages/tokens && npm run build -w packages/styles && npm run build -w packages/icons && npm run build -w packages/web-components && npm run build -w packages/react && npm run build -w packages/design-sync-mcp && npm run build -w packages/manifest && npm run build -w packages/component-schemas",
     "clean": "npm run clean --workspaces --if-present",
     "dev:components": "npm run start -w packages/web-components",
     "storybook": "npm run build -w packages/web-components && npm run build -w packages/react && storybook dev -p 6006",

@@ -43,6 +43,7 @@
     "clean": "rimraf dist www loader .stencil"
   },
   "dependencies": {
+    "@wend-ui/icons": "^0.1.0",
     "@wend-ui/styles": "^0.2.0",
     "@wend-ui/tokens": "^0.2.0"
   },

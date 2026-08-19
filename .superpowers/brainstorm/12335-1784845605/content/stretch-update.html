@@ -1,0 +1,43 @@
+<h2>What should completing the briefing actually update?</h2>
+<p class="subtitle">The meeting's linked forecast is "Q3 revenue forecast." One believable, low-effort tie-in: reviewing the pipeline-health section stamps that forecast as reviewed, with a trace back to the meeting.</p>
+
+<div class="split">
+
+  <div class="mockup">
+    <div class="mockup-header">Forecast page — before</div>
+    <div class="mockup-body" style="font-size:11px;">
+      <div style="font-weight:600;margin-bottom:8px;">Q3 revenue forecast</div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:6px 0;">
+        <span>Pipeline coverage</span><span style="font-weight:600;">2.4x</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:6px 0;">
+        <span>Last reviewed</span><span style="color:#c00;">8 days ago</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;">
+        <span>Confidence</span><span style="color:#888;">Unconfirmed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">Forecast page — after "Mark ready" </div>
+    <div class="mockup-body" style="font-size:11px;">
+      <div style="font-weight:600;margin-bottom:8px;">Q3 revenue forecast</div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:6px 0;">
+        <span>Pipeline coverage</span><span style="font-weight:600;">2.4x</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:6px 0;">
+        <span>Last reviewed</span><span style="color:#0a0;">Today</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;">
+        <span>Confidence</span><span style="color:#0a0;">Confirmed ahead of Sales forecast review</span>
+      </div>
+      <div style="margin-top:8px;background:#f3f4f6;border-radius:6px;padding:6px;color:#666;">
+        ↳ Reviewed by Avery Chen · Jul 22, from inbox briefing
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px;">This means approving a section in the briefing doesn't just close a to-do — it timestamps and attributes a review on the forecast record itself. Sound right, or did you have a different downstream effect in mind (e.g. cash timing, Reports)?</p>

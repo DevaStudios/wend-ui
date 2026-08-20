@@ -10,7 +10,9 @@ const meta: Meta<typeof WendButton> = {
       options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary']
     },
     disabled: { control: 'boolean' },
-    children: { control: 'text' }
+    children: { control: 'text' },
+    iconLeft: { control: 'text' },
+    iconRight: { control: 'text' }
   },
   args: {
     children: 'Button',
@@ -48,4 +50,16 @@ export const DestructiveTertiary: Story = {
 
 export const Disabled: Story = {
   args: { children: 'Disabled button', variant: 'primary', disabled: true }
+};
+
+export const WithIconLeft: Story = {
+  args: { children: 'Save', variant: 'primary', iconLeft: 'add' }
+};
+
+export const WithIconRight: Story = {
+  args: { children: 'Next', variant: 'secondary', iconRight: 'arrow-right' }
+};
+
+export const WithBothIcons: Story = {
+  args: { children: 'Sync', variant: 'tertiary', iconLeft: 'synchronize-arrows', iconRight: 'arrow-right' }
 };

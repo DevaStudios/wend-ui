@@ -16,6 +16,7 @@ button {
 }
 
 button wend-icon {
+  display: flex;
   flex-shrink: 0;
 }
 

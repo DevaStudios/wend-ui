@@ -3,6 +3,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 import { loadTokens, diffTokens } from './tokens.js';
 import { listComponents, diffComponent } from './components.js';
+import { listIcons, diffIcons, stageIcons } from './icons.js';
 
 const server = new McpServer({
   name: 'wend-ui-design-sync',
@@ -80,6 +81,50 @@ server.registerTool(
     }
   },
   ({ tag, figmaProperties }) => jsonResult(diffComponent(tag, figmaProperties))
+);
+
+const figmaIconEntrySchema = z.object({
+  name: z.string(),
+  svg: z.string(),
+  nodeId: z.string().optional()
+});
+
+server.registerTool(
+  'get_icons',
+  {
+    title: 'Get wend-ui icons',
+    description:
+      "Returns every icon in packages/icons/src/svg as { name, svg, hash }, read directly from the curated source (not a build artifact). `hash` fingerprints the SVG's geometry only (path/polygon data), not its raw markup, so it survives Figma's export formatting differences -- use it, not string equality, to compare against Figma."
+  },
+  () => jsonResult(listIcons())
+);
+
+server.registerTool(
+  'diff_icons',
+  {
+    title: 'Diff wend-ui icons against a Figma icon inventory',
+    description:
+      "Compares wend-ui's current icons against a caller-supplied snapshot of Figma's icon components (typically fetched via `use_figma` running figma-scripts/fetch-icon-inventory.js). Matching is name-based (case-insensitive, Figma's #id:id suffix stripped). Returns { onlyInProject, onlyInFigma, changed } -- onlyInProject are push candidates, onlyInFigma are pull candidates, changed compares geometry (not raw SVG markup, which never byte-matches Figma's export even for identical art).",
+    inputSchema: {
+      figmaIcons: z
+        .array(figmaIconEntrySchema)
+        .describe("Figma's current icon components, normalized to { name, svg, nodeId? }")
+    }
+  },
+  ({ figmaIcons }) => jsonResult(diffIcons(figmaIcons))
+);
+
+server.registerTool(
+  'stage_pulled_icons',
+  {
+    title: 'Stage icons pulled from Figma for human review',
+    description:
+      "Writes icons (typically diff_icons' onlyInFigma set, exported via use_figma) to packages/icons/incoming/ plus a regenerated REVIEW.md checklist -- NEVER to packages/icons/src/svg/. This is a filesystem-mutating tool. @wend-ui/icons is unpublished pending confirmation the set is clear for public distribution, and a prior icon already had to be dropped for embedded commercial-library attribution, so pulled icons always require a human to move them into src/svg/ by hand after review -- nothing calls this and then auto-joins the shipped set.",
+    inputSchema: {
+      icons: z.array(figmaIconEntrySchema).describe('Icons exported from Figma to stage for review')
+    }
+  },
+  ({ icons }) => jsonResult(stageIcons(icons))
 );
 
 const transport = new StdioServerTransport();

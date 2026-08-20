@@ -49,6 +49,18 @@ This is what `@wend-ui/web-components`' `<wend-icon>` component uses internally.
 1. Copy the new SVG(s) into `src/svg/`, renamed to the `wend-icon-` prefix, art unchanged.
 2. Run `npm run build -w packages/icons` to regenerate `dist/svg/` and `dist/manifest.json`.
 
+## Figma sync
+
+Icons can be pushed to and pulled from Figma via the `wend-ui-design-sync` MCP server's `get_icons`/`diff_icons`/`stage_pulled_icons` tools — see the `sync-icons-to-figma` skill for the full workflow.
+
+Pushing codebase icons to Figma is fully automated. Pulling icons *from* Figma is not: pulled SVGs land in `incoming/` (with a generated `incoming/REVIEW.md`) for manual review, never directly in `src/svg/`. Before moving a pulled icon into `src/svg/`, confirm:
+
+- No brand or product names in the icon's name or visible art.
+- No commercial icon-library attribution or watermark embedded in the SVG.
+- The art's source and license are clear for distribution in this MIT-licensed package.
+
+This checklist exists because an icon already had to be removed from this set after shipping with embedded commercial-library attribution — treat every pulled icon as unreviewed until you've explicitly checked it against this list, regardless of how it looks.
+
 ## Status
 
 Not yet published — excluded from this monorepo's changesets release group (`.changeset/config.json`'s `ignore` array) pending confirmation that this icon set is clear for public distribution.

@@ -17,8 +17,8 @@
           "disabled": { "value": "{color.action.primary.background-disabled}" }
         },
         "foreground": {
-          "default": { "value": "{color.text.on-primary}" },
-          "disabled": { "value": "{color.text.disabled}" }
+          "default": { "value": "{color.action.primary.foreground}" },
+          "disabled": { "value": "{color.action.primary.foreground-disabled}" }
         }
       },
       "secondary": {

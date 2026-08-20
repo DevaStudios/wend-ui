@@ -1,8 +1,8 @@
 {
   "color": {
     "text": {
-      "primary": { "value": "{color.gray.50}" },
-      "secondary": { "value": "{color.gray.600}" },
+      "primary": { "value": "{color.gray.25}" },
+      "secondary": { "value": "{color.gray.300}" },
       "on-primary": { "value": "{color.gray.950}" },
       "on-secondary": { "value": "{color.gray.950}" },
       "disabled": { "value": "{color.gray.700}" }
@@ -15,37 +15,6 @@
     },
     "border": {
       "default": { "value": "{color.gray.700}" }
-    },
-    "action": {
-      "primary": {
-        "background": { "value": "{color.gray.700}" },
-        "background-hover": { "value": "{color.gray.600}" },
-        "background-active": { "value": "{color.gray.25}" },
-        "background-disabled": { "value": "{color.gray.900}" }
-      },
-      "secondary": {
-        "foreground": { "value": "{color.gray.600}" },
-        "background": { "value": "{color.gray.900}" },
-        "background-hover": { "value": "{color.gray.800}" }
-      },
-      "tertiary": {
-        "foreground": { "value": "{color.gray.600}" },
-        "foreground-hover": { "value": "{color.gray.50}" }
-      },
-      "destructive": {
-        "foreground": { "value": "{color.text.on-primary}" },
-        "background": { "value": "{color.red.500}" },
-        "background-hover": { "value": "{color.red.600}" }
-      },
-      "destructive-secondary": {
-        "foreground": { "value": "{color.red.400}" },
-        "background": { "value": "{color.red.900}" },
-        "background-hover": { "value": "{color.red.800}" }
-      },
-      "destructive-tertiary": {
-        "foreground": { "value": "{color.red.400}" },
-        "foreground-hover": { "value": "{color.red.300}" }
-      }
     },
     "feedback": {
       "success": { "background": { "value": "{color.green.500}" } },

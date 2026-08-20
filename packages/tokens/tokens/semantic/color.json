@@ -1,7 +1,7 @@
 {
   "color": {
     "text": {
-      "primary": { "value": "{color.gray.900}" },
+      "primary": { "value": "{color.gray.975}" },
       "secondary": { "value": "{color.gray.800}" },
       "on-primary": { "value": "{color.gray.50}" },
       "on-secondary": { "value": "{color.gray.50}" },
@@ -21,7 +21,9 @@
         "background": { "value": "{color.gray.950}" },
         "background-hover": { "value": "{color.gray.975}" },
         "background-active": { "value": "{color.gray.1000}" },
-        "background-disabled": { "value": "{color.gray.200}" }
+        "background-disabled": { "value": "{color.gray.200}" },
+        "foreground": { "value": "{color.gray.50}" },
+        "foreground-disabled": { "value": "{color.gray.500}" }
       },
       "secondary": {
         "foreground": { "value": "{color.gray.800}" },
@@ -33,7 +35,7 @@
         "foreground-hover": { "value": "{color.gray.900}" }
       },
       "destructive": {
-        "foreground": { "value": "{color.text.on-primary}" },
+        "foreground": { "value": "{color.action.primary.foreground}" },
         "background": { "value": "{color.red.600}" },
         "background-hover": { "value": "{color.red.700}" }
       },

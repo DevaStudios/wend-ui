@@ -15,7 +15,7 @@ test('wend-button.schema.json is a well-formed component schema', () => {
 });
 
 test("wend-button.schema.json declares the current implementation's props", () => {
-  assert.deepEqual(Object.keys(buttonSchema.properties).sort(), ['disabled', 'icon-left', 'icon-right', 'variant']);
+  assert.deepEqual(Object.keys(buttonSchema.properties).sort(), ['disabled', 'icon-left', 'icon-right', 'label', 'variant']);
   assert.deepEqual(buttonSchema.properties.variant.enum, [
     'primary',
     'secondary',

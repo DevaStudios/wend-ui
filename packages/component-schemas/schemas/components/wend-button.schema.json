@@ -5,7 +5,7 @@
   "description": "A clickable button.",
   "type": "object",
   "x-wend-component": "wend-button",
-  "x-wend-slots": [{ "name": "default", "description": "Button label content." }],
+  "x-wend-slots": [],
   "x-wend-tokens": [
     "button.padding-block",
     "button.padding-inline",
@@ -48,6 +48,11 @@
     "icon-right": {
       "type": "string",
       "description": "Name of a @wend-ui/icons icon to render on the right of the button label."
+    },
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The button's label text. Can be an empty string for an icon-only button."
     },
     "disabled": {
       "type": "boolean",

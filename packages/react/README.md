@@ -8,11 +8,7 @@ React component wrappers for [`@wend-ui/web-components`](../web-components), gen
 import { WendButton } from '@wend-ui/react';
 
 function Example() {
-  return (
-    <WendButton variant="secondary" disabled={false}>
-      Click me
-    </WendButton>
-  );
+  return <WendButton variant="secondary" label="Click me" disabled={false} />;
 }
 ```
 

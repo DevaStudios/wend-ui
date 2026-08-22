@@ -23,6 +23,11 @@ export namespace Components {
          */
         "iconRight"?: string;
         /**
+          * The content of the button. This is required, but can be an empty string for an icon-only button as it will be skipped for icon-only buttons.
+          * @default ''
+         */
+        "label": string;
+        /**
           * Visual style of the button.
           * @default 'primary'
          */
@@ -81,6 +86,11 @@ declare namespace LocalJSX {
          */
         "iconRight"?: string;
         /**
+          * The content of the button. This is required, but can be an empty string for an icon-only button as it will be skipped for icon-only buttons.
+          * @default ''
+         */
+        "label"?: string;
+        /**
           * Visual style of the button.
           * @default 'primary'
          */
@@ -106,6 +116,7 @@ declare namespace LocalJSX {
     interface WendButtonAttributes {
         "variant": WendButtonVariant;
         "disabled": boolean;
+        "label": string;
         "iconLeft": string;
         "iconRight": string;
     }

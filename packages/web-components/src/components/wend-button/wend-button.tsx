@@ -21,6 +21,12 @@ export class WendButton {
   /** Disables the button. */
   @Prop() disabled = false;
 
+  /**
+   * The content of the button. This is required, but can be an empty string for an icon-only button as it will be skipped for icon-only buttons.
+   * @default ''
+   */
+  @Prop() label: string = '';
+
   /** Name of a wend-ui icon to render on the left of the button label. */
   @Prop() iconLeft?: string;
 
@@ -28,11 +34,18 @@ export class WendButton {
   @Prop() iconRight?: string;
 
   render() {
+    const {
+      label,
+      variant,
+      disabled,
+      iconLeft,
+      iconRight
+    } = this;
     return (
-      <button class={{ [this.variant]: true }} disabled={this.disabled}>
-        {this.iconLeft && <wend-icon name={this.iconLeft} />}
-        <slot />
-        {this.iconRight && <wend-icon name={this.iconRight} />}
+      <button class={{ [variant]: true }} disabled={disabled}>
+        {iconLeft && <wend-icon name={iconLeft} />}
+        <span>{label}</span>
+        {iconRight && <wend-icon name={iconRight} />}
       </button>
     );
   }

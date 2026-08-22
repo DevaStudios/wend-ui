@@ -32,20 +32,25 @@
 
         <p style="margin: 0 0 var(--spacing-100)">Examples</p>
         <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
-          <wend-button variant="primary">Primary button</wend-button>
-          <wend-button variant="secondary">Secondary button</wend-button>
-          <wend-button variant="tertiary">Tertiary button</wend-button>
-          <wend-button variant="destructive-primary">Destructive primary button</wend-button>
-          <wend-button variant="destructive-secondary">Destructive secondary button</wend-button>
-          <wend-button variant="destructive-tertiary">Destructive tertiary button</wend-button>
-          <wend-button variant="primary" disabled>Disabled button</wend-button>
+          <wend-button variant="primary" label="Primary button"></wend-button>
+          <wend-button variant="secondary" label="Secondary button"></wend-button>
+          <wend-button variant="tertiary" label="Tertiary button"></wend-button>
+          <wend-button variant="destructive-primary" label="Destructive primary button"></wend-button>
+          <wend-button variant="destructive-secondary" label="Destructive secondary button"></wend-button>
+          <wend-button variant="destructive-tertiary" label="Destructive tertiary button"></wend-button>
+          <wend-button variant="primary" label="Disabled button" disabled></wend-button>
         </div>
 
         <p style="margin: 0 0 var(--spacing-100)">With icons</p>
         <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
-          <wend-button variant="primary" icon-left="add">Save</wend-button>
-          <wend-button variant="secondary" icon-right="arrow-right">Next</wend-button>
-          <wend-button variant="tertiary" icon-left="synchronize-arrows" icon-right="arrow-right">Sync</wend-button>
+          <wend-button variant="primary" label="Save" icon-left="add"></wend-button>
+          <wend-button variant="secondary" label="Next" icon-right="arrow-right"></wend-button>
+          <wend-button
+            variant="tertiary"
+            label="Sync"
+            icon-left="synchronize-arrows"
+            icon-right="arrow-right"
+          ></wend-button>
         </div>
 
         <p style="margin: 0 0 var(--spacing-100)">States (primary)</p>
@@ -54,23 +59,23 @@
           the Default button above to see them live.
         </p>
         <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
-          <wend-button variant="primary">Default</wend-button>
+          <wend-button variant="primary" label="Default"></wend-button>
           <wend-button
             variant="primary"
+            label="Hover"
             style="--color-button-primary-background-default: var(--color-button-primary-background-hover)"
-            >Hover</wend-button
-          >
+          ></wend-button>
           <wend-button
             variant="primary"
+            label="Active"
             style="--color-button-primary-background-default: var(--color-button-primary-background-active)"
-            >Active</wend-button
-          >
-          <wend-button variant="primary" disabled>Disabled</wend-button>
+          ></wend-button>
+          <wend-button variant="primary" label="Disabled" disabled></wend-button>
         </div>
 
         <p style="margin: 0 0 var(--spacing-100)">Usage</p>
         <code class="wend-code" style="margin-bottom: var(--spacing-300)"
-          >&lt;wend-button variant="primary"&gt;Label&lt;/wend-button&gt;</code
+          >&lt;wend-button variant="primary" label="Label"&gt;&lt;/wend-button&gt;</code
         >
 
         <p style="margin: 0 0 var(--spacing-100)">Props</p>
@@ -103,6 +108,13 @@
                 >
               </td>
               <td><code>'primary'</code></td>
+            </tr>
+            <tr>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The button's label text. Can be an empty string for an icon-only button.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
             </tr>
             <tr>
               <td><code>iconLeft</code></td>

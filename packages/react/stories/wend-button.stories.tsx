@@ -10,12 +10,12 @@ const meta: Meta<typeof WendButton> = {
       options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary']
     },
     disabled: { control: 'boolean' },
-    children: { control: 'text' },
+    label: { control: 'text' },
     iconLeft: { control: 'text' },
     iconRight: { control: 'text' }
   },
   args: {
-    children: 'Button',
+    label: 'Button',
     variant: 'primary',
     disabled: false
   }
@@ -25,41 +25,41 @@ export default meta;
 type Story = StoryObj<typeof WendButton>;
 
 export const Primary: Story = {
-  args: { children: 'Primary button', variant: 'primary' }
+  args: { label: 'Primary button', variant: 'primary' }
 };
 
 export const Secondary: Story = {
-  args: { children: 'Secondary button', variant: 'secondary' }
+  args: { label: 'Secondary button', variant: 'secondary' }
 };
 
 export const Tertiary: Story = {
-  args: { children: 'Tertiary button', variant: 'tertiary' }
+  args: { label: 'Tertiary button', variant: 'tertiary' }
 };
 
 export const DestructivePrimary: Story = {
-  args: { children: 'Destructive primary button', variant: 'destructive-primary' }
+  args: { label: 'Destructive primary button', variant: 'destructive-primary' }
 };
 
 export const DestructiveSecondary: Story = {
-  args: { children: 'Destructive secondary button', variant: 'destructive-secondary' }
+  args: { label: 'Destructive secondary button', variant: 'destructive-secondary' }
 };
 
 export const DestructiveTertiary: Story = {
-  args: { children: 'Destructive tertiary button', variant: 'destructive-tertiary' }
+  args: { label: 'Destructive tertiary button', variant: 'destructive-tertiary' }
 };
 
 export const Disabled: Story = {
-  args: { children: 'Disabled button', variant: 'primary', disabled: true }
+  args: { label: 'Disabled button', variant: 'primary', disabled: true }
 };
 
 export const WithIconLeft: Story = {
-  args: { children: 'Save', variant: 'primary', iconLeft: 'add' }
+  args: { label: 'Save', variant: 'primary', iconLeft: 'add' }
 };
 
 export const WithIconRight: Story = {
-  args: { children: 'Next', variant: 'secondary', iconRight: 'arrow-right' }
+  args: { label: 'Next', variant: 'secondary', iconRight: 'arrow-right' }
 };
 
 export const WithBothIcons: Story = {
-  args: { children: 'Sync', variant: 'tertiary', iconLeft: 'synchronize-arrows', iconRight: 'arrow-right' }
+  args: { label: 'Sync', variant: 'tertiary', iconLeft: 'synchronize-arrows', iconRight: 'arrow-right' }
 };

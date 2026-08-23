@@ -20,6 +20,15 @@ button wend-icon {
   flex-shrink: 0;
 }
 
+button:focus {
+  outline: none;
+}
+
+button:focus-visible {
+  outline: var(--button-focus-outline-width, 1px) solid var(--button-focus-outline-color, #1a1a1a);
+  outline-offset: var(--button-focus-outline-offset, 2px);
+}
+
 button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
@@ -54,13 +63,27 @@ button.secondary:not(:disabled):hover {
   background-color: var(--color-button-secondary-background-hover, #e8e3e3);
 }
 
+button.secondary:not(:disabled):active {
+  background-color: var(--color-button-secondary-background-active, #dbd7d7);
+}
+
 button.tertiary {
-  background-color: transparent;
+  background-color: var(--color-button-tertiary-background-default, transparent);
   color: var(--color-button-tertiary-foreground-default, #676565);
 }
 
 button.tertiary:not(:disabled):hover {
+  background-color: var(--color-button-tertiary-background-hover, #e8e3e3);
   color: var(--color-button-tertiary-foreground-hover, #4d4c4c);
+}
+
+button.tertiary:not(:disabled):active {
+  background-color: var(--color-button-tertiary-background-active, #dbd7d7);
+}
+
+button.icon-only {
+  padding: var(--button-icon-only-padding, 10px);
+  gap: 0;
 }
 
 button.destructive-primary {

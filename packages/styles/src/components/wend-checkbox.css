@@ -1,0 +1,62 @@
+:host {
+  display: inline-block;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--checkbox-gap, 4px);
+  font-family: var(--font-family-base, sans-serif);
+  font-size: var(--checkbox-font-size, 14px);
+  color: var(--color-checkbox-label-foreground-default, #1a1a1a);
+  cursor: pointer;
+}
+
+label.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--checkbox-size, 20px);
+  height: var(--checkbox-size, 20px);
+  border-radius: var(--checkbox-radius, 4px);
+  border: var(--checkbox-border-width, 1px) solid var(--color-checkbox-unchecked-border-default, #676565);
+  background-color: var(--color-checkbox-unchecked-background-default, #ffffff);
+}
+
+.box wend-icon {
+  display: flex;
+  color: var(--color-checkbox-checked-foreground-default, #ffffff);
+}
+
+input:checked ~ .box {
+  background-color: var(--color-checkbox-checked-background-default, #333333);
+  border-color: var(--color-checkbox-checked-border-default, #676565);
+}
+
+label:not(.disabled):hover input:checked ~ .box {
+  background-color: var(--color-checkbox-checked-background-hover, #1a1a1a);
+}
+
+input:focus-visible ~ .box {
+  outline: var(--checkbox-focus-outline-width, 1px) solid var(--checkbox-focus-outline-color, #1a1a1a);
+  outline-offset: var(--checkbox-focus-outline-offset, 2px);
+}

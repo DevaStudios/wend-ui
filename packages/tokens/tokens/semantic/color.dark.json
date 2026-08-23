@@ -11,10 +11,13 @@
       "canvas": { "value": "{color.gray.950}" },
       "canvas-recessed": { "value": "{color.gray.900}" },
       "card": { "value": "{color.gray.950}" },
-      "card-recessed": { "value": "{color.gray.900}" }
+      "card-recessed": { "value": "{color.gray.900}" },
+      "input": { "value": "{color.gray.900}" }
     },
     "border": {
-      "default": { "value": "{color.gray.700}" }
+      "default": { "value": "{color.gray.700}" },
+      "focus": { "value": "{color.gray.50}" },
+      "input": { "value": "{color.gray.100}" }
     },
     "feedback": {
       "success": { "background": { "value": "{color.green.500}" } },

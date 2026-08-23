@@ -25,6 +25,13 @@
     "color.button.secondary.border.default",
     "color.button.tertiary.foreground.default",
     "color.button.tertiary.foreground.hover",
+    "color.button.secondary.background.active",
+    "color.button.tertiary.background.hover",
+    "color.button.tertiary.background.active",
+    "button.icon-only.padding",
+    "button.focus.outline-color",
+    "button.focus.outline-width",
+    "button.focus.outline-offset",
     "color.button.destructive-primary.foreground.default",
     "color.button.destructive-primary.background.default",
     "color.button.destructive-primary.background.hover",
@@ -53,6 +60,11 @@
       "type": "string",
       "default": "",
       "description": "The button's label text. Can be an empty string for an icon-only button."
+    },
+    "icon-only": {
+      "type": "boolean",
+      "default": false,
+      "description": "Renders a square, label-less button containing only icon-left. Ignores the label and icon-right."
     },
     "disabled": {
       "type": "boolean",

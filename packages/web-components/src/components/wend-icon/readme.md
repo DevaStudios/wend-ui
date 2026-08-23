@@ -19,11 +19,13 @@
 ### Used by
 
  - [wend-button](../wend-button)
+ - [wend-checkbox](../wend-checkbox)
 
 ### Graph
 ```mermaid
 graph TD;
   wend-button --> wend-icon
+  wend-checkbox --> wend-icon
   style wend-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

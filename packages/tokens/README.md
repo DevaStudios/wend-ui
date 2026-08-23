@@ -6,14 +6,14 @@ Design tokens for the wend-ui design system, defined once as JSON and built with
 
 ```
 tokens/
-  global/      # raw primitives, no meaning — color ramps (gray/blue/purple/green/amber/red), spacing, radius, typography
+  global/      # raw primitives, no meaning — color ramps (gray/blue/purple/green/amber/red), spacing, sizing, radius, typography
   semantic/     # named by purpose, alias global tokens — text/surface/border/action/feedback colors
                 # color.json = light (default) values; color.dark.json = only the values that differ in dark mode
   component/    # scoped to one component, alias semantic (colors) or global (spacing/radius/font) directly
                 # e.g. button.json
 ```
 
-Spacing/radius/typography are **global-only** — they don't have a light/dark dimension and don't need a semantic layer at this project's size, so components reference them directly. Color is the tier that actually needs all three, since meaning and mode-awareness both live there.
+Spacing/sizing/radius/typography are **global-only** — they don't have a light/dark dimension and don't need a semantic layer at this project's size, so components reference them directly. Color is the tier that actually needs all three, since meaning and mode-awareness both live there.
 
 ## Spacing scale
 
@@ -44,6 +44,36 @@ Spacing/radius/typography are **global-only** — they don't have a light/dark d
 | `spacing-3200` | 256 | `16rem` |
 
 Source values are unitless numbers representing px (e.g. `"16"`, not `"16px"`). The `css` and `scss` platforms convert them to `rem` (÷16, via the custom `size/spacing-rem` transform in `scripts/rem-transforms.js`) so spacing respects the user's font-size settings — Style Dictionary's built-in `size/px`/`size/rem` transforms don't apply here, since they only fire on tokens with an explicit DTCG `"type": "dimension"`, which nothing in this repo sets. The `js` and `figma` platforms keep the raw px-equivalent numbers, since JS consumers may need the raw number for calculations and Figma variables don't understand `rem` strings.
+
+## Sizing scale
+
+`tokens/global/sizing.json` is a second numeric scale for fixed element dimensions (icon boxes, avatars, square button sizes) as distinct from spacing (gaps/padding) — it deliberately reuses spacing's exact step names and px values rather than defining its own ramp, so a `100` step means the same 8px regardless of which scale it's read from:
+
+| Token | px | rem |
+| --- | --- | --- |
+| `sizing-0` | 0 | `0` |
+| `sizing-25` | 2 | `0.125rem` |
+| `sizing-50` | 4 | `0.25rem` |
+| `sizing-100` | 8 | `0.5rem` |
+| `sizing-125` | 10 | `0.625rem` |
+| `sizing-150` | 12 | `0.75rem` |
+| `sizing-200` | 16 | `1rem` |
+| `sizing-250` | 20 | `1.25rem` |
+| `sizing-275` | 22 | `1.375rem` |
+| `sizing-300` | 24 | `1.5rem` |
+| `sizing-350` | 28 | `1.75rem` |
+| `sizing-400` | 32 | `2rem` |
+| `sizing-500` | 40 | `2.5rem` |
+| `sizing-550` | 44 | `2.75rem` |
+| `sizing-600` | 48 | `3rem` |
+| `sizing-700` | 54 | `3.375rem` |
+| `sizing-800` | 64 | `4rem` |
+| `sizing-1000` | 88 | `5.5rem` |
+| `sizing-1200` | 96 | `6rem` |
+| `sizing-1600` | 128 | `8rem` |
+| `sizing-3200` | 256 | `16rem` |
+
+Same conversion mechanism as spacing: unitless px-equivalent source values, converted to `rem` for `css`/`scss` (via the `size/sizing-rem` transform in `scripts/rem-transforms.js`, filtered on category `sizing` rather than `spacing` — otherwise identical to `size/spacing-rem`), left as raw numbers for `js`/`figma`. Kept as a separate top-level `sizing.*` token (not an alias of `spacing.*`) so a component's width/height and its padding/gap can be reasoned about — and renamed — independently later, even though they share a scale today.
 
 ## Font size scale
 
@@ -81,19 +111,19 @@ Source values are unitless numbers representing px (same convention as spacing/f
 
 | Token | Hex | Note |
 | --- | --- | --- |
-| `color-gray-25` | `#FFFFFF` | dark-mode primary text |
-| `color-gray-50` | `#FAF9F9` | lightest general-purpose step — light-mode canvas/card, light-mode text-on-primary/on-secondary; primary action/button foreground (both modes) |
-| `color-gray-100` | `#F4F2F2` | secondary action/button background (both modes) |
-| `color-gray-200` | `#E8E3E3` | primary action/button background-disabled, secondary action/button background-hover (both modes) |
-| `color-gray-300` | `#DBD7D7` | dark-mode secondary text |
+| `color-gray-25` | `#FFFFFF` | dark-mode primary text; light-mode input surface (checkbox background) |
+| `color-gray-50` | `#FAF9F9` | lightest general-purpose step — light-mode canvas/card, light-mode text-on-primary/on-secondary; primary action/button foreground (both modes); dark-mode focus outline |
+| `color-gray-100` | `#F4F2F2` | secondary action/button background (both modes); dark-mode input border |
+| `color-gray-200` | `#E8E3E3` | primary action/button background-disabled, secondary action/button background-hover, tertiary action/button background-hover (both modes) |
+| `color-gray-300` | `#DBD7D7` | dark-mode secondary text; secondary action/button background-active, tertiary action/button background-active (both modes) |
 | `color-gray-400` | `#CDCBCB` | |
 | `color-gray-500` | `#B4B1B1` | light-mode text-disabled; primary action/button foreground-disabled (both modes) |
 | `color-gray-600` | `#9A9898` | light-mode recessed surfaces |
 | `color-gray-700` | `#8D8B8B` | default border (both modes); dark-mode text-disabled |
-| `color-gray-800` | `#676565` | secondary text, secondary action foreground, tertiary action foreground (both modes) |
-| `color-gray-900` | `#4D4C4C` | tertiary action foreground-hover (both modes); dark-mode recessed surfaces |
+| `color-gray-800` | `#676565` | secondary text, secondary action foreground, tertiary action foreground (both modes); light-mode input border |
+| `color-gray-900` | `#4D4C4C` | tertiary action foreground-hover (both modes); dark-mode recessed surfaces; dark-mode input surface (checkbox background) |
 | `color-gray-950` | `#333333` | primary action/button background (both modes); dark-mode canvas/card, dark-mode text-on-primary/on-secondary |
-| `color-gray-975` | `#1A1A1A` | light-mode primary text; primary action/button background-hover (both modes) |
+| `color-gray-975` | `#1A1A1A` | light-mode primary text; primary action/button background-hover (both modes); light-mode focus outline |
 | `color-gray-1000` | `#000000` | pure-black endpoint — primary action/button background-active (both modes) |
 
 `1000` (pure black) sits below `975` and is reserved for the primary button's active state, the same in both light and dark mode — it isn't used as a general-purpose text/surface color. `25` (pure white) is still the lightest step.
@@ -119,17 +149,17 @@ Generated in HSL — fixed hue per color (amber ≈38°, green ≈152°, red ≈
 
 ## Color token naming
 
-Semantic and component color tokens follow `color-{scope}-{variant}-{property}[-{state}]`, where `{scope}` is a semantic category (`text`, `surface`, `border`, `action`, `feedback`) or a component name (`button`):
+Semantic and component color tokens follow `color-{scope}-{variant}-{property}[-{state}]`, where `{scope}` is a semantic category (`text`, `surface`, `border`, `action`, `feedback`) or a component name (`button`, `checkbox`):
 
-- **`text`/`surface`/`border`** — the category name already says which CSS property the token feeds, so no property segment is added: `color-text-primary`, `color-surface-canvas`, `color-border-default`.
-- **`action`/`feedback`** (role-based, ambiguous property) — get an explicit property segment (`background` or `foreground`, matching how the token is actually used today) and a `-hover`/`-active`/`-disabled` suffix only when a non-default state exists: `color-action-primary-background`, `color-action-primary-background-hover`, `color-action-primary-background-active`, `color-action-primary-background-disabled`, `color-action-primary-foreground`, `color-action-primary-foreground-disabled`, `color-action-secondary-foreground`, `color-action-secondary-background`, `color-action-secondary-background-hover`, `color-action-tertiary-foreground`, `color-action-tertiary-foreground-hover`, `color-action-destructive-background`, `color-action-destructive-background-hover`, `color-action-destructive-secondary-background`, `color-action-destructive-tertiary-foreground`, `color-feedback-success-background`.
-- **`button`** (and future components) — every color token gets both a property segment and an explicit state segment, even for the default case: `color-button-primary-background-default`, `color-button-primary-background-hover`, `color-button-primary-background-active`, `color-button-primary-background-disabled`, `color-button-primary-foreground-default`, `color-button-primary-foreground-disabled`, `color-button-secondary-foreground-default`, `color-button-secondary-background-default`, `color-button-secondary-background-hover`, `color-button-secondary-border-default`, `color-button-tertiary-foreground-default`, `color-button-tertiary-foreground-hover`, `color-button-destructive-primary-background-default`, `color-button-destructive-secondary-background-default`, `color-button-destructive-tertiary-foreground-default`. `destructive-primary`/`destructive-secondary`/`destructive-tertiary` are themselves the `{variant}` segment (a hyphenated variant name, not an extra taxonomy level).
+- **`text`/`surface`/`border`** — the category name already says which CSS property the token feeds, so no property segment is added: `color-text-primary`, `color-surface-canvas`, `color-border-default`, `color-border-focus`, `color-surface-input`, `color-border-input`. `border.focus` (`color-border-focus`) is the shared focus-ring color, consumed by `button-focus-outline-color`/`checkbox-focus-outline-color` — it flips by mode like the rest of `border.*`/`text.*` (light `gray.975`, dark `gray.50`), rather than staying fixed like the button action colors. `surface.input`/`border.input` (`color-surface-input`/`color-border-input`) are the shared background/border for form-control surfaces (currently just the checkbox box) — also mode-flipping (`surface.input`: light `gray.25`, dark `gray.900`; `border.input`: light `gray.800`, dark `gray.100`), and deliberately distinct from `surface.card`/`border.default` since Figma authored them as separate values, not aliases.
+- **`action`/`feedback`** (role-based, ambiguous property) — get an explicit property segment (`background` or `foreground`, matching how the token is actually used today) and a `-hover`/`-active`/`-disabled` suffix only when a non-default state exists: `color-action-primary-background`, `color-action-primary-background-hover`, `color-action-primary-background-active`, `color-action-primary-background-disabled`, `color-action-primary-foreground`, `color-action-primary-foreground-disabled`, `color-action-secondary-foreground`, `color-action-secondary-background`, `color-action-secondary-background-hover`, `color-action-secondary-background-active`, `color-action-tertiary-foreground`, `color-action-tertiary-foreground-hover`, `color-action-tertiary-background`, `color-action-tertiary-background-hover`, `color-action-tertiary-background-active`, `color-action-destructive-background`, `color-action-destructive-background-hover`, `color-action-destructive-secondary-background`, `color-action-destructive-tertiary-foreground`, `color-feedback-success-background`.
+- **`button`/`checkbox`** (and future components) — every color token gets both a property segment and an explicit state segment, even for the default case: `color-button-primary-background-default`, `color-button-primary-background-hover`, `color-button-primary-background-active`, `color-button-primary-background-disabled`, `color-button-primary-foreground-default`, `color-button-primary-foreground-disabled`, `color-button-secondary-foreground-default`, `color-button-secondary-background-default`, `color-button-secondary-background-hover`, `color-button-secondary-background-active`, `color-button-secondary-border-default`, `color-button-tertiary-foreground-default`, `color-button-tertiary-foreground-hover`, `color-button-tertiary-background-default`, `color-button-tertiary-background-hover`, `color-button-tertiary-background-active`, `color-button-destructive-primary-background-default`, `color-button-destructive-secondary-background-default`, `color-button-destructive-tertiary-foreground-default`, `color-checkbox-unchecked-background-default`, `color-checkbox-unchecked-border-default`, `color-checkbox-checked-background-default`, `color-checkbox-checked-background-hover`, `color-checkbox-checked-border-default`, `color-checkbox-checked-foreground-default`, `color-checkbox-label-foreground-default`. `destructive-primary`/`destructive-secondary`/`destructive-tertiary` are themselves the `{variant}` segment for button (a hyphenated variant name, not an extra taxonomy level); `unchecked`/`checked`/`label` play the same role for checkbox — `label` isn't really a state-bearing "variant" the way `unchecked`/`checked` are, but the taxonomy requires every top-level key under `color.checkbox.*` to carry a property+state pair, so it was given one (`foreground.default`) rather than left as a bare leaf. `color-button-tertiary-background-default` resolves to `transparent`, a literal value rather than a `gray.*` reference — tertiary buttons have no background by default, only on hover/active.
 
 `text.disabled` (`color-text-disabled`) is a semantic leaf alongside `text.primary`/`text.secondary`/etc. — it flips by mode (light `gray.500`, dark `gray.700`) like the rest of `text.*`, so it's used for general disabled text, not for `color-button-primary-foreground-disabled`. That token instead comes from `action.primary.foreground-disabled` (`color-action-primary-foreground-disabled`, `gray.500` in both modes) — see the "buttons don't flip by theme" note in the [Color scale](#color-scale) section above for why the two diverged.
 
 `npm run build -w packages/tokens` runs `scripts/validate-color-taxonomy.js` first and fails the build with a specific, per-token error if a new color token doesn't fit this shape (bare leaf where a property/state split is required, an unrecognized category, a stray `-default` suffix at the semantic tier, a missing `default` state at the component tier, etc.) — run `npm run validate-taxonomy -w packages/tokens` to check without doing a full build. Adding a genuinely new semantic category requires registering it as `SELF_EVIDENT_CATEGORIES` or `ROLE_BASED_CATEGORIES` in that script first (the validator treats an unregistered category as an error, not a silent pass).
 
-For `button` specifically, this means `tokens/component/button.json` nests its color tokens under a top-level `color.button.*` path (not `button.color.*`) so `color` sorts first in the output name. The file keeps a separate, plain `button.*` top-level key for its non-color tokens (`button-padding-block`, `button-padding-inline`, `button-radius`, `button-font-size`, `button-font-weight`) — those are unaffected by this taxonomy and keep their existing flat names.
+For `button`/`checkbox` specifically, this means `tokens/component/button.json`/`checkbox.json` nest their color tokens under a top-level `color.button.*`/`color.checkbox.*` path (not `button.color.*`) so `color` sorts first in the output name. Each file keeps a separate, plain `button.*`/`checkbox.*` top-level key for its non-color tokens — those are unaffected by this taxonomy and keep their existing flat names. `button-icon-only-padding` (`{spacing.125}`, 10px) sets equal padding on all sides of an icon-only button so it renders as a square, matching the button's regular height. `button-focus-outline-color`/`checkbox-focus-outline-color` alias the shared `color.border.focus` semantic token; the paired `*-focus-outline-width` (`1px`) and `*-focus-outline-offset` (`2px`) are literal pixel values rather than scale references, matching the button's exact 2px-gap/1px-stroke focus ring as authored in Figma (a `strokeAlign: INSIDE` frame offset -2/-2, `cornerRadius` = radius + 2) — CSS reproduces this with `outline` + `outline-offset` on `:focus-visible`. The checkbox focus ring itself isn't in Figma (only 4 variants exist there: `Checked` × `State=Default/Hover`, no focus/disabled) — it was added in code for keyboard-accessibility parity with the button, reusing the same shared `border.focus` token rather than inventing a new color. `checkbox-size` aliases `{sizing.250}` (20px) — the sizing scale's first real consumer.
 
 References use Style Dictionary's `{color.gray.900}` syntax and are preserved as CSS `var()` chains in the output (`outputReferences: true`) — e.g. `--color-button-primary-background-default: var(--color-action-primary-background)`. This is what makes dark mode work efficiently: overriding a handful of leaf `color.*` values under `[data-theme="dark"]` cascades through every semantic and component token that references them, with no dark-specific redeclaration needed at those tiers.
 

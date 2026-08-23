@@ -23,6 +23,16 @@ const spacingRemTransform = {
   transform: (token) => pxToRem(token.value, token.name)
 };
 
+// Sizing scale (element width/height) reuses spacing's exact step names and px values —
+// same naming logic (key ≈ px × 12.5), same scale — so it gets the identical rem
+// conversion, just filtered on its own 'sizing' category instead of 'spacing'.
+const sizingRemTransform = {
+  name: 'size/sizing-rem',
+  type: 'value',
+  filter: (token) => token.attributes?.category === 'sizing',
+  transform: (token) => pxToRem(token.value, token.name)
+};
+
 const fontSizeRemTransform = {
   name: 'size/font-size-rem',
   type: 'value',
@@ -30,4 +40,4 @@ const fontSizeRemTransform = {
   transform: (token) => pxToRem(token.value, token.name)
 };
 
-module.exports = { spacingRemTransform, fontSizeRemTransform };
+module.exports = { spacingRemTransform, sizingRemTransform, fontSizeRemTransform };

@@ -11,10 +11,13 @@
       "canvas": { "value": "{color.gray.50}" },
       "canvas-recessed": { "value": "{color.gray.600}" },
       "card": { "value": "{color.gray.50}" },
-      "card-recessed": { "value": "{color.gray.600}" }
+      "card-recessed": { "value": "{color.gray.600}" },
+      "input": { "value": "{color.gray.25}" }
     },
     "border": {
-      "default": { "value": "{color.gray.700}" }
+      "default": { "value": "{color.gray.700}" },
+      "focus": { "value": "{color.gray.975}" },
+      "input": { "value": "{color.gray.800}" }
     },
     "action": {
       "primary": {
@@ -28,11 +31,15 @@
       "secondary": {
         "foreground": { "value": "{color.gray.800}" },
         "background": { "value": "{color.gray.100}" },
-        "background-hover": { "value": "{color.gray.200}" }
+        "background-hover": { "value": "{color.gray.200}" },
+        "background-active": { "value": "{color.gray.300}" }
       },
       "tertiary": {
         "foreground": { "value": "{color.gray.800}" },
-        "foreground-hover": { "value": "{color.gray.900}" }
+        "foreground-hover": { "value": "{color.gray.900}" },
+        "background": { "value": "transparent" },
+        "background-hover": { "value": "{color.gray.200}" },
+        "background-active": { "value": "{color.gray.300}" }
       },
       "destructive": {
         "foreground": { "value": "{color.action.primary.foreground}" },

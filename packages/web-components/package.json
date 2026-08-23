@@ -16,6 +16,7 @@
   "unpkg": "dist/wend-ui-web-components/wend-ui-web-components.esm.js",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs.js"
     },

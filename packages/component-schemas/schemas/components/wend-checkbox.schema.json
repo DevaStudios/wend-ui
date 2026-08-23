@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-checkbox.schema.json",
+  "title": "WendCheckbox",
+  "description": "A labeled checkbox input.",
+  "type": "object",
+  "x-wend-component": "wend-checkbox",
+  "x-wend-slots": [],
+  "x-wend-tokens": [
+    "checkbox.size",
+    "checkbox.radius",
+    "checkbox.border-width",
+    "checkbox.gap",
+    "checkbox.font-size",
+    "checkbox.focus.outline-color",
+    "checkbox.focus.outline-width",
+    "checkbox.focus.outline-offset",
+    "color.checkbox.unchecked.background.default",
+    "color.checkbox.unchecked.border.default",
+    "color.checkbox.checked.background.default",
+    "color.checkbox.checked.background.hover",
+    "color.checkbox.checked.border.default",
+    "color.checkbox.checked.foreground.default",
+    "color.checkbox.label.foreground.default"
+  ],
+  "properties": {
+    "checked": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the checkbox is checked."
+    },
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The checkbox's label text. Can be an empty string for a label-less checkbox."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the checkbox."
+    }
+  },
+  "additionalProperties": false
+}

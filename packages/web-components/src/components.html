@@ -53,6 +53,17 @@
           ></wend-button>
         </div>
 
+        <p style="margin: 0 0 var(--spacing-100)">Icon-only</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-button variant="primary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="secondary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="tertiary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="primary" icon-left="add" icon-only disabled></wend-button>
+          <wend-button variant="destructive-primary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="destructive-secondary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="destructive-tertiary" icon-left="add" icon-only></wend-button>
+        </div>
+
         <p style="margin: 0 0 var(--spacing-100)">States (primary)</p>
         <p style="margin: 0 0 var(--spacing-100); color: var(--color-text-secondary); font-size: var(--font-size-175)">
           Hover and Active are shown as static swatches here since they're pointer-driven pseudo-states — try
@@ -129,6 +140,66 @@
               <td>Name of a wend-ui icon to render on the right of the label.</td>
               <td><code>string</code></td>
               <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>iconOnly</code></td>
+              <td><code>icon-only</code></td>
+              <td>Renders a square, label-less button containing only icon-left. Ignores the label and icon-right.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wend-section">
+        <h2>Checkbox</h2>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-checkbox label="Unchecked"></wend-checkbox>
+          <wend-checkbox label="Checked" checked></wend-checkbox>
+          <wend-checkbox label="Disabled" disabled></wend-checkbox>
+          <wend-checkbox label="Disabled checked" checked disabled></wend-checkbox>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-checkbox label="Label"&gt;&lt;/wend-checkbox&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>checked</code></td>
+              <td><code>checked</code></td>
+              <td>Whether the checkbox is checked.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The checkbox's label text. Can be an empty string for a label-less checkbox.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the checkbox.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
             </tr>
           </tbody>
         </table>

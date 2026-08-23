@@ -19,6 +19,11 @@ export namespace Components {
          */
         "iconLeft"?: string;
         /**
+          * Renders a square, label-less button containing only icon-left. Ignores the label and icon-right.
+          * @default false
+         */
+        "iconOnly": boolean;
+        /**
           * Name of a wend-ui icon to render on the right of the button label.
          */
         "iconRight"?: string;
@@ -32,6 +37,23 @@ export namespace Components {
           * @default 'primary'
          */
         "variant": WendButtonVariant;
+    }
+    interface WendCheckbox {
+        /**
+          * Whether the checkbox is checked.
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * Disables the checkbox.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * The checkbox's label text. Can be an empty string for a label-less checkbox.
+          * @default ''
+         */
+        "label": string;
     }
     interface WendIcon {
         /**
@@ -50,12 +72,33 @@ export namespace Components {
         "size": string;
     }
 }
+export interface WendCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendCheckboxElement;
+}
 declare global {
     interface HTMLWendButtonElement extends Components.WendButton, HTMLStencilElement {
     }
     var HTMLWendButtonElement: {
         prototype: HTMLWendButtonElement;
         new (): HTMLWendButtonElement;
+    };
+    interface HTMLWendCheckboxElementEventMap {
+        "wendChange": boolean;
+    }
+    interface HTMLWendCheckboxElement extends Components.WendCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendCheckboxElementEventMap>(type: K, listener: (this: HTMLWendCheckboxElement, ev: WendCheckboxCustomEvent<HTMLWendCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendCheckboxElementEventMap>(type: K, listener: (this: HTMLWendCheckboxElement, ev: WendCheckboxCustomEvent<HTMLWendCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendCheckboxElement: {
+        prototype: HTMLWendCheckboxElement;
+        new (): HTMLWendCheckboxElement;
     };
     interface HTMLWendIconElement extends Components.WendIcon, HTMLStencilElement {
     }
@@ -65,6 +108,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "wend-button": HTMLWendButtonElement;
+        "wend-checkbox": HTMLWendCheckboxElement;
         "wend-icon": HTMLWendIconElement;
     }
 }
@@ -82,6 +126,11 @@ declare namespace LocalJSX {
          */
         "iconLeft"?: string;
         /**
+          * Renders a square, label-less button containing only icon-left. Ignores the label and icon-right.
+          * @default false
+         */
+        "iconOnly"?: boolean;
+        /**
           * Name of a wend-ui icon to render on the right of the button label.
          */
         "iconRight"?: string;
@@ -95,6 +144,27 @@ declare namespace LocalJSX {
           * @default 'primary'
          */
         "variant"?: WendButtonVariant;
+    }
+    interface WendCheckbox {
+        /**
+          * Whether the checkbox is checked.
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * Disables the checkbox.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The checkbox's label text. Can be an empty string for a label-less checkbox.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Emitted when the checkbox is toggled by the user.
+         */
+        "onWendChange"?: (event: WendCheckboxCustomEvent<boolean>) => void;
     }
     interface WendIcon {
         /**
@@ -119,6 +189,12 @@ declare namespace LocalJSX {
         "label": string;
         "iconLeft": string;
         "iconRight": string;
+        "iconOnly": boolean;
+    }
+    interface WendCheckboxAttributes {
+        "checked": boolean;
+        "label": string;
+        "disabled": boolean;
     }
     interface WendIconAttributes {
         "name": string;
@@ -128,6 +204,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "wend-button": Omit<WendButton, keyof WendButtonAttributes> & { [K in keyof WendButton & keyof WendButtonAttributes]?: WendButton[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `attr:${K}`]?: WendButtonAttributes[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `prop:${K}`]?: WendButton[K] };
+        "wend-checkbox": Omit<WendCheckbox, keyof WendCheckboxAttributes> & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes]?: WendCheckbox[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `attr:${K}`]?: WendCheckboxAttributes[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `prop:${K}`]?: WendCheckbox[K] };
         "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
     }
 }
@@ -136,6 +213,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "wend-button": LocalJSX.IntrinsicElements["wend-button"] & JSXBase.HTMLAttributes<HTMLWendButtonElement>;
+            "wend-checkbox": LocalJSX.IntrinsicElements["wend-checkbox"] & JSXBase.HTMLAttributes<HTMLWendCheckboxElement>;
             "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
         }
     }

@@ -33,14 +33,27 @@ export class WendButton {
   /** Name of a wend-ui icon to render on the right of the button label. */
   @Prop() iconRight?: string;
 
+  /** Renders a square, label-less button containing only icon-left. Ignores the label and icon-right. */
+  @Prop() iconOnly = false;
+
   render() {
     const {
       label,
       variant,
       disabled,
       iconLeft,
-      iconRight
+      iconRight,
+      iconOnly
     } = this;
+
+    if (iconOnly) {
+      return (
+        <button class={{ [variant]: true, 'icon-only': true }} disabled={disabled}>
+          {iconLeft && <wend-icon name={iconLeft} />}
+        </button>
+      );
+    }
+
     return (
       <button class={{ [variant]: true }} disabled={disabled}>
         {iconLeft && <wend-icon name={iconLeft} />}

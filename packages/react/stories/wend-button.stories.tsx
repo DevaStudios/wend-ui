@@ -12,7 +12,8 @@ const meta: Meta<typeof WendButton> = {
     disabled: { control: 'boolean' },
     label: { control: 'text' },
     iconLeft: { control: 'text' },
-    iconRight: { control: 'text' }
+    iconRight: { control: 'text' },
+    iconOnly: { control: 'boolean' }
   },
   args: {
     label: 'Button',
@@ -62,4 +63,12 @@ export const WithIconRight: Story = {
 
 export const WithBothIcons: Story = {
   args: { label: 'Sync', variant: 'tertiary', iconLeft: 'synchronize-arrows', iconRight: 'arrow-right' }
+};
+
+export const IconOnly: Story = {
+  args: { label: '', variant: 'primary', iconLeft: 'add', iconOnly: true }
+};
+
+export const IconOnlyDestructive: Story = {
+  args: { label: '', variant: 'destructive-primary', iconLeft: 'add', iconOnly: true }
 };

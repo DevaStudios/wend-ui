@@ -5,7 +5,15 @@
     "radius": { "value": "{radius.medium}" },
     "font-size": { "value": "{font.size.200}" },
     "font-weight": { "value": "{font.weight.regular}" },
-    "gap": { "value": "{spacing.100}" }
+    "gap": { "value": "{spacing.100}" },
+    "icon-only": {
+      "padding": { "value": "{spacing.125}" }
+    },
+    "focus": {
+      "outline-color": { "value": "{color.border.focus}" },
+      "outline-width": { "value": "1px" },
+      "outline-offset": { "value": "2px" }
+    }
   },
   "color": {
     "button": {
@@ -27,7 +35,8 @@
         },
         "background": {
           "default": { "value": "{color.action.secondary.background}" },
-          "hover": { "value": "{color.action.secondary.background-hover}" }
+          "hover": { "value": "{color.action.secondary.background-hover}" },
+          "active": { "value": "{color.action.secondary.background-active}" }
         },
         "border": {
           "default": { "value": "{color.action.secondary.foreground}" }
@@ -37,6 +46,11 @@
         "foreground": {
           "default": { "value": "{color.action.tertiary.foreground}" },
           "hover": { "value": "{color.action.tertiary.foreground-hover}" }
+        },
+        "background": {
+          "default": { "value": "{color.action.tertiary.background}" },
+          "hover": { "value": "{color.action.tertiary.background-hover}" },
+          "active": { "value": "{color.action.tertiary.background-active}" }
         }
       },
       "destructive-primary": {

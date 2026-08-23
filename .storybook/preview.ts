@@ -5,10 +5,14 @@ import type { Preview } from '@storybook/react-vite';
 // dynamic `import()` of the component bundle does not resolve in time inside the static
 // `build-storybook` output, so `<wend-button>` renders as an unregistered/blank element there.
 // This eager import fixed that (see Task 7 commit); do not revert to the loader.
-import { defineCustomElement } from '@wend-ui/web-components/dist/components/wend-button.js';
+import { defineCustomElement as defineWendButton } from '@wend-ui/web-components/dist/components/wend-button.js';
+import { defineCustomElement as defineWendCheckbox } from '@wend-ui/web-components/dist/components/wend-checkbox.js';
+import { defineCustomElement as defineWendIcon } from '@wend-ui/web-components/dist/components/wend-icon.js';
 import '@wend-ui/styles';
 
-defineCustomElement();
+defineWendButton();
+defineWendCheckbox();
+defineWendIcon();
 
 const preview: Preview = {
   tags: ['autodocs']

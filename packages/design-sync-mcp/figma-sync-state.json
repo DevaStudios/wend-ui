@@ -1,7 +1,7 @@
 {
   "_comment": "Cached Figma variable/node IDs for the wend-ui file, so use_figma pushes and diffs can reference known IDs instead of re-discovering them via a fresh read every time. IDs are stable in Figma once created -- this only goes stale if a variable/node is renamed or deleted outside this workflow. Regenerate with figma-scripts/dump-variable-map.js (paste its contents into a use_figma call) whenever collections change, and spot-check a few IDs with getVariableByIdAsync before trusting a map that's more than a few sessions old.",
   "fileKey": "YZHv0wEIdBLrldVadPGKOr",
-  "lastVerified": "2026-08-19",
+  "lastVerified": "2026-08-23",
   "collections": {
     "global": {
       "collectionId": "VariableCollectionId:49:2",
@@ -44,6 +44,27 @@
         "spacing/1200": "VariableID:136:14",
         "spacing/1600": "VariableID:136:15",
         "spacing/3200": "VariableID:136:16",
+        "sizing/0": "VariableID:357:2",
+        "sizing/25": "VariableID:357:3",
+        "sizing/50": "VariableID:357:4",
+        "sizing/100": "VariableID:357:5",
+        "sizing/125": "VariableID:357:6",
+        "sizing/150": "VariableID:357:7",
+        "sizing/200": "VariableID:357:8",
+        "sizing/250": "VariableID:357:9",
+        "sizing/275": "VariableID:357:10",
+        "sizing/300": "VariableID:357:11",
+        "sizing/350": "VariableID:357:12",
+        "sizing/400": "VariableID:357:13",
+        "sizing/500": "VariableID:357:14",
+        "sizing/550": "VariableID:357:15",
+        "sizing/600": "VariableID:357:16",
+        "sizing/700": "VariableID:357:17",
+        "sizing/800": "VariableID:357:18",
+        "sizing/1000": "VariableID:357:19",
+        "sizing/1200": "VariableID:357:20",
+        "sizing/1600": "VariableID:357:21",
+        "sizing/3200": "VariableID:357:22",
         "radius/none": "VariableID:154:2",
         "radius/light": "VariableID:154:3",
         "radius/bold": "VariableID:154:4",
@@ -91,7 +112,9 @@
         "color-green-500": "VariableID:250:2",
         "color-red-500": "VariableID:250:3"
       },
-      "_naming_note": "Naming is inconsistent by when each variable was added, not by any semantic rule: the original gray-25..600 and most spacing/radius/font-* steps use slash-style (color/gray/25, spacing/100), while gray-700..1000 and every amber/green/red step added later use dash-style (color-gray-700, color-amber-500). Code's own token names are always dash-style (color-gray-*), so a diff_tokens comparison against this collection's slash-named entries will report those as onlyInProject/onlyInFigma purely from the naming mismatch even when the resolved hex is identical -- normalize slashes to dashes before diffing (see sync-tokens-to-figma skill). color-green-500/color-red-500 (the dark-mode feedback shades) now live in this collection's variableIds normally -- the prior '_orphaned, detached from variableIds' state noted here as of 2026-08-03 no longer applies as of this refresh."
+      "_naming_note": "Naming is inconsistent by when each variable was added, not by any semantic rule: the original gray-25..600 and most spacing/radius/font-* steps use slash-style (color/gray/25, spacing/100), while gray-700..1000 and every amber/green/red step added later use dash-style (color-gray-700, color-amber-500). Code's own token names are always dash-style (color-gray-*), so a diff_tokens comparison against this collection's slash-named entries will report those as onlyInProject/onlyInFigma purely from the naming mismatch even when the resolved hex is identical -- normalize slashes to dashes before diffing (see sync-tokens-to-figma skill). color-green-500/color-red-500 (the dark-mode feedback shades) now live in this collection's variableIds normally -- the prior '_orphaned, detached from variableIds' state noted here as of 2026-08-03 no longer applies as of this refresh.",
+      "_size_note": "sizing/0..sizing/3200 (VariableID:357:2 through :357:22, added 2026-08-23 as size/*, renamed in place to sizing/* the same day -- IDs unchanged) is a new code-originated scale, pushed FROM tokens/global/sizing.json TO Figma -- the reverse direction of most entries in this cache. It deliberately duplicates spacing/*'s step names and px values 1:1 (same ALL_SCOPES convention, same slash-style naming) rather than aliasing spacing, per packages/tokens/README.md's Sizing scale section: kept separate so width/height and padding/gap can diverge later even though they're numerically identical today. No Figma component currently binds to sizing/* -- it exists so future width/height properties have a token to reach for.",
+      "_owner_note": "sizing/* is the one entry in this collection code created rather than pulled -- everything else here originated in Figma and was pulled into code. Don't assume push-then-verify (steps 2-3 of sync-tokens-to-figma) is unnecessary just because this collection is 'usually' Figma-authoritative."
     },
     "semantic": {
       "collectionId": "VariableCollectionId:49:48",
@@ -99,6 +122,9 @@
       "variables": {
         "color/ui/text/disabled": "VariableID:231:11",
         "color/ui/text/primary": "VariableID:337:1707",
+        "color/ui/outline/focus": "VariableID:351:81",
+        "color/ui/foreground": "VariableID:360:140",
+        "color/ui/border/default": "VariableID:347:4",
         "color-text-secondary": "VariableID:49:50",
         "color-text-on-primary": "VariableID:49:51",
         "color-text-on-secondary": "VariableID:49:52",
@@ -152,19 +178,39 @@
         "color/button/destructive-secondary/background-hover": "VariableID:289:11",
         "color/button/destructive-tertiary/foreground-default": "VariableID:289:12",
         "color/button/destructive-tertiary/foreground-hover": "VariableID:289:13",
+        "color/action/secondary/background/active": "VariableID:347:70",
+        "color/action/tertiary/background/hover": "VariableID:348:26",
+        "color/action/tertiary/background/active": "VariableID:348:27",
+        "color/button/secondary/background/active": "VariableID:347:69",
+        "color/button/tertiary/background/hover": "VariableID:348:28",
+        "color/button/tertiary/background/active": "VariableID:348:35",
+        "button-icon-only-padding": "VariableID:350:2",
         "spacing/default": "VariableID:320:1333",
         "spacing/condensed": "VariableID:320:1334",
         "spacing/compressed": "VariableID:320:1335",
         "spacing/expanded": "VariableID:321:1336",
         "spacing/double": "VariableID:321:1337"
       },
-      "_naming_note": "Mixes dash-style (color-text-secondary) and slash-style (color/action/primary-background) by when each variable was added -- same caveat as the global collection's naming note. color/ui/text/disabled and color/ui/text/primary are a separate, divergent pair from code's color-text-disabled/color-text-primary: 'disabled' is a pure rename with an identical value (safe to treat as the same token under a different name), but 'primary' also carries a different color value than what code currently ships (code pulled the value update but deliberately did NOT adopt the 'ui' name -- introducing a new 'ui' taxonomy category isn't registered in validate-color-taxonomy.js; see packages/tokens/README.md's Color scale section and the 2026-08-19 token-pull session notes). spacing/default, spacing/condensed, spacing/compressed, spacing/expanded, and spacing/double exist in Figma with no corresponding token in code at all -- flagged during the same session, not yet pulled in.",
-      "_state_note": "color-action-primary-background-hover was seen at VariableID:49:59 as of this refresh; a much earlier state (pre-2026-08-03) had also recorded it at :49:58, which was actually color/action/primary-background -- if a future diff shows both resolving to the same collection but different keys, trust a fresh dump-variable-map.js run over this cached file."
+      "_naming_note": "Mixes dash-style (color-text-secondary) and slash-style (color/action/primary-background) by when each variable was added -- same caveat as the global collection's naming note. color/ui/text/disabled and color/ui/text/primary are a separate, divergent pair from code's color-text-disabled/color-text-primary: 'disabled' is a pure rename with an identical value (safe to treat as the same token under a different name), but 'primary' also carries a different color value than what code currently ships (code pulled the value update but deliberately did NOT adopt the 'ui' name -- introducing a new 'ui' taxonomy category isn't registered in validate-color-taxonomy.js; see packages/tokens/README.md's Color scale section and the 2026-08-19 token-pull session notes). color/ui/outline/focus (VariableID:351:81, added 2026-08-23) is a third 'ui'-namespaced variable but WAS pulled into code, as color.border.focus (color-border-focus) under the existing 'border' SELF_EVIDENT_CATEGORY rather than adopting the 'ui' prefix -- same treatment as 'disabled' above, a rename-in-spirit with a code-side name that fits the existing taxonomy. color/ui/foreground and color/ui/border/default (VariableID:360:140, :347:4, both consumed by the new Checkbox component added 2026-08-23) are a fourth and fifth 'ui'-namespaced pair, also pulled into code -- as color.surface.input (color-surface-input) and color.border.input (color-border-input) respectively, again under existing SELF_EVIDENT_CATEGORYs rather than adopting 'ui'. spacing/default, spacing/condensed, spacing/compressed, spacing/expanded, and spacing/double exist in Figma with no corresponding token in code at all -- flagged during the same session, not yet pulled in.",
+      "_state_note": "color-action-primary-background-hover was seen at VariableID:49:59 as of this refresh; a much earlier state (pre-2026-08-03) had also recorded it at :49:58, which was actually color/action/primary-background -- if a future diff shows both resolving to the same collection but different keys, trust a fresh dump-variable-map.js run over this cached file.",
+      "_drift_flag": "As of the 2026-08-23 Checkbox pull, color/action/primary/background/default (VariableID:49:58) and color/action/primary/background/hover (VariableID:49:59) resolve to DIFFERENT values per mode in Figma (background/default: light gray-950 #333333, dark gray-700 #8D8B8B; background/hover: light gray-975 #1A1A1A, dark gray-600 #9A9898) -- this contradicts the 'every action.primary token is deliberately identical in light and dark mode' design decision documented in packages/tokens/README.md's Color scale section (color.action.primary.background/background-hover in code have NO dark override, i.e. still fixed both modes). This was NOT adopted into code -- the checkbox's checked-state tokens alias the existing fixed-both-modes action.primary tokens instead, so the checkbox will look consistent with buttons in code today but will NOT pixel-match Figma's dark-mode checked checkbox. Flagged for the user to decide (adopt the dark divergence app-wide for action.primary and update the README's 'buttons don't flip by theme' claim, or treat it as unintentional Figma drift) -- do not silently resolve either way in a future session."
     }
   },
   "nodes": {
     "_comment": "Canvas nodes bound to semantic/component variables or component properties -- useful when a collection rebuild requires rebinding fills/strokes/fontFamily/etc, or when re-touching the button's icon slots.",
+    "_pages_note": "As of 2026-08-23 the file has multiple pages (Button, Checkbox, plus Cover/Typography/Color/Icons/reference pages not tracked here) -- the single 'page': \"Button\" field below predates that and is stale/button-specific; don't assume it names the only page. Page IDs: Button=10:2, Checkbox=347:2. Get a fresh list with `figma.root.children.map(p => ({id: p.id, name: p.name}))`.",
     "page": "Button",
+    "checkbox": {
+      "page": "347:2",
+      "componentSet": "360:144",
+      "variants": {
+        "uncheckedDefault": "360:143",
+        "uncheckedHover": "360:160",
+        "checkedDefault": "360:145",
+        "checkedHover": "360:155"
+      },
+      "_note": "Added 2026-08-23. Only 4 variants exist (Checked=False/True x State=Default/Hover) -- no Disabled or Active/Focus variants in Figma. Code added a disabled prop (dimmed via CSS opacity, mirroring the button's pattern) and a :focus-visible ring (reusing color.border.focus) beyond what's in Figma, for accessibility parity with wend-button -- neither is Figma-verified, flag if Figma later adds explicit Disabled/Focus variants so code can be reconciled against real values instead of an inference. The unchecked box's fill/stroke bindings are IDENTICAL between Default and Hover states (both resolve to color/ui/foreground and color/ui/border/default) -- Figma has not yet differentiated an unchecked-hover appearance, so CSS has no unchecked:hover rule either; only checked:hover (background-hover) is styled, matching what's actually authored."
+    },
     "buttonComponentSet": "10:13",
     "buttonComponentSetProperties": {
       "_comment": "Component property keys on the wend-button COMPONENT_SET (10:13), added 2026-08-19 to support icon-left/icon-right per component/button.json. Bind icon instance nodes' componentPropertyReferences to these keys, not to a guessed/re-derived name -- the trailing #id changes if the property is ever deleted and recreated.",
@@ -173,6 +219,15 @@
       "iconLeft": "Icon Left#334:16",
       "showIconRight": "Show Icon Right#334:32",
       "iconRight": "Icon Right#334:48"
+    },
+    "_icon_only_note": "As of 2026-08-23, the wend-button COMPONENT_SET (10:13, frame resized to height 1160 to fit the new row) has an 'Icon Only' boolean variant axis. Icon Only=True variants exist for Primary/Secondary/Tertiary x Default/Hover/Active/Disabled (36x36, size-[36px] hardcoded in the Figma layer -- code instead derives the square via button-icon-only-padding, VariableID:350:2, 10px on all sides around a 16px icon, since 8*2+16=32 didn't match the observed 36px box but 10*2+16=36 does), plus Destructive Primary/Secondary/Tertiary x Default/Hover only (matching those variants' existing non-icon-only state coverage -- no Active/Disabled states exist for any destructive variant in Figma or code). Destructive icon-only components were cloned from Primary/Default (347:5) at x=40/163, y=930 (Destructive Primary), 1004 (Destructive Secondary), 1078 (Destructive Tertiary); tertiary's fills array is empty (transparent) like its non-icon-only sibling.",
+    "destructiveIconOnly": {
+      "destructivePrimaryDefault": "353:9",
+      "destructivePrimaryHover": "353:14",
+      "destructiveSecondaryDefault": "353:19",
+      "destructiveSecondaryHover": "353:24",
+      "destructiveTertiaryDefault": "353:29",
+      "destructiveTertiaryHover": "353:34"
     },
     "primaryDefault": { "id": "10:5", "label": "10:6" },
     "primaryDisabled": { "id": "10:7", "label": "10:8" },

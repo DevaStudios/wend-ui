@@ -3,11 +3,18 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [
-    ["@wend-ui/tokens", "@wend-ui/styles", "@wend-ui/web-components", "@wend-ui/react", "@wend-ui/manifest"]
+    [
+      "@wend-ui/tokens",
+      "@wend-ui/styles",
+      "@wend-ui/icons",
+      "@wend-ui/web-components",
+      "@wend-ui/react",
+      "@wend-ui/manifest"
+    ]
   ],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@wend-ui/design-sync-mcp", "@wend-ui/component-schemas", "@wend-ui/icons"]
+  "ignore": ["@wend-ui/design-sync-mcp", "@wend-ui/component-schemas"]
 }

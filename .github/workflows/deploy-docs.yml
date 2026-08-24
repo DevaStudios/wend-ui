@@ -29,6 +29,7 @@ jobs:
 
       - run: npm run build -w packages/tokens
       - run: npm run build -w packages/styles
+      - run: npm run build -w packages/icons
       - run: npm run build-storybook -- -o packages/web-components/www/storybook
 
       - uses: actions/configure-pages@v5

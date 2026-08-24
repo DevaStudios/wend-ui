@@ -11,6 +11,9 @@
     "node": ">=18",
     "npm": ">=8"
   },
+  "overrides": {
+    "human-id": "4.1.1"
+  },
   "scripts": {
     "build": "npm run build -w packages/tokens && npm run build -w packages/styles && npm run build -w packages/icons && npm run build -w packages/web-components && npm run build -w packages/react && npm run build -w packages/design-sync-mcp && npm run build -w packages/manifest && npm run build -w packages/component-schemas",
     "clean": "npm run clean --workspaces --if-present",

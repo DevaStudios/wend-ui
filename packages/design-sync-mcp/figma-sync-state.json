@@ -125,6 +125,9 @@
         "color/ui/outline/focus": "VariableID:351:81",
         "color/ui/foreground": "VariableID:360:140",
         "color/ui/border/default": "VariableID:347:4",
+        "color/toggle/background/unchecked/default": "VariableID:369:167",
+        "color/toggle/background/unchecked/hover": "VariableID:369:172",
+        "color/ui/text/hover": "VariableID:374:207",
         "color-text-secondary": "VariableID:49:50",
         "color-text-on-primary": "VariableID:49:51",
         "color-text-on-secondary": "VariableID:49:52",
@@ -198,8 +201,37 @@
   },
   "nodes": {
     "_comment": "Canvas nodes bound to semantic/component variables or component properties -- useful when a collection rebuild requires rebinding fills/strokes/fontFamily/etc, or when re-touching the button's icon slots.",
-    "_pages_note": "As of 2026-08-23 the file has multiple pages (Button, Checkbox, plus Cover/Typography/Color/Icons/reference pages not tracked here) -- the single 'page': \"Button\" field below predates that and is stale/button-specific; don't assume it names the only page. Page IDs: Button=10:2, Checkbox=347:2. Get a fresh list with `figma.root.children.map(p => ({id: p.id, name: p.name}))`.",
+    "_pages_note": "As of 2026-08-23 the file has multiple pages (Button, Checkbox, Toggle, Radio, plus Cover/Typography/Color/Icons/reference pages not tracked here) -- the single 'page': \"Button\" field below predates that and is stale/button-specific; don't assume it names the only page. Page IDs: Button=10:2, Checkbox=347:2, Toggle=367:164, Radio=374:187 (also hosts the separate 'Radio Group' component, node 374:231, alongside the Radio COMPONENT_SET). Get a fresh list with `figma.root.children.map(p => ({id: p.id, name: p.name}))`.",
     "page": "Button",
+    "radioGroup": {
+      "page": "374:187",
+      "node": "374:231",
+      "_note": "Added 2026-08-23. A single (non-variant) COMPONENT, not a COMPONENT_SET -- lives on the same page as the base Radio component but is a separate top-level node (374:231), not a child of the Radio COMPONENT_SET (374:188). Structure: an optional 'Label' text node (font-size.175, color.text.primary -- same style as the group's own label prop in code) + 5 instances of the base Radio component (all placeholder 'Selected=False, State=Default', i.e. no example of a selected state), in a VERTICAL auto-layout frame with itemSpacing=16 (spacing/default=16=spacing.200) applied uniformly to every gap including label-to-first-radio. Each Radio instance exposes 'Show Label#360:32' (BOOLEAN, default true) as a component property on the base Radio component itself -- missed when wend-radio was first built, but not actually a functional gap: wend-radio already hides its label whenever the `label` prop is an empty string, which is equivalent in effect. wend-radio-group is NOT a literal transcription of this Figma node (which just shows 5 static radio instances) -- it's a data-driven wrapper: consumers slot in their own <wend-radio> children (native `shadow:false` Stencil components support <slot> content relocation despite not using a real shadow root), and the group propagates `name`/`disabled` and computes each child's `selected` by comparing its `value` to the group's own `value` prop, re-emitting a consolidated wendChange with the newly selected value whenever a child reports selection. Uses a native <fieldset disabled={disabled}> wrapper so the browser's own form-disabling cascades to the slotted <input>s as a functional safety net, in addition to code explicitly propagating `.disabled` to each wend-radio child for the correct visual (dimmed) treatment (native fieldset-disabling alone doesn't trigger wend-radio's own CSS dimming, which keys off its own `disabled` prop/class, not the native :disabled pseudo-class)."
+    },
+    "radio": {
+      "page": "374:187",
+      "componentSet": "374:188",
+      "variants": {
+        "unselectedDefault": "374:189",
+        "unselectedHover": "374:192",
+        "selectedDefault": "374:195",
+        "selectedHover": "374:199"
+      },
+      "_note": "Added 2026-08-23. 4 variants (Selected=False/True x State=Default/Hover), no Disabled -- same shape as checkbox (code added a disabled prop anyway, dimmed via CSS opacity, for family consistency; not Figma-verified). Same width/height (58x20 including label) and Label-node structure as checkbox, and reuses the same outer-ring tokens (color.surface.input / color.border.input, VariableID:360:140 / :347:4) -- but unlike checkbox, the outer ring is IDENTICAL across all 4 variants (verified: unselected-hover's ring has the exact same fill/stroke boundVariables as unselected-default), so color.radio.control has only ever needed a 'default' state, no 'hover' variant at all. The inner dot (12x12, bound to sizing/150 -- a real binding, unlike checkbox/radio's own 20px size which is NOT bound) only exists as a child node when Selected=True; code always renders it and toggles visibility via CSS `input:checked ~ .control .dot { visibility: visible }` rather than conditionally in JSX -- native radio-group deselection (browser unchecking a sibling <input> when another radio in the same `name` group is picked) does NOT fire a change event on the deselected sibling, so a JSX-conditional dot (the pattern used for checkbox's checkmark) would have gone stale showing a dot on a radio the browser already deselected. Label text color introduces a new semantic leaf, text.hover (VariableID:374:207, 'color/ui/text/hover' in Figma, light gray.950 dark gray.100) -- used for both the dot's hover fill AND the unselected-label's hover fill, but NOT for the selected-label's hover fill, which oddly reuses color.border.input (VariableID:347:4) instead -- replicated exactly as authored despite reading like a possible Figma authoring slip (a border-role variable used for text), not silently 'corrected' to text.hover for consistency."
+    },
+    "toggle": {
+      "page": "367:164",
+      "componentSet": "369:169",
+      "variants": {
+        "defaultOff": "369:168",
+        "hoverOff": "369:170",
+        "disabledOff": "369:180",
+        "defaultOn": "369:174",
+        "hoverOn": "369:177",
+        "disabledOn": "369:184"
+      },
+      "_note": "Added 2026-08-23. 6 variants (State=Default/Hover/Disabled x On=False/True), no Disabled+Hover combo -- same coverage gap as checkbox/button. No label/text node in any variant (unlike checkbox, which has one) -- code's wend-toggle is a bare switch, no label prop; if a labeled variant is wanted later, check whether Figma has been updated with one before inventing typography tokens for it. Track width(40)/height(24) and the checked-thumb size(18) are NOT variable-bound in Figma (verified via boundVariables) -- code stores them as literal px values in component/toggle.json rather than force-fitting them onto sizing-scale steps that happen to match numerically (unlike the unchecked-thumb size, 16px, which IS bound to sizing/200 and does alias it). The checked track's background/hover/disabled colors reuse the EXISTING color.action.primary.background/-hover/-disabled tokens (same ones button/checkbox already use) -- same known drift applies here as the checkbox _drift_flag below (Figma's action.primary tokens now resolve differently per dark mode than what's shipped in code; not adopted). The unchecked track's default/hover colors are new toggle-specific semantic leaves (action.toggle-unchecked.background/-hover, VariableID:369:167/:369:172) since there was no existing token to reuse for that role. Track border reuses color.border.input (same as checkbox); disabled border/thumb color reuses color.text.disabled (VariableID:231:11, the same variable already cached above as color/ui/text/disabled) rather than introducing a new token. The thumb's soft drop-shadow (color/gray/600, radius 4, offset 0/0) is present on every variant except Default-Off and Disabled-Off in Figma -- reproduced in CSS as a box-shadow shown on :hover (unchecked) and always when checked, which covers exactly those states without a new state axis in the token set."
+    },
     "checkbox": {
       "page": "347:2",
       "componentSet": "360:144",

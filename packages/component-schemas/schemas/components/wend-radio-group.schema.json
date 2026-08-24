@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-radio-group.schema.json",
+  "title": "WendRadioGroup",
+  "description": "Groups wend-radio children into a single mutually-exclusive, optionally-labeled set.",
+  "type": "object",
+  "x-wend-component": "wend-radio-group",
+  "x-wend-slots": [
+    {
+      "name": "(default)",
+      "description": "wend-radio elements belonging to this group."
+    }
+  ],
+  "x-wend-tokens": [
+    "radio-group.gap",
+    "radio-group.font-size",
+    "color.radio-group.label.foreground.default"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The group's label text. Can be an empty string for a label-less group."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name applied to every wend-radio child, so they act as one mutually-exclusive group."
+    },
+    "value": {
+      "type": "string",
+      "description": "Value of the currently selected radio in the group."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables every radio in the group."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--radio-group-gap, 16px);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+legend {
+  margin: 0 0 var(--radio-group-gap);
+  padding: 0;
+  width: 100%;
+  font-family: var(--font-family-base, sans-serif);
+  font-size: var(--radio-group-font-size, 14px);
+  color: var(--color-radio-group-label-foreground-default, #1a1a1a);
+}

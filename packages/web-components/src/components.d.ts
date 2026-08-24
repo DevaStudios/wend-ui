@@ -71,10 +71,79 @@ export namespace Components {
          */
         "size": string;
     }
+    interface WendRadio {
+        /**
+          * Disables the radio button.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * The radio button's label text. Can be an empty string for a label-less radio button.
+          * @default ''
+         */
+        "label": string;
+        /**
+          * Name of the radio group this button belongs to. Radios sharing a name are mutually exclusive.
+         */
+        "name"?: string;
+        /**
+          * Whether the radio button is selected.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Value submitted for this radio button when part of a form.
+         */
+        "value"?: string;
+    }
+    interface WendRadioGroup {
+        /**
+          * Disables every radio in the group.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * The group's label text. Can be an empty string for a label-less group.
+          * @default ''
+         */
+        "label": string;
+        /**
+          * Name applied to every wend-radio child, so they act as one mutually-exclusive group.
+         */
+        "name": string;
+        /**
+          * Value of the currently selected radio in the group.
+         */
+        "value"?: string;
+    }
+    interface WendToggle {
+        /**
+          * Whether the toggle is on.
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * Disables the toggle.
+          * @default false
+         */
+        "disabled": boolean;
+    }
 }
 export interface WendCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendCheckboxElement;
+}
+export interface WendRadioCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendRadioElement;
+}
+export interface WendRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendRadioGroupElement;
+}
+export interface WendToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendToggleElement;
 }
 declare global {
     interface HTMLWendButtonElement extends Components.WendButton, HTMLStencilElement {
@@ -106,10 +175,64 @@ declare global {
         prototype: HTMLWendIconElement;
         new (): HTMLWendIconElement;
     };
+    interface HTMLWendRadioElementEventMap {
+        "wendChange": boolean;
+    }
+    interface HTMLWendRadioElement extends Components.WendRadio, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendRadioElementEventMap>(type: K, listener: (this: HTMLWendRadioElement, ev: WendRadioCustomEvent<HTMLWendRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendRadioElementEventMap>(type: K, listener: (this: HTMLWendRadioElement, ev: WendRadioCustomEvent<HTMLWendRadioElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendRadioElement: {
+        prototype: HTMLWendRadioElement;
+        new (): HTMLWendRadioElement;
+    };
+    interface HTMLWendRadioGroupElementEventMap {
+        "wendChange": string;
+    }
+    interface HTMLWendRadioGroupElement extends Components.WendRadioGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendRadioGroupElementEventMap>(type: K, listener: (this: HTMLWendRadioGroupElement, ev: WendRadioGroupCustomEvent<HTMLWendRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendRadioGroupElementEventMap>(type: K, listener: (this: HTMLWendRadioGroupElement, ev: WendRadioGroupCustomEvent<HTMLWendRadioGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendRadioGroupElement: {
+        prototype: HTMLWendRadioGroupElement;
+        new (): HTMLWendRadioGroupElement;
+    };
+    interface HTMLWendToggleElementEventMap {
+        "wendChange": boolean;
+    }
+    interface HTMLWendToggleElement extends Components.WendToggle, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendToggleElementEventMap>(type: K, listener: (this: HTMLWendToggleElement, ev: WendToggleCustomEvent<HTMLWendToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendToggleElementEventMap>(type: K, listener: (this: HTMLWendToggleElement, ev: WendToggleCustomEvent<HTMLWendToggleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendToggleElement: {
+        prototype: HTMLWendToggleElement;
+        new (): HTMLWendToggleElement;
+    };
     interface HTMLElementTagNameMap {
         "wend-button": HTMLWendButtonElement;
         "wend-checkbox": HTMLWendCheckboxElement;
         "wend-icon": HTMLWendIconElement;
+        "wend-radio": HTMLWendRadioElement;
+        "wend-radio-group": HTMLWendRadioGroupElement;
+        "wend-toggle": HTMLWendToggleElement;
     }
 }
 declare namespace LocalJSX {
@@ -182,6 +305,75 @@ declare namespace LocalJSX {
          */
         "size"?: string;
     }
+    interface WendRadio {
+        /**
+          * Disables the radio button.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The radio button's label text. Can be an empty string for a label-less radio button.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Name of the radio group this button belongs to. Radios sharing a name are mutually exclusive.
+         */
+        "name"?: string;
+        /**
+          * Emitted when the radio button is selected by the user.
+         */
+        "onWendChange"?: (event: WendRadioCustomEvent<boolean>) => void;
+        /**
+          * Whether the radio button is selected.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Value submitted for this radio button when part of a form.
+         */
+        "value"?: string;
+    }
+    interface WendRadioGroup {
+        /**
+          * Disables every radio in the group.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The group's label text. Can be an empty string for a label-less group.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Name applied to every wend-radio child, so they act as one mutually-exclusive group.
+         */
+        "name": string;
+        /**
+          * Emitted when the selected value changes.
+         */
+        "onWendChange"?: (event: WendRadioGroupCustomEvent<string>) => void;
+        /**
+          * Value of the currently selected radio in the group.
+         */
+        "value"?: string;
+    }
+    interface WendToggle {
+        /**
+          * Whether the toggle is on.
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * Disables the toggle.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Emitted when the toggle is switched by the user.
+         */
+        "onWendChange"?: (event: WendToggleCustomEvent<boolean>) => void;
+    }
 
     interface WendButtonAttributes {
         "variant": WendButtonVariant;
@@ -201,11 +393,31 @@ declare namespace LocalJSX {
         "size": string;
         "color": string;
     }
+    interface WendRadioAttributes {
+        "selected": boolean;
+        "name": string;
+        "value": string;
+        "label": string;
+        "disabled": boolean;
+    }
+    interface WendRadioGroupAttributes {
+        "label": string;
+        "name": string;
+        "value": string;
+        "disabled": boolean;
+    }
+    interface WendToggleAttributes {
+        "checked": boolean;
+        "disabled": boolean;
+    }
 
     interface IntrinsicElements {
         "wend-button": Omit<WendButton, keyof WendButtonAttributes> & { [K in keyof WendButton & keyof WendButtonAttributes]?: WendButton[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `attr:${K}`]?: WendButtonAttributes[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `prop:${K}`]?: WendButton[K] };
         "wend-checkbox": Omit<WendCheckbox, keyof WendCheckboxAttributes> & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes]?: WendCheckbox[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `attr:${K}`]?: WendCheckboxAttributes[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `prop:${K}`]?: WendCheckbox[K] };
         "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
+        "wend-radio": Omit<WendRadio, keyof WendRadioAttributes> & { [K in keyof WendRadio & keyof WendRadioAttributes]?: WendRadio[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `attr:${K}`]?: WendRadioAttributes[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `prop:${K}`]?: WendRadio[K] };
+        "wend-radio-group": Omit<WendRadioGroup, keyof WendRadioGroupAttributes> & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes]?: WendRadioGroup[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `attr:${K}`]?: WendRadioGroupAttributes[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `prop:${K}`]?: WendRadioGroup[K] } & OneOf<"name", WendRadioGroup["name"], WendRadioGroupAttributes["name"]>;
+        "wend-toggle": Omit<WendToggle, keyof WendToggleAttributes> & { [K in keyof WendToggle & keyof WendToggleAttributes]?: WendToggle[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `attr:${K}`]?: WendToggleAttributes[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `prop:${K}`]?: WendToggle[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -215,6 +427,9 @@ declare module "@stencil/core" {
             "wend-button": LocalJSX.IntrinsicElements["wend-button"] & JSXBase.HTMLAttributes<HTMLWendButtonElement>;
             "wend-checkbox": LocalJSX.IntrinsicElements["wend-checkbox"] & JSXBase.HTMLAttributes<HTMLWendCheckboxElement>;
             "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
+            "wend-radio": LocalJSX.IntrinsicElements["wend-radio"] & JSXBase.HTMLAttributes<HTMLWendRadioElement>;
+            "wend-radio-group": LocalJSX.IntrinsicElements["wend-radio-group"] & JSXBase.HTMLAttributes<HTMLWendRadioGroupElement>;
+            "wend-toggle": LocalJSX.IntrinsicElements["wend-toggle"] & JSXBase.HTMLAttributes<HTMLWendToggleElement>;
         }
     }
 }

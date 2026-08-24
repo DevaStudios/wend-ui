@@ -7,11 +7,17 @@ import type { Preview } from '@storybook/react-vite';
 // This eager import fixed that (see Task 7 commit); do not revert to the loader.
 import { defineCustomElement as defineWendButton } from '@wend-ui/web-components/dist/components/wend-button.js';
 import { defineCustomElement as defineWendCheckbox } from '@wend-ui/web-components/dist/components/wend-checkbox.js';
+import { defineCustomElement as defineWendToggle } from '@wend-ui/web-components/dist/components/wend-toggle.js';
+import { defineCustomElement as defineWendRadio } from '@wend-ui/web-components/dist/components/wend-radio.js';
+import { defineCustomElement as defineWendRadioGroup } from '@wend-ui/web-components/dist/components/wend-radio-group.js';
 import { defineCustomElement as defineWendIcon } from '@wend-ui/web-components/dist/components/wend-icon.js';
 import '@wend-ui/styles';
 
 defineWendButton();
 defineWendCheckbox();
+defineWendToggle();
+defineWendRadio();
+defineWendRadioGroup();
 defineWendIcon();
 
 const preview: Preview = {

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-toggle.schema.json",
+  "title": "WendToggle",
+  "description": "An on/off toggle switch.",
+  "type": "object",
+  "x-wend-component": "wend-toggle",
+  "x-wend-slots": [],
+  "x-wend-tokens": [
+    "toggle.width",
+    "toggle.height",
+    "toggle.radius",
+    "toggle.border-width",
+    "toggle.padding-inline-unchecked",
+    "toggle.padding-inline-checked",
+    "toggle.thumb-size-unchecked",
+    "toggle.thumb-size-checked",
+    "toggle.thumb-radius",
+    "toggle.thumb-shadow-color",
+    "toggle.focus.outline-color",
+    "toggle.focus.outline-width",
+    "toggle.focus.outline-offset",
+    "color.toggle.unchecked.background.default",
+    "color.toggle.unchecked.background.hover",
+    "color.toggle.unchecked.background.disabled",
+    "color.toggle.unchecked.border.default",
+    "color.toggle.unchecked.border.disabled",
+    "color.toggle.unchecked.foreground.default",
+    "color.toggle.unchecked.foreground.disabled",
+    "color.toggle.checked.background.default",
+    "color.toggle.checked.background.hover",
+    "color.toggle.checked.background.disabled",
+    "color.toggle.checked.border.default",
+    "color.toggle.checked.border.disabled",
+    "color.toggle.checked.foreground.default"
+  ],
+  "properties": {
+    "checked": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the toggle is on."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the toggle."
+    }
+  },
+  "additionalProperties": false
+}

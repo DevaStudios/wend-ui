@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-radio.schema.json",
+  "title": "WendRadio",
+  "description": "A labeled radio button input.",
+  "type": "object",
+  "x-wend-component": "wend-radio",
+  "x-wend-slots": [],
+  "x-wend-tokens": [
+    "radio.size",
+    "radio.border-width",
+    "radio.gap",
+    "radio.font-size",
+    "radio.dot-size",
+    "radio.focus.outline-color",
+    "radio.focus.outline-width",
+    "radio.focus.outline-offset",
+    "color.radio.control.background.default",
+    "color.radio.control.border.default",
+    "color.radio.dot.foreground.default",
+    "color.radio.dot.foreground.hover",
+    "color.radio.label-unselected.foreground.default",
+    "color.radio.label-unselected.foreground.hover",
+    "color.radio.label-selected.foreground.default",
+    "color.radio.label-selected.foreground.hover"
+  ],
+  "properties": {
+    "selected": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the radio button is selected."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the radio group this button belongs to. Radios sharing a name are mutually exclusive."
+    },
+    "value": {
+      "type": "string",
+      "description": "Value submitted for this radio button when part of a form."
+    },
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The radio button's label text. Can be an empty string for a label-less radio button."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the radio button."
+    }
+  },
+  "additionalProperties": false
+}

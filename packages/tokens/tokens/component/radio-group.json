@@ -1,0 +1,15 @@
+{
+  "radio-group": {
+    "gap": { "value": "{spacing.200}" },
+    "font-size": { "value": "{font.size.175}" }
+  },
+  "color": {
+    "radio-group": {
+      "label": {
+        "foreground": {
+          "default": { "value": "{color.text.primary}" }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-# @wend-ui/design-sync-mcp
+# @devastudios/design-sync-mcp
 
 A local [MCP](https://modelcontextprotocol.io/) server that gives an AI agent (e.g. Claude Code) grounded, always-fresh context about this specific project — design tokens and web component metadata — for keeping Figma in sync.
 

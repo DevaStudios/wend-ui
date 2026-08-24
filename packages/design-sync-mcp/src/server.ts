@@ -119,7 +119,7 @@ server.registerTool(
   {
     title: 'Stage icons pulled from Figma for human review',
     description:
-      "Writes icons (typically diff_icons' onlyInFigma set, exported via use_figma) to packages/icons/incoming/ plus a regenerated REVIEW.md checklist -- NEVER to packages/icons/src/svg/. This is a filesystem-mutating tool. @wend-ui/icons is unpublished pending confirmation the set is clear for public distribution, and a prior icon already had to be dropped for embedded commercial-library attribution, so pulled icons always require a human to move them into src/svg/ by hand after review -- nothing calls this and then auto-joins the shipped set.",
+      "Writes icons (typically diff_icons' onlyInFigma set, exported via use_figma) to packages/icons/incoming/ plus a regenerated REVIEW.md checklist -- NEVER to packages/icons/src/svg/. This is a filesystem-mutating tool. @devastudios/icons is unpublished pending confirmation the set is clear for public distribution, and a prior icon already had to be dropped for embedded commercial-library attribution, so pulled icons always require a human to move them into src/svg/ by hand after review -- nothing calls this and then auto-joins the shipped set.",
     inputSchema: {
       icons: z.array(figmaIconEntrySchema).describe('Icons exported from Figma to stage for review')
     }

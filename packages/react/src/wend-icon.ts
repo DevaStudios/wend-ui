@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@wend-ui/web-components/dist/components";
-import { WendIcon as WendIconElement, defineCustomElement as defineWendIcon } from "@wend-ui/web-components/dist/components/wend-icon.js";
+import type { Components } from "@devastudios/web-components/dist/components";
+import { WendIcon as WendIconElement, defineCustomElement as defineWendIcon } from "@devastudios/web-components/dist/components/wend-icon.js";
 
 export type WendIconEvents = NonNullable<unknown>;
 

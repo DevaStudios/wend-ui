@@ -1,10 +1,10 @@
-# @wend-ui/react
+# @devastudios/react
 
 ## 0.2.0
 
 ### Minor Changes
 
-- Add the @wend-ui/manifest package and Changesets-based fixed versioning,
+- Add the @devastudios/manifest package and Changesets-based fixed versioning,
   GitHub Packages publishing, and a release automation workflow across the
   client-facing packages. This is the first real versioned release of Wend
   UI as a product — establishes the foundation later phases (theming,
@@ -14,4 +14,4 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @wend-ui/web-components@0.2.0
+  - @devastudios/web-components@0.2.0

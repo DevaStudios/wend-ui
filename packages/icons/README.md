@@ -1,4 +1,4 @@
-# @wend-ui/icons
+# @devastudios/icons
 
 A curated set of outline SVG icons for the wend-ui design system — common UI actions, objects, and layout glyphs (arrows, files, folders, AI-action icons, and similar).
 
@@ -17,12 +17,12 @@ Every icon file is named `wend-icon-<name>.svg`:
 ```js
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
-const manifest = require('@wend-ui/icons');
+const manifest = require('@devastudios/icons');
 // { "icons": ["add", "add-circle", "admin", ...] }
 ```
 
 ```html
-<img src="node_modules/@wend-ui/icons/dist/svg/wend-icon-add.svg" alt="" />
+<img src="node_modules/@devastudios/icons/dist/svg/wend-icon-add.svg" alt="" />
 ```
 
 Icons ship as `<svg fill="none">` with each `<path>`'s `fill` left unset in the raw `.svg` files — set `fill` (or `color` + `fill: currentColor` in your own wrapper) where you consume them directly.
@@ -32,8 +32,8 @@ Icons ship as `<svg fill="none">` with each `<path>`'s `fill` left unset in the 
 For consumers that render icons as inline SVG (so they can be recolored via CSS `currentColor`), `dist/svg-strings.json` provides a name → markup map with empty fills already normalized to `fill="currentColor"`, and `get-icon-svg` resolves a name to markup with a given size/color:
 
 ```js
-import svgStrings from '@wend-ui/icons/svg-strings';
-import { getIconSvg } from '@wend-ui/icons/get-icon-svg';
+import svgStrings from '@devastudios/icons/svg-strings';
+import { getIconSvg } from '@devastudios/icons/get-icon-svg';
 
 getIconSvg(svgStrings, 'add', { size: '20px', color: '#bb2b1b' });
 // '<svg width="20px" height="20px" fill="none"><path ... fill="#bb2b1b"/></svg>'
@@ -42,7 +42,7 @@ getIconSvg(svgStrings, 'add');
 // size defaults to '1em', color defaults to 'currentColor' (no string replacement needed for the default)
 ```
 
-This is what `@wend-ui/web-components`' `<wend-icon>` component uses internally.
+This is what `@devastudios/web-components`' `<wend-icon>` component uses internally.
 
 ## Adding new icons
 
@@ -53,7 +53,7 @@ This is what `@wend-ui/web-components`' `<wend-icon>` component uses internally.
 
 Icons can be pushed to and pulled from Figma via the `wend-ui-design-sync` MCP server's `get_icons`/`diff_icons`/`stage_pulled_icons` tools — see the `sync-icons-to-figma` skill for the full workflow.
 
-Pushing codebase icons to Figma is fully automated. Pulling icons *from* Figma is not: pulled SVGs land in `incoming/` (with a generated `incoming/REVIEW.md`) for manual review, never directly in `src/svg/`. Before moving a pulled icon into `src/svg/`, confirm:
+Pushing codebase icons to Figma is fully automated. Pulling icons _from_ Figma is not: pulled SVGs land in `incoming/` (with a generated `incoming/REVIEW.md`) for manual review, never directly in `src/svg/`. Before moving a pulled icon into `src/svg/`, confirm:
 
 - No brand or product names in the icon's name or visible art.
 - No commercial icon-library attribution or watermark embedded in the SVG.

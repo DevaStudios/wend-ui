@@ -1,4 +1,4 @@
-# @wend-ui/tokens
+# @devastudios/tokens
 
 Design tokens for the wend-ui design system, defined once as JSON and built with [Style Dictionary](https://styledictionary.com/) into multiple output formats.
 
@@ -180,9 +180,9 @@ Activate dark mode by setting `data-theme="dark"` on `<html>` (or any ancestor) 
 
 ## Figma mode sync
 
-`build/figma/tokens.json` carries **both** modes per token — `{ name, type, values: { light, dark } }` — mirroring Figma's native per-collection modes. It's assembled by `scripts/merge-figma-modes.mjs` from two fully-resolved intermediate exports (`tokens-light.json`, `tokens-dark.json`, both gitignored build output), zipped together by name. Tokens with no dark override just end up with `light === dark`. [`@wend-ui/design-sync-mcp`](../design-sync-mcp)'s `get_tokens`/`diff_tokens` consume this directly — pushing it into Figma Variables is still a manual `use_figma` step, not automated by this build (see that package's README for the two-collection push convention: `global`, single mode, and `semantic`, Light/Dark modes with alias-based values).
+`build/figma/tokens.json` carries **both** modes per token — `{ name, type, values: { light, dark } }` — mirroring Figma's native per-collection modes. It's assembled by `scripts/merge-figma-modes.mjs` from two fully-resolved intermediate exports (`tokens-light.json`, `tokens-dark.json`, both gitignored build output), zipped together by name. Tokens with no dark override just end up with `light === dark`. [`@devastudios/design-sync-mcp`](../design-sync-mcp)'s `get_tokens`/`diff_tokens` consume this directly — pushing it into Figma Variables is still a manual `use_figma` step, not automated by this build (see that package's README for the two-collection push convention: `global`, single mode, and `semantic`, Light/Dark modes with alias-based values).
 
-`font-family-base` is `'Funnel Sans', sans-serif` — a real, single web font (Google Fonts), so unlike the old system-font CSS stack this pushes to Figma as-is (`"Funnel Sans"`, no stand-in needed). Consumers of `@wend-ui/tokens`/`@wend-ui/styles` are responsible for actually loading the font (e.g. a Google Fonts `<link>` or self-hosted `@font-face`) — the token only names it, it doesn't load it. See `packages/web-components/src/index.html` for the reference `<link>` tag.
+`font-family-base` is `'Funnel Sans', sans-serif` — a real, single web font (Google Fonts), so unlike the old system-font CSS stack this pushes to Figma as-is (`"Funnel Sans"`, no stand-in needed). Consumers of `@devastudios/tokens`/`@devastudios/styles` are responsible for actually loading the font (e.g. a Google Fonts `<link>` or self-hosted `@font-face`) — the token only names it, it doesn't load it. See `packages/web-components/src/index.html` for the reference `<link>` tag.
 
 ## Build
 
@@ -195,19 +195,19 @@ Outputs to `build/`:
 - `build/css/variables.css` / `build/css/variables-dark.css` — CSS custom properties, light and dark
 - `build/scss/_variables.scss` — Sass variables (light values only — SCSS variables are compile-time, not mode-aware)
 - `build/js/tokens.js` — CommonJS module exporting the token tree (light values only)
-- `build/figma/tokens.json` — flat `{ name, type, values: { light, dark } }` list; consumed by [`@wend-ui/design-sync-mcp`](../design-sync-mcp)'s `get_tokens`/`diff_tokens` tools and pushed into Figma Variables via Claude Code + Figma's Dev Mode MCP
+- `build/figma/tokens.json` — flat `{ name, type, values: { light, dark } }` list; consumed by [`@devastudios/design-sync-mcp`](../design-sync-mcp)'s `get_tokens`/`diff_tokens` tools and pushed into Figma Variables via Claude Code + Figma's Dev Mode MCP
 
 ## Usage
 
 ```css
-@import '@wend-ui/tokens/css';
-@import '@wend-ui/tokens/css-dark';
+@import '@devastudios/tokens/css';
+@import '@devastudios/tokens/css-dark';
 ```
 
 ```js
-import tokens from '@wend-ui/tokens/js';
+import tokens from '@devastudios/tokens/js';
 ```
 
 ```scss
-@import '@wend-ui/tokens/scss';
+@import '@devastudios/tokens/scss';
 ```

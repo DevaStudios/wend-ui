@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@wend-ui/web-components/dist/components";
-import { WendHelpText as WendHelpTextElement, defineCustomElement as defineWendHelpText } from "@wend-ui/web-components/dist/components/wend-help-text.js";
+import type { Components } from "@devastudios/web-components/dist/components";
+import { WendHelpText as WendHelpTextElement, defineCustomElement as defineWendHelpText } from "@devastudios/web-components/dist/components/wend-help-text.js";
 
 export type WendHelpTextEvents = NonNullable<unknown>;
 

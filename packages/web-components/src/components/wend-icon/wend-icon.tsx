@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host } from '@stencil/core';
-import svgStrings from '@wend-ui/icons/svg-strings';
-import { getIconSvg } from '@wend-ui/icons/get-icon-svg';
+import svgStrings from '@devastudios/icons/svg-strings';
+import { getIconSvg } from '@devastudios/icons/get-icon-svg';
 
 @Component({
   tag: 'wend-icon',

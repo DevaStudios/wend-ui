@@ -95,7 +95,7 @@ function readMeta(): StagedMeta {
 
 /**
  * Stages icons pulled from Figma under packages/icons/incoming/ for human review --
- * never writes to packages/icons/src/svg/ directly. @wend-ui/icons is unpublished
+ * never writes to packages/icons/src/svg/ directly. @devastudios/icons is unpublished
  * pending confirmation the set is clear for public distribution (see its README), and a
  * prior icon already had to be dropped for embedded commercial-library attribution, so
  * nothing here should auto-join the shipped set.
@@ -136,7 +136,7 @@ function writeReviewFile(): void {
 
   const content = `# Icons staged for review
 
-These SVGs were pulled from Figma and are **not** part of the shipped \`@wend-ui/icons\` set yet.
+These SVGs were pulled from Figma and are **not** part of the shipped \`@devastudios/icons\` set yet.
 Review each one before moving it into \`../src/svg/\` (renamed to the \`wend-icon-\` prefix) and
 running \`npm run build -w packages/icons\`. See the "Figma sync" section of packages/icons/README.md
 for the full curation checklist.

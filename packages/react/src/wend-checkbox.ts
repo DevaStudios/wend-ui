@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type WendCheckboxCustomEvent } from "@wend-ui/web-components";
-import type { Components } from "@wend-ui/web-components/dist/components";
-import { WendCheckbox as WendCheckboxElement, defineCustomElement as defineWendCheckbox } from "@wend-ui/web-components/dist/components/wend-checkbox.js";
+import { type WendCheckboxCustomEvent } from "@devastudios/web-components";
+import type { Components } from "@devastudios/web-components/dist/components";
+import { WendCheckbox as WendCheckboxElement, defineCustomElement as defineWendCheckbox } from "@devastudios/web-components/dist/components/wend-checkbox.js";
 
 export type WendCheckboxEvents = { onWendChange: EventName<WendCheckboxCustomEvent<boolean>> };
 

@@ -1,4 +1,4 @@
-# @wend-ui/component-schemas
+# @devastudios/component-schemas
 
 Schema-first JSON Schema definitions for wend-ui components. A component's schema is written **before** (or alongside) its Stencil implementation — the schema is the spec the component is built against, not a byproduct generated from finished code (that byproduct already exists separately as `packages/web-components`' Stencil-generated `docs.json`).
 
@@ -21,8 +21,8 @@ Every file under `schemas/components/` is a standalone JSON Schema (2020-12) doc
 ## Usage
 
 ```js
-import { validateComponentSchema, createPropsValidator } from '@wend-ui/component-schemas/src/validate.mjs';
-import buttonSchema from '@wend-ui/component-schemas/schemas/components/wend-button.schema.json' with { type: 'json' };
+import { validateComponentSchema, createPropsValidator } from '@devastudios/component-schemas/src/validate.mjs';
+import buttonSchema from '@devastudios/component-schemas/schemas/components/wend-button.schema.json' with { type: 'json' };
 
 // Is the schema document itself well-formed?
 validateComponentSchema(buttonSchema); // { valid: true, errors: [] }
@@ -42,7 +42,7 @@ validateButtonProps({ variant: 'tertiary' }); // { valid: false, errors: [...] }
 
 ## Status
 
-Internal tool package (`private: true`), not published — matches `@wend-ui/design-sync-mcp`'s tier. Two things are intentionally not built yet:
+Internal tool package (`private: true`), not published — matches `@devastudios/design-sync-mcp`'s tier. Two things are intentionally not built yet:
 
 - A `design-sync-mcp` tool that surfaces these schemas directly to the Figma-generation workflow.
 - A CI check diffing Stencil's generated `docs.json` against a component's schema here, to catch drift once schema-first components exist alongside evolving code.

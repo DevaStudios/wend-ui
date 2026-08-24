@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.wend-ui.dev/components/wend-icon.schema.json",
   "title": "WendIcon",
-  "description": "Renders a single icon from the @wend-ui/icons set as inline SVG.",
+  "description": "Renders a single icon from the @devastudios/icons set as inline SVG.",
   "type": "object",
   "x-wend-component": "wend-icon",
   "x-wend-slots": [],
@@ -10,7 +10,7 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "Name of the icon to render, matching an entry in @wend-ui/icons' manifest (e.g. \"add\", \"arrow-right\")."
+      "description": "Name of the icon to render, matching an entry in @devastudios/icons' manifest (e.g. \"add\", \"arrow-right\")."
     },
     "size": {
       "type": "string",

@@ -9,7 +9,7 @@ description: Use when adding/changing files under packages/icons/src/svg/*.svg, 
 
 Same two-hop architecture as `sync-tokens-to-figma`: `wend-ui-design-sync` (the `get_icons`/`diff_icons`/`stage_pulled_icons` MCP tools) only ever reads/writes the codebase side; all Figma-side reading and writing happens through `use_figma`, using the scripts in `packages/design-sync-mcp/figma-scripts/`.
 
-The one real difference from tokens: `@wend-ui/icons` is **unpublished pending confirmation the set is clear for public distribution** (see `packages/icons/README.md`'s "Status" section), and a prior icon already had to be dropped for embedding commercial-library attribution. So while pushing codebase→Figma is fully automated, pulling Figma→codebase always stops at a staging directory for human review — nothing writes to `packages/icons/src/svg/` automatically.
+The one real difference from tokens: `@devastudios/icons` is **unpublished pending confirmation the set is clear for public distribution** (see `packages/icons/README.md`'s "Status" section), and a prior icon already had to be dropped for embedding commercial-library attribution. So while pushing codebase→Figma is fully automated, pulling Figma→codebase always stops at a staging directory for human review — nothing writes to `packages/icons/src/svg/` automatically.
 
 ## When to use
 

@@ -44,17 +44,24 @@
   "properties": {
     "variant": {
       "type": "string",
-      "enum": ["primary", "secondary", "tertiary", "destructive-primary", "destructive-secondary", "destructive-tertiary"],
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "destructive-primary",
+        "destructive-secondary",
+        "destructive-tertiary"
+      ],
       "default": "primary",
       "description": "Visual style of the button."
     },
     "icon-left": {
       "type": "string",
-      "description": "Name of a @wend-ui/icons icon to render on the left of the button label."
+      "description": "Name of a @devastudios/icons icon to render on the left of the button label."
     },
     "icon-right": {
       "type": "string",
-      "description": "Name of a @wend-ui/icons icon to render on the right of the button label."
+      "description": "Name of a @devastudios/icons icon to render on the right of the button label."
     },
     "label": {
       "type": "string",

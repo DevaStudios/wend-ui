@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@wend-ui/web-components/dist/components";
-import { WendButton as WendButtonElement, defineCustomElement as defineWendButton } from "@wend-ui/web-components/dist/components/wend-button.js";
+import type { Components } from "@devastudios/web-components/dist/components";
+import { WendButton as WendButtonElement, defineCustomElement as defineWendButton } from "@devastudios/web-components/dist/components/wend-button.js";
 
 export type WendButtonEvents = NonNullable<unknown>;
 

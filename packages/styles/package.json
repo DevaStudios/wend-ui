@@ -1,7 +1,7 @@
 {
-  "name": "@wend-ui/styles",
+  "name": "@devastudios/styles",
   "version": "0.2.0",
-  "description": "Base CSS for the wend-ui design system, built from @wend-ui/tokens",
+  "description": "Base CSS for the wend-ui design system, built from @devastudios/tokens",
   "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -20,7 +20,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@wend-ui/tokens": "^0.2.0"
+    "@devastudios/tokens": "^0.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

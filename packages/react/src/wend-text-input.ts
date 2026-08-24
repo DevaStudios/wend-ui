@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type WendTextInputCustomEvent } from "@wend-ui/web-components";
-import type { Components } from "@wend-ui/web-components/dist/components";
-import { WendTextInput as WendTextInputElement, defineCustomElement as defineWendTextInput } from "@wend-ui/web-components/dist/components/wend-text-input.js";
+import { type WendTextInputCustomEvent } from "@devastudios/web-components";
+import type { Components } from "@devastudios/web-components/dist/components";
+import { WendTextInput as WendTextInputElement, defineCustomElement as defineWendTextInput } from "@devastudios/web-components/dist/components/wend-text-input.js";
 
 export type WendTextInputEvents = { onWendChange: EventName<WendTextInputCustomEvent<string>> };
 

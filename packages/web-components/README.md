@@ -1,6 +1,6 @@
-# @wend-ui/web-components
+# @devastudios/web-components
 
-Framework-agnostic web components for the wend-ui design system, built with [Stencil](https://stenciljs.com/). Components are styled with CSS custom properties from [`@wend-ui/tokens`](../tokens), and the dev preview loads [`@wend-ui/styles`](../styles) as a global stylesheet.
+Framework-agnostic web components for the wend-ui design system, built with [Stencil](https://stenciljs.com/). Components are styled with CSS custom properties from [`@devastudios/tokens`](../tokens), and the dev preview loads [`@devastudios/styles`](../styles) as a global stylesheet.
 
 ## Develop
 

@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type WendRadioCustomEvent } from "@wend-ui/web-components";
-import type { Components } from "@wend-ui/web-components/dist/components";
-import { WendRadio as WendRadioElement, defineCustomElement as defineWendRadio } from "@wend-ui/web-components/dist/components/wend-radio.js";
+import { type WendRadioCustomEvent } from "@devastudios/web-components";
+import type { Components } from "@devastudios/web-components/dist/components";
+import { WendRadio as WendRadioElement, defineCustomElement as defineWendRadio } from "@devastudios/web-components/dist/components/wend-radio.js";
 
 export type WendRadioEvents = { onWendChange: EventName<WendRadioCustomEvent<boolean>> };
 

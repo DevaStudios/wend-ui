@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  font-family: var(--font-family-base, sans-serif);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--text-input-gap, 8px);
+}
+
+label.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+label > wend-help-text {
+  align-self: flex-start;
+}
+
+.label-text {
+  font-size: var(--text-input-label-font-size, 14px);
+  color: var(--color-text-input-label-foreground-default, #1a1a1a);
+}
+
+.required-marker {
+  margin-inline-start: var(--text-input-required-marker-gap, 2px);
+  color: var(--color-text-input-required-marker-foreground-default, #93261a);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--text-input-height, 40px);
+  padding: var(--text-input-padding-block, 4px) var(--text-input-padding-inline, 16px);
+  border-radius: var(--text-input-radius, 8px);
+  border: var(--text-input-border-width, 1px) solid var(--color-text-input-default-border-default, #676565);
+  background-color: var(--color-text-input-default-background-default, #ffffff);
+}
+
+.field:focus-within {
+  outline: var(--text-input-focus-outline-width, 1px) solid var(--text-input-focus-outline-color, #1a1a1a);
+  outline-offset: var(--text-input-focus-outline-offset, 2px);
+}
+
+.field.success {
+  border-color: var(--color-text-input-success-border-default, #206a47);
+}
+
+.field.warning {
+  border-color: var(--color-text-input-warning-border-default, #a36b0a);
+}
+
+.field.error {
+  border-color: var(--color-text-input-error-border-default, #93261a);
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--text-input-value-font-size, 14px);
+  color: var(--color-text-input-content-foreground-default, #1a1a1a);
+}
+
+label.disabled .field {
+  cursor: not-allowed;
+}

@@ -1,0 +1,32 @@
+:host {
+  display: inline-flex;
+}
+
+.help-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--help-text-padding-block, 4px) var(--help-text-padding-inline, 8px);
+  border-radius: var(--help-text-radius, 8px);
+  font-family: var(--font-family-base, sans-serif);
+  font-size: var(--help-text-font-size, 12px);
+  line-height: normal;
+  white-space: nowrap;
+  color: var(--color-help-text-default-foreground-default, #1a1a1a);
+}
+
+.help-text.success {
+  background-color: var(--color-help-text-success-background-default, rgba(39, 176, 112, 0.25));
+  color: var(--color-help-text-success-foreground-default, #206a47);
+}
+
+.help-text.warning {
+  background-color: var(--color-help-text-warning-background-default, rgba(253, 163, 8, 0.25));
+  color: var(--color-help-text-warning-foreground-default, #7b530f);
+}
+
+.help-text.error {
+  background-color: var(--color-help-text-error-background-default, rgba(187, 43, 27, 0.25));
+  color: var(--color-help-text-error-foreground-default, #93261a);
+}

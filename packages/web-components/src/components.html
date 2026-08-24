@@ -66,8 +66,8 @@
 
         <p style="margin: 0 0 var(--spacing-100)">States (primary)</p>
         <p style="margin: 0 0 var(--spacing-100); color: var(--color-text-secondary); font-size: var(--font-size-175)">
-          Hover and Active are shown as static swatches here since they're pointer-driven pseudo-states — try
-          the Default button above to see them live.
+          Hover and Active are shown as static swatches here since they're pointer-driven pseudo-states — try the
+          Default button above to see them live.
         </p>
         <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
           <wend-button variant="primary" label="Default"></wend-button>
@@ -330,10 +330,9 @@
 
         <p style="margin: 0 0 var(--spacing-100)">Usage</p>
         <code class="wend-code" style="margin-bottom: var(--spacing-300)"
-          >&lt;wend-radio-group name="group" value="a" label="Label"&gt;
-  &lt;wend-radio value="a" label="A"&gt;&lt;/wend-radio&gt;
-  &lt;wend-radio value="b" label="B"&gt;&lt;/wend-radio&gt;
-&lt;/wend-radio-group&gt;</code
+          >&lt;wend-radio-group name="group" value="a" label="Label"&gt; &lt;wend-radio value="a"
+          label="A"&gt;&lt;/wend-radio&gt; &lt;wend-radio value="b" label="B"&gt;&lt;/wend-radio&gt;
+          &lt;/wend-radio-group&gt;</code
         >
 
         <p style="margin: 0 0 var(--spacing-100)">Props</p>
@@ -375,6 +374,180 @@
               <td>Disables every radio in the group.</td>
               <td><code>boolean</code></td>
               <td><code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wend-section">
+        <h2>Help Text</h2>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-help-text text="Lorem ipsum dolor sit amet" type="default"></wend-help-text>
+          <wend-help-text text="Lorem ipsum dolor sit amet" type="success"></wend-help-text>
+          <wend-help-text text="Lorem ipsum dolor sit amet" type="warning"></wend-help-text>
+          <wend-help-text text="Lorem ipsum dolor sit amet" type="error"></wend-help-text>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-help-text text="Message" type="success"&gt;&lt;/wend-help-text&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>text</code></td>
+              <td><code>text</code></td>
+              <td>The help text's message. Can be an empty string to render nothing.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>type</code></td>
+              <td><code>type</code></td>
+              <td>Visual tone of the help text.</td>
+              <td><code>"default" | "success" | "warning" | "error"</code></td>
+              <td><code>'default'</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wend-section">
+        <h2>Text Input</h2>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-text-input label="Label" placeholder="Value" help-text="Lorem ipsum dolor sit amet"></wend-text-input>
+          <wend-text-input
+            label="Label"
+            placeholder="Value"
+            help-text="Lorem ipsum dolor sit amet"
+            state="success"
+          ></wend-text-input>
+          <wend-text-input
+            label="Label"
+            placeholder="Value"
+            help-text="Lorem ipsum dolor sit amet"
+            state="warning"
+          ></wend-text-input>
+          <wend-text-input
+            label="Label"
+            placeholder="Value"
+            help-text="Lorem ipsum dolor sit amet"
+            state="error"
+          ></wend-text-input>
+          <wend-text-input label="Label" placeholder="Value" disabled></wend-text-input>
+          <wend-text-input label="Label" placeholder="Value" required></wend-text-input>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-text-input label="Label" placeholder="Value" help-text="Message"&gt;&lt;/wend-text-input&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The input's label text. Can be an empty string for a label-less input.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showLabel</code></td>
+              <td><code>show-label</code></td>
+              <td>Whether the label is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>value</code></td>
+              <td><code>value</code></td>
+              <td>The input's current text value.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>placeholder</code></td>
+              <td><code>placeholder</code></td>
+              <td>Placeholder text shown when the input is empty.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>helpText</code></td>
+              <td><code>help-text</code></td>
+              <td>
+                Supplementary message shown below the input, e.g. a validation message. Can be an empty string to render
+                nothing.
+              </td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showHelpText</code></td>
+              <td><code>show-help-text</code></td>
+              <td>Whether the help text is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>state</code></td>
+              <td><code>state</code></td>
+              <td>
+                Validation state of the input. Drives the field's border color and the help text's tone. The interactive
+                focus ring is handled separately via CSS <code>:focus-within</code>, not this prop.
+              </td>
+              <td><code>"default" | "success" | "warning" | "error"</code></td>
+              <td><code>'default'</code></td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the input.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>required</code></td>
+              <td><code>required</code></td>
+              <td>
+                Marks the input as required. Renders a marker after the label and sets the native
+                <code>required</code>/<code>aria-required</code> attributes on the input.
+              </td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td><code>name</code></td>
+              <td>Name submitted for this input when part of a form.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
             </tr>
           </tbody>
         </table>

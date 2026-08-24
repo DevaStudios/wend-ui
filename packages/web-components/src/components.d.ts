@@ -6,7 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { WendButtonVariant } from "./components/wend-button/wend-button";
+import { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
+import { WendTextInputState } from "./components/wend-text-input/wend-text-input";
 export { WendButtonVariant } from "./components/wend-button/wend-button";
+export { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
+export { WendTextInputState } from "./components/wend-text-input/wend-text-input";
 export namespace Components {
     interface WendButton {
         /**
@@ -54,6 +58,18 @@ export namespace Components {
           * @default ''
          */
         "label": string;
+    }
+    interface WendHelpText {
+        /**
+          * The help text's message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "text": string;
+        /**
+          * Visual tone of the help text.
+          * @default 'default'
+         */
+        "type": WendHelpTextType;
     }
     interface WendIcon {
         /**
@@ -116,6 +132,56 @@ export namespace Components {
          */
         "value"?: string;
     }
+    interface WendTextInput {
+        /**
+          * Disables the input.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Supplementary message shown below the input, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText": string;
+        /**
+          * The input's label text. Can be an empty string for a label-less input.
+          * @default ''
+         */
+        "label": string;
+        /**
+          * Name submitted for this input when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Placeholder text shown when the input is empty.
+         */
+        "placeholder"?: string;
+        /**
+          * Marks the input as required. Renders a marker after the label and sets the native `required`/`aria-required` attributes on the input.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText": boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel": boolean;
+        /**
+          * Validation state of the input. Drives the field's border color and the help text's tone. The interactive focus ring is handled separately via CSS `:focus-within`, not this prop, so a focused input keeps combining with whichever validation state is already set.
+          * @default 'default'
+         */
+        "state": WendTextInputState;
+        /**
+          * The input's current text value.
+          * @default ''
+         */
+        "value": string;
+    }
     interface WendToggle {
         /**
           * Whether the toggle is on.
@@ -140,6 +206,10 @@ export interface WendRadioCustomEvent<T> extends CustomEvent<T> {
 export interface WendRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendRadioGroupElement;
+}
+export interface WendTextInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendTextInputElement;
 }
 export interface WendToggleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -168,6 +238,12 @@ declare global {
     var HTMLWendCheckboxElement: {
         prototype: HTMLWendCheckboxElement;
         new (): HTMLWendCheckboxElement;
+    };
+    interface HTMLWendHelpTextElement extends Components.WendHelpText, HTMLStencilElement {
+    }
+    var HTMLWendHelpTextElement: {
+        prototype: HTMLWendHelpTextElement;
+        new (): HTMLWendHelpTextElement;
     };
     interface HTMLWendIconElement extends Components.WendIcon, HTMLStencilElement {
     }
@@ -209,6 +285,23 @@ declare global {
         prototype: HTMLWendRadioGroupElement;
         new (): HTMLWendRadioGroupElement;
     };
+    interface HTMLWendTextInputElementEventMap {
+        "wendChange": string;
+    }
+    interface HTMLWendTextInputElement extends Components.WendTextInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendTextInputElementEventMap>(type: K, listener: (this: HTMLWendTextInputElement, ev: WendTextInputCustomEvent<HTMLWendTextInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendTextInputElementEventMap>(type: K, listener: (this: HTMLWendTextInputElement, ev: WendTextInputCustomEvent<HTMLWendTextInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendTextInputElement: {
+        prototype: HTMLWendTextInputElement;
+        new (): HTMLWendTextInputElement;
+    };
     interface HTMLWendToggleElementEventMap {
         "wendChange": boolean;
     }
@@ -229,9 +322,11 @@ declare global {
     interface HTMLElementTagNameMap {
         "wend-button": HTMLWendButtonElement;
         "wend-checkbox": HTMLWendCheckboxElement;
+        "wend-help-text": HTMLWendHelpTextElement;
         "wend-icon": HTMLWendIconElement;
         "wend-radio": HTMLWendRadioElement;
         "wend-radio-group": HTMLWendRadioGroupElement;
+        "wend-text-input": HTMLWendTextInputElement;
         "wend-toggle": HTMLWendToggleElement;
     }
 }
@@ -288,6 +383,18 @@ declare namespace LocalJSX {
           * Emitted when the checkbox is toggled by the user.
          */
         "onWendChange"?: (event: WendCheckboxCustomEvent<boolean>) => void;
+    }
+    interface WendHelpText {
+        /**
+          * The help text's message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "text"?: string;
+        /**
+          * Visual tone of the help text.
+          * @default 'default'
+         */
+        "type"?: WendHelpTextType;
     }
     interface WendIcon {
         /**
@@ -358,6 +465,60 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface WendTextInput {
+        /**
+          * Disables the input.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Supplementary message shown below the input, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText"?: string;
+        /**
+          * The input's label text. Can be an empty string for a label-less input.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Name submitted for this input when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Emitted as the user types.
+         */
+        "onWendChange"?: (event: WendTextInputCustomEvent<string>) => void;
+        /**
+          * Placeholder text shown when the input is empty.
+         */
+        "placeholder"?: string;
+        /**
+          * Marks the input as required. Renders a marker after the label and sets the native `required`/`aria-required` attributes on the input.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText"?: boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel"?: boolean;
+        /**
+          * Validation state of the input. Drives the field's border color and the help text's tone. The interactive focus ring is handled separately via CSS `:focus-within`, not this prop, so a focused input keeps combining with whichever validation state is already set.
+          * @default 'default'
+         */
+        "state"?: WendTextInputState;
+        /**
+          * The input's current text value.
+          * @default ''
+         */
+        "value"?: string;
+    }
     interface WendToggle {
         /**
           * Whether the toggle is on.
@@ -388,6 +549,10 @@ declare namespace LocalJSX {
         "label": string;
         "disabled": boolean;
     }
+    interface WendHelpTextAttributes {
+        "text": string;
+        "type": WendHelpTextType;
+    }
     interface WendIconAttributes {
         "name": string;
         "size": string;
@@ -406,6 +571,18 @@ declare namespace LocalJSX {
         "value": string;
         "disabled": boolean;
     }
+    interface WendTextInputAttributes {
+        "label": string;
+        "showLabel": boolean;
+        "value": string;
+        "placeholder": string;
+        "helpText": string;
+        "showHelpText": boolean;
+        "state": WendTextInputState;
+        "disabled": boolean;
+        "required": boolean;
+        "name": string;
+    }
     interface WendToggleAttributes {
         "checked": boolean;
         "disabled": boolean;
@@ -414,9 +591,11 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "wend-button": Omit<WendButton, keyof WendButtonAttributes> & { [K in keyof WendButton & keyof WendButtonAttributes]?: WendButton[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `attr:${K}`]?: WendButtonAttributes[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `prop:${K}`]?: WendButton[K] };
         "wend-checkbox": Omit<WendCheckbox, keyof WendCheckboxAttributes> & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes]?: WendCheckbox[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `attr:${K}`]?: WendCheckboxAttributes[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `prop:${K}`]?: WendCheckbox[K] };
+        "wend-help-text": Omit<WendHelpText, keyof WendHelpTextAttributes> & { [K in keyof WendHelpText & keyof WendHelpTextAttributes]?: WendHelpText[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `attr:${K}`]?: WendHelpTextAttributes[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `prop:${K}`]?: WendHelpText[K] };
         "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
         "wend-radio": Omit<WendRadio, keyof WendRadioAttributes> & { [K in keyof WendRadio & keyof WendRadioAttributes]?: WendRadio[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `attr:${K}`]?: WendRadioAttributes[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `prop:${K}`]?: WendRadio[K] };
         "wend-radio-group": Omit<WendRadioGroup, keyof WendRadioGroupAttributes> & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes]?: WendRadioGroup[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `attr:${K}`]?: WendRadioGroupAttributes[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `prop:${K}`]?: WendRadioGroup[K] } & OneOf<"name", WendRadioGroup["name"], WendRadioGroupAttributes["name"]>;
+        "wend-text-input": Omit<WendTextInput, keyof WendTextInputAttributes> & { [K in keyof WendTextInput & keyof WendTextInputAttributes]?: WendTextInput[K] } & { [K in keyof WendTextInput & keyof WendTextInputAttributes as `attr:${K}`]?: WendTextInputAttributes[K] } & { [K in keyof WendTextInput & keyof WendTextInputAttributes as `prop:${K}`]?: WendTextInput[K] };
         "wend-toggle": Omit<WendToggle, keyof WendToggleAttributes> & { [K in keyof WendToggle & keyof WendToggleAttributes]?: WendToggle[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `attr:${K}`]?: WendToggleAttributes[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `prop:${K}`]?: WendToggle[K] };
     }
 }
@@ -426,9 +605,11 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "wend-button": LocalJSX.IntrinsicElements["wend-button"] & JSXBase.HTMLAttributes<HTMLWendButtonElement>;
             "wend-checkbox": LocalJSX.IntrinsicElements["wend-checkbox"] & JSXBase.HTMLAttributes<HTMLWendCheckboxElement>;
+            "wend-help-text": LocalJSX.IntrinsicElements["wend-help-text"] & JSXBase.HTMLAttributes<HTMLWendHelpTextElement>;
             "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
             "wend-radio": LocalJSX.IntrinsicElements["wend-radio"] & JSXBase.HTMLAttributes<HTMLWendRadioElement>;
             "wend-radio-group": LocalJSX.IntrinsicElements["wend-radio-group"] & JSXBase.HTMLAttributes<HTMLWendRadioGroupElement>;
+            "wend-text-input": LocalJSX.IntrinsicElements["wend-text-input"] & JSXBase.HTMLAttributes<HTMLWendTextInputElement>;
             "wend-toggle": LocalJSX.IntrinsicElements["wend-toggle"] & JSXBase.HTMLAttributes<HTMLWendToggleElement>;
         }
     }

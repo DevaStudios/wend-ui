@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-text-input.schema.json",
+  "title": "WendTextInput",
+  "description": "A labeled single-line text input with optional help text.",
+  "type": "object",
+  "x-wend-component": "wend-text-input",
+  "x-wend-slots": [],
+  "x-wend-tokens": [
+    "text-input.height",
+    "text-input.padding-block",
+    "text-input.padding-inline",
+    "text-input.radius",
+    "text-input.border-width",
+    "text-input.focus.outline-color",
+    "text-input.focus.outline-width",
+    "text-input.focus.outline-offset",
+    "text-input.gap",
+    "text-input.label-font-size",
+    "text-input.value-font-size",
+    "text-input.required-marker.gap",
+    "color.text-input.label.foreground.default",
+    "color.text-input.required-marker.foreground.default",
+    "color.text-input.content.foreground.default",
+    "color.text-input.default.background.default",
+    "color.text-input.default.border.default",
+    "color.text-input.success.border.default",
+    "color.text-input.warning.border.default",
+    "color.text-input.error.border.default"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The input's label text. Can be an empty string for a label-less input."
+    },
+    "show-label": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the label is rendered."
+    },
+    "value": {
+      "type": "string",
+      "default": "",
+      "description": "The input's current text value."
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "Placeholder text shown when the input is empty."
+    },
+    "help-text": {
+      "type": "string",
+      "default": "",
+      "description": "Supplementary message shown below the input, e.g. a validation message. Can be an empty string to render nothing."
+    },
+    "show-help-text": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the help text is rendered."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["default", "success", "warning", "error"],
+      "default": "default",
+      "description": "Validation state of the input. Drives the field's border color and the help text's tone. The interactive focus ring is handled separately via CSS `:focus-within`, not this prop."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the input."
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Marks the input as required. Renders a marker after the label and sets the native `required`/`aria-required` attributes on the input."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name submitted for this input when part of a form."
+    }
+  },
+  "additionalProperties": false
+}

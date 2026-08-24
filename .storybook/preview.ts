@@ -11,6 +11,8 @@ import { defineCustomElement as defineWendToggle } from '@wend-ui/web-components
 import { defineCustomElement as defineWendRadio } from '@wend-ui/web-components/dist/components/wend-radio.js';
 import { defineCustomElement as defineWendRadioGroup } from '@wend-ui/web-components/dist/components/wend-radio-group.js';
 import { defineCustomElement as defineWendIcon } from '@wend-ui/web-components/dist/components/wend-icon.js';
+import { defineCustomElement as defineWendHelpText } from '@wend-ui/web-components/dist/components/wend-help-text.js';
+import { defineCustomElement as defineWendTextInput } from '@wend-ui/web-components/dist/components/wend-text-input.js';
 import '@wend-ui/styles';
 
 defineWendButton();
@@ -19,6 +21,8 @@ defineWendToggle();
 defineWendRadio();
 defineWendRadioGroup();
 defineWendIcon();
+defineWendHelpText();
+defineWendTextInput();
 
 const preview: Preview = {
   tags: ['autodocs']

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-help-text.schema.json",
+  "title": "WendHelpText",
+  "description": "A small status message, optionally tinted for success/warning/error feedback.",
+  "type": "object",
+  "x-wend-component": "wend-help-text",
+  "x-wend-slots": [],
+  "x-wend-tokens": [
+    "help-text.padding-block",
+    "help-text.padding-inline",
+    "help-text.radius",
+    "help-text.font-size",
+    "color.help-text.default.foreground.default",
+    "color.help-text.success.background.default",
+    "color.help-text.success.foreground.default",
+    "color.help-text.warning.background.default",
+    "color.help-text.warning.foreground.default",
+    "color.help-text.error.background.default",
+    "color.help-text.error.foreground.default"
+  ],
+  "properties": {
+    "text": {
+      "type": "string",
+      "default": "",
+      "description": "The help text's message. Can be an empty string to render nothing."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["default", "success", "warning", "error"],
+      "default": "default",
+      "description": "Visual tone of the help text."
+    }
+  },
+  "additionalProperties": false
+}

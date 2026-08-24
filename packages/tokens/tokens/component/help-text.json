@@ -1,0 +1,41 @@
+{
+  "help-text": {
+    "padding-block": { "value": "{spacing.50}" },
+    "padding-inline": { "value": "{spacing.100}" },
+    "radius": { "value": "{radius.medium}" },
+    "font-size": { "value": "{font.size.150}" }
+  },
+  "color": {
+    "help-text": {
+      "default": {
+        "foreground": {
+          "default": { "value": "{color.text.primary}" }
+        }
+      },
+      "success": {
+        "background": {
+          "default": { "value": "{color.feedback.success.background-subtle}" }
+        },
+        "foreground": {
+          "default": { "value": "{color.text.success}" }
+        }
+      },
+      "warning": {
+        "background": {
+          "default": { "value": "{color.feedback.warning.background-subtle}" }
+        },
+        "foreground": {
+          "default": { "value": "{color.text.warning}" }
+        }
+      },
+      "error": {
+        "background": {
+          "default": { "value": "{color.feedback.danger.background-subtle}" }
+        },
+        "foreground": {
+          "default": { "value": "{color.text.danger}" }
+        }
+      }
+    }
+  }
+}

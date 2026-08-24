@@ -4,6 +4,7 @@
       "base": { "value": "'Funnel Sans', sans-serif" }
     },
     "size": {
+      "150": { "value": "12" },
       "175": { "value": "14" },
       "200": { "value": "16" },
       "250": { "value": "20" },

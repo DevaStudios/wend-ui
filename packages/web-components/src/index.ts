@@ -4,6 +4,10 @@ export { WendCheckbox } from './components/wend-checkbox/wend-checkbox';
 export { WendToggle } from './components/wend-toggle/wend-toggle';
 export { WendRadio } from './components/wend-radio/wend-radio';
 export { WendRadioGroup } from './components/wend-radio-group/wend-radio-group';
+export { WendHelpText } from './components/wend-help-text/wend-help-text';
+export type { WendHelpTextType } from './components/wend-help-text/wend-help-text';
+export { WendTextInput } from './components/wend-text-input/wend-text-input';
+export type { WendTextInputState } from './components/wend-text-input/wend-text-input';
 
 // Re-exports Stencil's auto-generated component typings (the `Components` namespace,
 // and per-component event types like `WendCheckboxCustomEvent`) — needed by the React

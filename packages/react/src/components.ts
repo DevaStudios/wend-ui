@@ -6,7 +6,9 @@
 /* eslint-disable */
 export { WendButton } from "./wend-button.js";
 export { WendCheckbox } from "./wend-checkbox.js";
+export { WendHelpText } from "./wend-help-text.js";
 export { WendIcon } from "./wend-icon.js";
 export { WendRadioGroup } from "./wend-radio-group.js";
 export { WendRadio } from "./wend-radio.js";
+export { WendTextInput } from "./wend-text-input.js";
 export { WendToggle } from "./wend-toggle.js";

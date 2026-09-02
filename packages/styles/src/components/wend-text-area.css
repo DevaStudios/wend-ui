@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  font-family: var(--font-family-base, sans-serif);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--text-area-gap, 8px);
+}
+
+label.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+label > wend-help-text {
+  align-self: flex-start;
+}
+
+.label-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.label-text {
+  font-size: var(--text-area-label-font-size, 14px);
+  color: var(--color-text-area-label-foreground-default, #1a1a1a);
+}
+
+.required-marker {
+  margin-inline-start: var(--text-area-required-marker-gap, 2px);
+  color: var(--color-text-area-required-marker-foreground-default, #93261a);
+}
+
+/*
+ * The bordered box IS the <textarea> itself, not a wrapper around it (unlike
+ * wend-text-input's <input>) -- resize handles grow the element they're set
+ * on, so wrapping would leave the border/background box a fixed size while
+ * only the inner textarea grew, clipping the resized content.
+ */
+.field {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: var(--text-area-height, 88px);
+  min-height: var(--text-area-height, 88px);
+  padding: var(--text-area-padding-block, 4px) var(--text-area-padding-inline, 8px);
+  border-radius: var(--text-area-radius, 8px);
+  border: var(--text-area-border-width, 1px) solid var(--color-text-area-default-border-default, #676565);
+  background-color: var(--color-text-area-default-background-default, #ffffff);
+  resize: vertical;
+  outline: none;
+  font-family: inherit;
+  font-size: var(--text-area-value-font-size, 14px);
+  color: var(--color-text-area-content-foreground-default, #1a1a1a);
+}
+
+.field:focus-within {
+  outline: var(--text-area-focus-outline-width, 1px) solid var(--text-area-focus-outline-color, #1a1a1a);
+  outline-offset: var(--text-area-focus-outline-offset, 0);
+}
+
+.field.success {
+  border-color: var(--color-text-area-success-border-default, #206a47);
+}
+
+.field.warning {
+  border-color: var(--color-text-area-warning-border-default, #a36b0a);
+}
+
+.field.error {
+  border-color: var(--color-text-area-error-border-default, #93261a);
+}
+
+label.disabled .field {
+  cursor: not-allowed;
+  resize: none;
+}

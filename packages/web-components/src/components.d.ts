@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { WendButtonVariant } from "./components/wend-button/wend-button";
 import { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
+import { WendTextAreaState } from "./components/wend-text-area/wend-text-area";
 import { WendTextInputState } from "./components/wend-text-input/wend-text-input";
 export { WendButtonVariant } from "./components/wend-button/wend-button";
 export { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
+export { WendTextAreaState } from "./components/wend-text-area/wend-text-area";
 export { WendTextInputState } from "./components/wend-text-input/wend-text-input";
 export namespace Components {
     interface WendButton {
@@ -132,6 +134,56 @@ export namespace Components {
          */
         "value"?: string;
     }
+    interface WendTextArea {
+        /**
+          * Disables the textarea.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Supplementary message shown below the textarea, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText": string;
+        /**
+          * The textarea's label text. Can be an empty string for a label-less textarea.
+          * @default ''
+         */
+        "label": string;
+        /**
+          * Name submitted for this textarea when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Placeholder text shown when the textarea is empty.
+         */
+        "placeholder"?: string;
+        /**
+          * Marks the textarea as required. Renders a marker after the label and sets the native `required`/`aria-required` attributes on the textarea.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText": boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel": boolean;
+        /**
+          * Validation state of the textarea. Drives the field's border color and the help text's tone. The interactive focus ring is handled separately via CSS `:focus-within`, not this prop, so a focused textarea keeps combining with whichever validation state is already set.
+          * @default 'default'
+         */
+        "state": WendTextAreaState;
+        /**
+          * The textarea's current text value.
+          * @default ''
+         */
+        "value": string;
+    }
     interface WendTextInput {
         /**
           * Disables the input.
@@ -206,6 +258,10 @@ export interface WendRadioCustomEvent<T> extends CustomEvent<T> {
 export interface WendRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendRadioGroupElement;
+}
+export interface WendTextAreaCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendTextAreaElement;
 }
 export interface WendTextInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -285,6 +341,23 @@ declare global {
         prototype: HTMLWendRadioGroupElement;
         new (): HTMLWendRadioGroupElement;
     };
+    interface HTMLWendTextAreaElementEventMap {
+        "wendChange": string;
+    }
+    interface HTMLWendTextAreaElement extends Components.WendTextArea, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendTextAreaElementEventMap>(type: K, listener: (this: HTMLWendTextAreaElement, ev: WendTextAreaCustomEvent<HTMLWendTextAreaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendTextAreaElementEventMap>(type: K, listener: (this: HTMLWendTextAreaElement, ev: WendTextAreaCustomEvent<HTMLWendTextAreaElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendTextAreaElement: {
+        prototype: HTMLWendTextAreaElement;
+        new (): HTMLWendTextAreaElement;
+    };
     interface HTMLWendTextInputElementEventMap {
         "wendChange": string;
     }
@@ -326,6 +399,7 @@ declare global {
         "wend-icon": HTMLWendIconElement;
         "wend-radio": HTMLWendRadioElement;
         "wend-radio-group": HTMLWendRadioGroupElement;
+        "wend-text-area": HTMLWendTextAreaElement;
         "wend-text-input": HTMLWendTextInputElement;
         "wend-toggle": HTMLWendToggleElement;
     }
@@ -465,6 +539,60 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface WendTextArea {
+        /**
+          * Disables the textarea.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Supplementary message shown below the textarea, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText"?: string;
+        /**
+          * The textarea's label text. Can be an empty string for a label-less textarea.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Name submitted for this textarea when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Emitted as the user types.
+         */
+        "onWendChange"?: (event: WendTextAreaCustomEvent<string>) => void;
+        /**
+          * Placeholder text shown when the textarea is empty.
+         */
+        "placeholder"?: string;
+        /**
+          * Marks the textarea as required. Renders a marker after the label and sets the native `required`/`aria-required` attributes on the textarea.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText"?: boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel"?: boolean;
+        /**
+          * Validation state of the textarea. Drives the field's border color and the help text's tone. The interactive focus ring is handled separately via CSS `:focus-within`, not this prop, so a focused textarea keeps combining with whichever validation state is already set.
+          * @default 'default'
+         */
+        "state"?: WendTextAreaState;
+        /**
+          * The textarea's current text value.
+          * @default ''
+         */
+        "value"?: string;
+    }
     interface WendTextInput {
         /**
           * Disables the input.
@@ -571,6 +699,18 @@ declare namespace LocalJSX {
         "value": string;
         "disabled": boolean;
     }
+    interface WendTextAreaAttributes {
+        "label": string;
+        "showLabel": boolean;
+        "value": string;
+        "placeholder": string;
+        "helpText": string;
+        "showHelpText": boolean;
+        "state": WendTextAreaState;
+        "disabled": boolean;
+        "required": boolean;
+        "name": string;
+    }
     interface WendTextInputAttributes {
         "label": string;
         "showLabel": boolean;
@@ -595,6 +735,7 @@ declare namespace LocalJSX {
         "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
         "wend-radio": Omit<WendRadio, keyof WendRadioAttributes> & { [K in keyof WendRadio & keyof WendRadioAttributes]?: WendRadio[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `attr:${K}`]?: WendRadioAttributes[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `prop:${K}`]?: WendRadio[K] };
         "wend-radio-group": Omit<WendRadioGroup, keyof WendRadioGroupAttributes> & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes]?: WendRadioGroup[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `attr:${K}`]?: WendRadioGroupAttributes[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `prop:${K}`]?: WendRadioGroup[K] } & OneOf<"name", WendRadioGroup["name"], WendRadioGroupAttributes["name"]>;
+        "wend-text-area": Omit<WendTextArea, keyof WendTextAreaAttributes> & { [K in keyof WendTextArea & keyof WendTextAreaAttributes]?: WendTextArea[K] } & { [K in keyof WendTextArea & keyof WendTextAreaAttributes as `attr:${K}`]?: WendTextAreaAttributes[K] } & { [K in keyof WendTextArea & keyof WendTextAreaAttributes as `prop:${K}`]?: WendTextArea[K] };
         "wend-text-input": Omit<WendTextInput, keyof WendTextInputAttributes> & { [K in keyof WendTextInput & keyof WendTextInputAttributes]?: WendTextInput[K] } & { [K in keyof WendTextInput & keyof WendTextInputAttributes as `attr:${K}`]?: WendTextInputAttributes[K] } & { [K in keyof WendTextInput & keyof WendTextInputAttributes as `prop:${K}`]?: WendTextInput[K] };
         "wend-toggle": Omit<WendToggle, keyof WendToggleAttributes> & { [K in keyof WendToggle & keyof WendToggleAttributes]?: WendToggle[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `attr:${K}`]?: WendToggleAttributes[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `prop:${K}`]?: WendToggle[K] };
     }
@@ -609,6 +750,7 @@ declare module "@stencil/core" {
             "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
             "wend-radio": LocalJSX.IntrinsicElements["wend-radio"] & JSXBase.HTMLAttributes<HTMLWendRadioElement>;
             "wend-radio-group": LocalJSX.IntrinsicElements["wend-radio-group"] & JSXBase.HTMLAttributes<HTMLWendRadioGroupElement>;
+            "wend-text-area": LocalJSX.IntrinsicElements["wend-text-area"] & JSXBase.HTMLAttributes<HTMLWendTextAreaElement>;
             "wend-text-input": LocalJSX.IntrinsicElements["wend-text-input"] & JSXBase.HTMLAttributes<HTMLWendTextInputElement>;
             "wend-toggle": LocalJSX.IntrinsicElements["wend-toggle"] & JSXBase.HTMLAttributes<HTMLWendToggleElement>;
         }

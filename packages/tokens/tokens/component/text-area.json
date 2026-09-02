@@ -1,8 +1,8 @@
 {
-  "text-input": {
-    "height": { "value": "{sizing.500}" },
+  "text-area": {
+    "height": { "value": "{sizing.1000}" },
     "padding-block": { "value": "{spacing.50}" },
-    "padding-inline": { "value": "{spacing.200}" },
+    "padding-inline": { "value": "{spacing.100}" },
     "radius": { "value": "{radius.medium}" },
     "border-width": { "value": "1px" },
     "gap": { "value": "{spacing.100}" },
@@ -18,7 +18,7 @@
     }
   },
   "color": {
-    "text-input": {
+    "text-area": {
       "label": {
         "foreground": {
           "default": { "value": "{color.text.primary}" }

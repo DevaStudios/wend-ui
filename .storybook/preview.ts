@@ -13,6 +13,7 @@ import { defineCustomElement as defineWendRadioGroup } from '@devastudios/web-co
 import { defineCustomElement as defineWendIcon } from '@devastudios/web-components/dist/components/wend-icon.js';
 import { defineCustomElement as defineWendHelpText } from '@devastudios/web-components/dist/components/wend-help-text.js';
 import { defineCustomElement as defineWendTextInput } from '@devastudios/web-components/dist/components/wend-text-input.js';
+import { defineCustomElement as defineWendTextArea } from '@devastudios/web-components/dist/components/wend-text-area.js';
 import '@devastudios/styles';
 
 defineWendButton();
@@ -23,6 +24,7 @@ defineWendRadioGroup();
 defineWendIcon();
 defineWendHelpText();
 defineWendTextInput();
+defineWendTextArea();
 
 const preview: Preview = {
   tags: ['autodocs']

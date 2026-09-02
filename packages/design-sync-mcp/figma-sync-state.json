@@ -1,7 +1,7 @@
 {
   "_comment": "Cached Figma variable/node IDs for the wend-ui file, so use_figma pushes and diffs can reference known IDs instead of re-discovering them via a fresh read every time. IDs are stable in Figma once created -- this only goes stale if a variable/node is renamed or deleted outside this workflow. Regenerate with figma-scripts/dump-variable-map.js (paste its contents into a use_figma call) whenever collections change, and spot-check a few IDs with getVariableByIdAsync before trusting a map that's more than a few sessions old.",
   "fileKey": "YZHv0wEIdBLrldVadPGKOr",
-  "lastVerified": "2026-08-24",
+  "lastVerified": "2026-08-25",
   "collections": {
     "global": {
       "collectionId": "VariableCollectionId:49:2",
@@ -210,7 +210,7 @@
   },
   "nodes": {
     "_comment": "Canvas nodes bound to semantic/component variables or component properties -- useful when a collection rebuild requires rebinding fills/strokes/fontFamily/etc, or when re-touching the button's icon slots.",
-    "_pages_note": "As of 2026-08-24 the file has multiple pages (Button, Checkbox, Toggle, Radio, Help Text, Text Input, plus Cover/Typography/Color/Icons/reference pages not tracked here) -- the single 'page': \"Button\" field below predates that and is stale/button-specific; don't assume it names the only page. Page IDs: Button=10:2, Checkbox=347:2, Toggle=367:164, Radio=374:187 (also hosts the separate 'Radio Group' component, node 374:231, alongside the Radio COMPONENT_SET), Help Text=384:292, Text Input=382:232. Get a fresh list with `figma.root.children.map(p => ({id: p.id, name: p.name}))`.",
+    "_pages_note": "As of 2026-08-25 the file has multiple pages (Button, Checkbox, Toggle, Radio, Help Text, Text Input, Text Area, plus Cover/Typography/Color/Icons/reference pages not tracked here) -- the single 'page': \"Button\" field below predates that and is stale/button-specific; don't assume it names the only page. Page IDs: Button=10:2, Checkbox=347:2, Toggle=367:164, Radio=374:187 (also hosts the separate 'Radio Group' component, node 374:231, alongside the Radio COMPONENT_SET), Help Text=384:292, Text Input=382:232, Text Area=404:105. Get a fresh list with `figma.root.children.map(p => ({id: p.id, name: p.name}))`.",
     "_rename_flag": "As of the 2026-08-24 Help Text / Text Input pull, the variable this cache recorded as 'color/ui/text/primary' (VariableID:337:1707) now reads 'color/ui/text/primary-default' in Figma -- same ID, so every alias pointing at it (color.text.primary in code) still resolves correctly; this looks like an in-place Figma rename (adding the '-default' suffix once positive/warning/negative siblings were added, presumably for symmetry) rather than a new variable. Not renamed in code -- 'color.text.primary' has no state axis of its own in the codebase taxonomy, and 'default' would be a stray no-op suffix on a SELF_EVIDENT_CATEGORY leaf, which the taxonomy validator explicitly rejects at the semantic tier. Flagged for awareness only; the naming map above still keys this variable as 'color/ui/text/primary' since a future dump-variable-map.js refresh needs to catch the rename, not this note.",
     "page": "Button",
     "radioGroup": {
@@ -272,7 +272,8 @@
         "focus": "393:28",
         "success": "393:69",
         "warning": "393:79",
-        "error": "393:98"
+        "error": "393:98",
+        "disabled": "409:12"
       },
       "componentProperties": {
         "showLabel": "Show Label#393:0",
@@ -282,7 +283,74 @@
       "requiredMarker": {
         "_note": "Added 2026-08-24, CODE-FIRST -- the reverse direction of everything else in this file (which was pulled FROM Figma INTO code). wend-text-input's `required` prop was added in code first with no Figma precedent, then pushed into Figma via use_figma to keep the two in sync, per the user's explicit request. Structure per variant: the existing 'Label' text node was moved out of the COMPONENT's direct children into a new 'Label Row' horizontal auto-layout frame (itemSpacing=2, matching text-input-required-marker-gap/{spacing.25}) inserted at the same index (0) the Label used to occupy; a new '*' text node (Funnel Sans Regular 14px, same font as Label, fill bound to color/ui/text/negative == VariableID:393:86, the SAME variable already used for the Error state's border/help-text -- code's color.text.danger) was appended as the row's second child. The 'Show Label#393:0' visibility binding was MOVED from the Label text node onto the new Label Row frame (so hiding the label hides the marker with it, not leaving a lone asterisk) -- the Label text node itself now has no visibility binding of its own (always visible when its row is). The asterisk's own visibility is bound to the new 'Required#402:0' property independently, default false, matching code's `required` default. Label's layoutSizingHorizontal changed from FILL to HUG (it now hugs within the row instead of filling the old direct parent) and the new Label Row got layoutSizingHorizontal=FILL in its place, so the field/help-text below remain unaffected and the frame's overall width/height (538x605 for the component set) did not change. Applied identically across all 5 variants: Default (row=402:7, asterisk=402:8), Focus (row=402:9, asterisk=402:10), Success (row=402:11, asterisk=402:12), Warning (row=402:13, asterisk=402:14), Error (row=402:15, asterisk=402:16) -- Label node IDs unchanged (383:235, 393:29, 393:70, 393:80, 393:99), just reparented."
       },
-      "_note": "Added 2026-08-24. 5 variants on one axis ('State': Default/Focus/Success/Warning/Error) plus three boolean component properties (Show Label, Show Help Text, Required -- all default false except Show Label/Show Help Text which default true) -- unlike radio's redundant 'Show Label' (see radio._note above), Show Label/Show Help Text ARE the only way to hide the label/help-text in this component (wend-text-input has no other signal to derive visibility from, since `label`/`help-text` being an empty string already independently hides each), so both were pulled into code as real props (`showLabel`/`showHelpText`) rather than treated as redundant; `required` is the one exception in this file that went code -> Figma instead (see requiredMarker above). Each State instance contains: a 'Label Row' frame (added 2026-08-24, see requiredMarker) wrapping the 'Label' text node (font-size.175, color/ui/text/primary-default -- reused, not a new variable) plus the required-marker asterisk, an 'Input Field' frame (40px tall, color/ui/foreground background == color.surface.input, 1px color/ui/border/default border == color.border.input, containing a 'Value' text node in the same color/ui/text/primary-default), and a 'Help Text' instance child (390:23 in the Default variant) below it. Figma's Focus differs from Default only by a 2px border (still color.border.input, not a new color) -- not variable-bound in Figma (a raw Tailwind `border-2` in the reference code) -- so it was NOT pulled in as a 5th `state` enum value, AND its border-thickening mechanic was deliberately not reproduced even for the CSS `:focus-within` case: changing `border-width` still shifts the field's inner content by a pixel (the classic 'wiggle') even under `box-sizing: border-box`. Code instead adds an `outline` (`text-input-focus-outline-color/-width/-offset`, aliasing the shared `color.border.focus` token, same convention as button/checkbox/toggle/radio's own focus rings) on `:focus-within`, which sits outside the box and never affects layout -- see packages/tokens/README.md's Color token naming section. A focused input keeps showing whichever validation-state border color (`state` prop) is already active plus the outline ring on top, a Default+Focus / Success+Focus / etc. combination Figma's own variant axis doesn't enumerate. Success/Warning/Error change ONLY the field's border color (color.border.success/warning/danger) plus swap in a tinted Help Text instance (type=success/warning/error) below -- the field's background and the typed value's text color stay constant across every state. `color/ui/border/default` here is the SAME Figma variable already cached above as checkbox/radio/toggle's shared form-control border (VariableID:347:4) -- despite its Figma name literally saying 'default', it is NOT code's `color.border.default` (gray.700); it's `color.border.input` (gray.800), per the established precedent for this specific variable."
+      "_note": "Added 2026-08-24. 5 variants on one axis ('State': Default/Focus/Success/Warning/Error) plus three boolean component properties (Show Label, Show Help Text, Required -- all default false except Show Label/Show Help Text which default true) -- unlike radio's redundant 'Show Label' (see radio._note above), Show Label/Show Help Text ARE the only way to hide the label/help-text in this component (wend-text-input has no other signal to derive visibility from, since `label`/`help-text` being an empty string already independently hides each), so both were pulled into code as real props (`showLabel`/`showHelpText`) rather than treated as redundant; `required` is the one exception in this file that went code -> Figma instead (see requiredMarker above). Each State instance contains: a 'Label Row' frame (added 2026-08-24, see requiredMarker) wrapping the 'Label' text node (font-size.175, color/ui/text/primary-default -- reused, not a new variable) plus the required-marker asterisk, an 'Input Field' frame (40px tall, color/ui/foreground background == color.surface.input, 1px color/ui/border/default border == color.border.input, containing a 'Value' text node in the same color/ui/text/primary-default), and a 'Help Text' instance child (390:23 in the Default variant) below it. Figma's Focus differs from Default only by a 2px border (still color.border.input, not a new color) -- not variable-bound in Figma (a raw Tailwind `border-2` in the reference code) -- so it was NOT pulled in as a 5th `state` enum value, AND its border-thickening mechanic was deliberately not reproduced even for the CSS `:focus-within` case: changing `border-width` still shifts the field's inner content by a pixel (the classic 'wiggle') even under `box-sizing: border-box`. Code instead adds an `outline` (`text-input-focus-outline-color/-width/-offset`, aliasing the shared `color.border.focus` token, same convention as button/checkbox/toggle/radio's own focus rings) on `:focus-within`, which sits outside the box and never affects layout -- see packages/tokens/README.md's Color token naming section. A focused input keeps showing whichever validation-state border color (`state` prop) is already active plus the outline ring on top, a Default+Focus / Success+Focus / etc. combination Figma's own variant axis doesn't enumerate. Success/Warning/Error change ONLY the field's border color (color.border.success/warning/danger) plus swap in a tinted Help Text instance (type=success/warning/error) below -- the field's background and the typed value's text color stay constant across every state. `color/ui/border/default` here is the SAME Figma variable already cached above as checkbox/radio/toggle's shared form-control border (VariableID:347:4) -- despite its Figma name literally saying 'default', it is NOT code's `color.border.default` (gray.700); it's `color.border.input` (gray.800), per the established precedent for this specific variable.",
+      "_disabledFlag": "Added 2026-08-25, CODE-FIRST like requiredMarker above -- code already had a fully-implemented `disabled` prop (dimmed via CSS `opacity: 0.5` on the outer <label>, matching the button/checkbox/radio precedent) with no Figma equivalent; this pushed a matching 'State=Disabled' variant into Figma to keep the two in sync, per explicit user request. Implementation: cloned the 'State=Default' component (393:26), renamed to 'State=Disabled', set `opacity = 0.5` on the cloned top-level COMPONENT node (mirrors code's single opacity rule on the whole subtree -- no per-child color changes, unlike button/toggle's dedicated *-background-disabled/*-foreground-disabled tokens), positioned at (20, 605) as a 6th row, and grew the component set frame from 538x605 to 538x722. GOTCHA hit during this push: `ComponentNode.clone()` on a node whose parent is a COMPONENT_SET does NOT insert the clone back into that set -- Figma silently reparents the clone onto the PAGE instead (presumably because the clone starts out with a duplicate 'State=Default' name, which would be an invalid duplicate variant within the set). The clone has to be explicitly moved back in via `componentSet.appendChild(clone)` AFTER renaming it to a unique variant name -- verified by re-reading `cs.componentPropertyDefinitions().State.variantOptions` before and after the appendChild call; only after the appendChild did 'Disabled' actually appear in that list. New node id: 409:12. The new Disabled variant keeps Default's Help Text sub-instance (neutral/untinted) and its existing Show Label/Show Help Text/Required bindings unchanged -- Figma's variant axis can't represent every state x disabled combination (same limitation already documented for Focus above), so this single Disabled row is a Default+disabled baseline only, not a disabled variant of Success/Warning/Error too."
+    },
+    "textArea": {
+      "page": "404:105",
+      "componentSet": "404:111",
+      "variants": {
+        "default": "404:112",
+        "focus": "404:119",
+        "success": "404:126",
+        "warning": "404:133",
+        "error": "404:140",
+        "disabled": "409:422"
+      },
+      "componentProperties": {
+        "showLabel": "Show Label#393:0",
+        "showHelpText": "Show Help Text#393:3",
+        "required": "Required#402:0"
+      },
+      "structure": {
+        "default": {
+          "labelRow": "404:113",
+          "label": "404:114",
+          "requiredMarker": "404:115",
+          "inputField": "404:116",
+          "value": "404:117",
+          "resizeHandle": "404:106",
+          "helpText": "404:118"
+        },
+        "focus": {
+          "labelRow": "404:120",
+          "label": "404:121",
+          "requiredMarker": "404:122",
+          "inputField": "404:123",
+          "value": "404:124",
+          "resizeHandle": "404:195",
+          "helpText": "404:125"
+        },
+        "success": {
+          "labelRow": "404:127",
+          "label": "404:128",
+          "requiredMarker": "404:129",
+          "inputField": "404:130",
+          "value": "404:131",
+          "resizeHandle": "404:200",
+          "helpText": "404:132"
+        },
+        "warning": {
+          "labelRow": "404:134",
+          "label": "404:135",
+          "requiredMarker": "404:136",
+          "inputField": "404:137",
+          "value": "404:138",
+          "resizeHandle": "404:205",
+          "helpText": "404:139"
+        },
+        "error": {
+          "labelRow": "404:141",
+          "label": "404:142",
+          "requiredMarker": "404:143",
+          "inputField": "404:144",
+          "value": "404:145",
+          "resizeHandle": "404:210",
+          "helpText": "404:146"
+        }
+      },
+      "_note": "Added 2026-08-25. Figma-authored as a duplicate of the Text Input component set AFTER the 2026-08-24 code-first `required` push -- its 'Label Row'/'*' marker structure and the 'Show Label#393:0'/'Show Help Text#393:3'/'Required#402:0' component-property IDs are identical to Text Input's for exactly that reason (same lineage, not a coincidence or a real cross-component dependency). Pulled 100% FROM Figma INTO code this time (the normal direction, unlike Text Input's required-marker) -- no new semantic or component color tokens were needed anywhere; every color.text-area.* token aliases the exact same leaves color.text-input.* does. Two real differences from Text Input, both intentional per Figma's own authoring: (1) the field is 88px tall (sizing.1000, fixed, not the 40px sizing.500 single-line height) and (2) its horizontal padding is spacing.100/8px (Figma's 'spacing/condensed') rather than Text Input's spacing.200/16px ('spacing/default') -- vertical padding (spacing.50/4px) matches. Each Input Field also contains a 'Resize Handle' frame (404:106 in Default, a small absolutely-positioned image referencing a diagonal-lines resize-grip asset) in the bottom-right corner -- NOT reproduced in code as an image: a native <textarea> with CSS `resize: vertical` already renders the browser's own resize gripper in that exact corner, which is functionally correct (actually resizable) where a static image wouldn't be, so no asset was downloaded/imported for this. Figma's Focus variant is the same 2px-same-color-border pattern as Text Input's (not variable-bound, a raw `border-2`) and was handled identically: not pulled in as a 5th `state` value, reproduced instead via the same `text-area-focus-outline-*` outline-on-:focus-within convention (not border-thickening, to avoid the 'wiggle' -- see Text Input's own note above and packages/tokens/README.md). Each variant's Label Row already carries both the 'Show Label#393:0' visibility binding (on the row) and its child '*' marker's own 'Required#402:0' visibility binding, exactly matching the structure Text Input was left in after its required-marker push -- code's wend-text-area component mirrors wend-text-input's render() 1:1 for this part (label span + conditional required-marker span), just swapping the single-line <input> for a <textarea>.",
+      "_disabledFlag": "Added 2026-08-25, CODE-FIRST -- same push as Text Input's disabled variant (see textInput._disabledFlag above), applied identically: cloned 'State=Default' (404:112), renamed 'State=Disabled', `opacity = 0.5` on the clone, positioned at (20, 990) as a 6th row, component set frame grown from 538x1003 to 538x1185 (990 + 145 height + 50 bottom margin, matching this file's existing -- larger than Text Input's -- bottom padding). Hit the exact same `clone()`-reparents-to-page gotcha documented in Text Input's note; fixed the same way (`componentSet.appendChild(clone)` after renaming). New node id: 409:422. Same 'Default+disabled baseline only' caveat applies -- no disabled variant of Success/Warning/Error was created."
     },
     "buttonComponentSet": "10:13",
     "buttonComponentSetProperties": {

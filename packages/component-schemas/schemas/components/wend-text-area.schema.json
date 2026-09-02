@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-text-area.schema.json",
+  "title": "WendTextArea",
+  "description": "A labeled multi-line text input with optional help text.",
+  "type": "object",
+  "x-wend-component": "wend-text-area",
+  "x-wend-slots": [],
+  "x-wend-tokens": [
+    "text-area.height",
+    "text-area.padding-block",
+    "text-area.padding-inline",
+    "text-area.radius",
+    "text-area.border-width",
+    "text-area.focus.outline-color",
+    "text-area.focus.outline-width",
+    "text-area.focus.outline-offset",
+    "text-area.gap",
+    "text-area.label-font-size",
+    "text-area.value-font-size",
+    "text-area.required-marker.gap",
+    "color.text-area.label.foreground.default",
+    "color.text-area.required-marker.foreground.default",
+    "color.text-area.content.foreground.default",
+    "color.text-area.default.background.default",
+    "color.text-area.default.border.default",
+    "color.text-area.success.border.default",
+    "color.text-area.warning.border.default",
+    "color.text-area.error.border.default"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The textarea's label text. Can be an empty string for a label-less textarea."
+    },
+    "show-label": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the label is rendered."
+    },
+    "value": {
+      "type": "string",
+      "default": "",
+      "description": "The textarea's current text value."
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "Placeholder text shown when the textarea is empty."
+    },
+    "help-text": {
+      "type": "string",
+      "default": "",
+      "description": "Supplementary message shown below the textarea, e.g. a validation message. Can be an empty string to render nothing."
+    },
+    "show-help-text": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the help text is rendered."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["default", "success", "warning", "error"],
+      "default": "default",
+      "description": "Validation state of the textarea. Drives the field's border color and the help text's tone. The interactive focus ring is handled separately via CSS `:focus-within`, not this prop."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the textarea."
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Marks the textarea as required. Renders a marker after the label and sets the native `required`/`aria-required` attributes on the textarea."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name submitted for this textarea when part of a form."
+    }
+  },
+  "additionalProperties": false
+}

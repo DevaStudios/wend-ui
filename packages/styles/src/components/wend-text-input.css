@@ -43,7 +43,7 @@ label > wend-help-text {
 
 .field:focus-within {
   outline: var(--text-input-focus-outline-width, 1px) solid var(--text-input-focus-outline-color, #1a1a1a);
-  outline-offset: var(--text-input-focus-outline-offset, 2px);
+  outline-offset: var(--text-input-focus-outline-offset, 0);
 }
 
 .field.success {

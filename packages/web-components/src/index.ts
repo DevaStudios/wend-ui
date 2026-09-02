@@ -8,6 +8,8 @@ export { WendHelpText } from './components/wend-help-text/wend-help-text';
 export type { WendHelpTextType } from './components/wend-help-text/wend-help-text';
 export { WendTextInput } from './components/wend-text-input/wend-text-input';
 export type { WendTextInputState } from './components/wend-text-input/wend-text-input';
+export { WendTextArea } from './components/wend-text-area/wend-text-area';
+export type { WendTextAreaState } from './components/wend-text-area/wend-text-area';
 
 // Re-exports Stencil's auto-generated component typings (the `Components` namespace,
 // and per-component event types like `WendCheckboxCustomEvent`) — needed by the React

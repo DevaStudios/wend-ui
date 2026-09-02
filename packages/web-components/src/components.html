@@ -554,6 +554,134 @@
       </div>
 
       <div class="wend-section">
+        <h2>Text Area</h2>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-text-area label="Label" placeholder="Value" help-text="Lorem ipsum dolor sit amet"></wend-text-area>
+          <wend-text-area
+            label="Label"
+            placeholder="Value"
+            help-text="Lorem ipsum dolor sit amet"
+            state="success"
+          ></wend-text-area>
+          <wend-text-area
+            label="Label"
+            placeholder="Value"
+            help-text="Lorem ipsum dolor sit amet"
+            state="warning"
+          ></wend-text-area>
+          <wend-text-area
+            label="Label"
+            placeholder="Value"
+            help-text="Lorem ipsum dolor sit amet"
+            state="error"
+          ></wend-text-area>
+          <wend-text-area label="Label" placeholder="Value" disabled></wend-text-area>
+          <wend-text-area label="Label" placeholder="Value" required></wend-text-area>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-text-area label="Label" placeholder="Value" help-text="Message"&gt;&lt;/wend-text-area&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The textarea's label text. Can be an empty string for a label-less textarea.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showLabel</code></td>
+              <td><code>show-label</code></td>
+              <td>Whether the label is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>value</code></td>
+              <td><code>value</code></td>
+              <td>The textarea's current text value.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>placeholder</code></td>
+              <td><code>placeholder</code></td>
+              <td>Placeholder text shown when the textarea is empty.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>helpText</code></td>
+              <td><code>help-text</code></td>
+              <td>
+                Supplementary message shown below the textarea, e.g. a validation message. Can be an empty string to
+                render nothing.
+              </td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showHelpText</code></td>
+              <td><code>show-help-text</code></td>
+              <td>Whether the help text is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>state</code></td>
+              <td><code>state</code></td>
+              <td>
+                Validation state of the textarea. Drives the field's border color and the help text's tone. The
+                interactive focus ring is handled separately via CSS <code>:focus-within</code>, not this prop.
+              </td>
+              <td><code>"default" | "success" | "warning" | "error"</code></td>
+              <td><code>'default'</code></td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the textarea.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>required</code></td>
+              <td><code>required</code></td>
+              <td>
+                Marks the textarea as required. Renders a marker after the label and sets the native
+                <code>required</code>/<code>aria-required</code> attributes on the textarea.
+              </td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td><code>name</code></td>
+              <td>Name submitted for this textarea when part of a form.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wend-section">
         <h2>Icon</h2>
 
         <p style="margin: 0 0 var(--spacing-100)">Examples</p>

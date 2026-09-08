@@ -27,9 +27,9 @@ for (const step of steps) {
 }
 global.color.green = { 600: colorEntry(byName.get('color-green-600').values.light) };
 global.color.red = { 600: colorEntry(byName.get('color-red-600').values.light) };
-global.color.amber = {
-  500: colorEntry(byName.get('color-amber-500').values.light),
-  600: colorEntry(byName.get('color-amber-600').values.light)
+global.color.yellow = {
+  500: colorEntry(byName.get('color-yellow-500').values.light),
+  600: colorEntry(byName.get('color-yellow-600').values.light)
 };
 
 // semantic/Light and semantic/Dark -- same group shape as tokens/semantic/color*.json,

@@ -8,7 +8,7 @@
       "disabled": { "value": "{color.gray.500}" },
       "hover": { "value": "{color.gray.950}" },
       "success": { "value": "{color.green.800}" },
-      "warning": { "value": "{color.amber.800}" },
+      "warning": { "value": "{color.yellow.800}" },
       "danger": { "value": "{color.red.700}" }
     },
     "surface": {
@@ -23,7 +23,7 @@
       "focus": { "value": "{color.gray.975}" },
       "input": { "value": "{color.gray.800}" },
       "success": { "value": "{color.green.800}" },
-      "warning": { "value": "{color.amber.700}" },
+      "warning": { "value": "{color.yellow.700}" },
       "danger": { "value": "{color.red.700}" }
     },
     "action": {
@@ -73,8 +73,8 @@
         "background-subtle": { "value": "#27B07040" }
       },
       "warning": {
-        "background": { "value": "{color.amber.500}" },
-        "background-subtle": { "value": "#FDA30840" }
+        "background": { "value": "{color.yellow.500}" },
+        "background-subtle": { "value": "#F5A20B40" }
       },
       "danger": {
         "background": { "value": "{color.red.600}" },

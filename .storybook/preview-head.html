@@ -4,3 +4,14 @@
   rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
 />
+<style>
+  /* Storybook's addon-docs gives each embedded story preview (`.docs-story`) a hardcoded
+     white background/border via its own emotion CSS-in-JS, injected after this stylesheet —
+     unrelated to our tokens, so it doesn't follow the `data-theme` toggle from
+     .storybook/preview.ts's withThemeByDataAttribute decorator on its own. `!important`
+     is needed to win over that later-injected, equal-specificity `.docs-story` rule. */
+  [data-theme='dark'] .docs-story {
+    background-color: var(--color-surface-canvas) !important;
+    border-color: var(--color-border-default) !important;
+  }
+</style>

@@ -6,7 +6,7 @@ const config: StorybookConfig = {
   // `preview.ts`'s `tags: ['autodocs']`) — Storybook 10 does not bundle docs support by default;
   // without this addon registered, the autodocs tag is a no-op and no Docs page is produced,
   // even though the story index still marks stories with the "autodocs" tag.
-  addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-docs', '@storybook/addon-themes'],
   framework: {
     name: '@storybook/react-vite',
     options: {}

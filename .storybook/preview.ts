@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 // IMPORTANT: import the eager `defineCustomElement` from the compiled component file directly,
 // NOT the lazy-loader (`@devastudios/web-components/loader`'s `defineCustomElements()`). The loader
 // is what the design/plan docs describe and it works fine in `storybook dev`, but its lazy
@@ -27,7 +28,21 @@ defineWendTextInput();
 defineWendTextArea();
 
 const preview: Preview = {
-  tags: ['autodocs']
+  tags: ['autodocs'],
+  decorators: [
+    // Toggles the same `data-theme="dark"` attribute on `<html>` that
+    // `packages/tokens`' dark-mode CSS is keyed off of (see packages/tokens/README.md's
+    // "Light/dark mode" section) — no separate theming layer needed, this is the exact
+    // mechanism the tokens package already expects.
+    withThemeByDataAttribute({
+      themes: {
+        light: 'light',
+        dark: 'dark'
+      },
+      defaultTheme: 'light',
+      attributeName: 'data-theme'
+    })
+  ]
 };
 
 export default preview;

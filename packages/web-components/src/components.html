@@ -4,6 +4,40 @@
     <meta charset="utf-8" />
     <title>wend-ui — Components</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var STORAGE_KEY = 'wend-theme';
+        function currentTheme() {
+          return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function applyTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+        }
+        function syncToggleButtons() {
+          var isDark = currentTheme() === 'dark';
+          document.querySelectorAll('.wend-theme-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          });
+        }
+
+        var stored = localStorage.getItem(STORAGE_KEY);
+        applyTheme(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+        window.wendToggleTheme = function () {
+          var next = currentTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+          syncToggleButtons();
+        };
+
+        document.addEventListener('DOMContentLoaded', syncToggleButtons);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,11 +52,22 @@
   <body>
     <nav class="wend-nav">
       <a class="wend-nav__brand" href="index.html">wend-ui</a>
-      <div class="wend-nav__links">
-        <a href="get-started.html">Get Started</a>
-        <a href="foundations.html">Foundations</a>
-        <a href="components.html" aria-current="page">Components</a>
-        <a href="storybook/index.html">Storybook</a>
+      <div class="wend-nav__right">
+        <div class="wend-nav__links">
+          <a href="get-started.html">Get Started</a>
+          <a href="foundations.html">Foundations</a>
+          <a href="components.html" aria-current="page">Components</a>
+          <a href="storybook/index.html">Storybook</a>
+        </div>
+        <button
+          type="button"
+          class="wend-theme-toggle"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          onclick="wendToggleTheme()"
+        >
+          <wend-icon name="dark-mode" size="20px"></wend-icon>
+        </button>
       </div>
     </nav>
 

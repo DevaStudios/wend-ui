@@ -19,6 +19,12 @@ body {
   text-decoration: none;
 }
 
+.wend-nav__right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-300);
+}
+
 .wend-nav__links {
   display: flex;
   gap: var(--spacing-300);
@@ -38,6 +44,30 @@ body {
 .wend-nav__links a[aria-current='page'] {
   color: var(--color-action-primary-background);
   font-weight: var(--font-weight-medium);
+}
+
+.wend-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-medium);
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.wend-theme-toggle:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-action-tertiary-background-hover);
+}
+
+.wend-theme-toggle:focus-visible {
+  outline: 1px solid var(--color-border-focus);
+  outline-offset: 2px;
 }
 
 .wend-page {

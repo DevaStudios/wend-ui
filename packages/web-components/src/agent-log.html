@@ -1,0 +1,297 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>wend-ui — Agent Log</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var STORAGE_KEY = 'wend-theme';
+        function currentTheme() {
+          return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function applyTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+        }
+        function syncToggleButtons() {
+          var isDark = currentTheme() === 'dark';
+          document.querySelectorAll('.wend-theme-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          });
+        }
+
+        var stored = localStorage.getItem(STORAGE_KEY);
+        applyTheme(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+        window.wendToggleTheme = function () {
+          var next = currentTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+          syncToggleButtons();
+        };
+
+        document.addEventListener('DOMContentLoaded', syncToggleButtons);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="build/wend-ui-web-components.css" />
+    <link rel="stylesheet" href="global/docs.css" />
+    <script type="module" src="build/wend-ui-web-components.esm.js"></script>
+    <script nomodule src="build/wend-ui-web-components.js"></script>
+  </head>
+  <body>
+    <nav class="wend-nav">
+      <a class="wend-nav__brand" href="index.html">wend-ui</a>
+      <div class="wend-nav__right">
+        <div class="wend-nav__links">
+          <a href="get-started.html">Get Started</a>
+          <a href="foundations.html">Foundations</a>
+          <a href="components.html">Components</a>
+          <a href="agent-log.html" aria-current="page">Agent Log</a>
+          <a href="storybook/index.html">Storybook</a>
+        </div>
+        <button
+          type="button"
+          class="wend-theme-toggle"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          onclick="wendToggleTheme()"
+        >
+          <wend-icon name="dark-mode" size="20px"></wend-icon>
+        </button>
+      </div>
+    </nav>
+
+    <div class="wend-page">
+      <div class="wend-section">
+        <h2>Agent Log</h2>
+        <p style="color: var(--color-text-secondary)">
+          A running record of the Claude Code subagents and MCP tools used to build and maintain
+          wend-ui — what was spawned, why, and what it touched. This complements the planning
+          documents under <code>docs/superpowers/</code> in the repo, which capture
+          <em>what was decided and why</em> for a given feature; this page captures
+          <em>how the work got done</em> — which subagent types were used, which MCP
+          servers/tools did the heavy lifting, and any workarounds that had to be improvised
+          (e.g. a browser extension being unavailable mid-session). This page is hand-kept in
+          sync with <code>docs/agent-log.md</code> in the repo — neither is generated from the
+          other; see the <code>sync-agent-log</code> skill for the update steps.
+        </p>
+      </div>
+
+      <div class="wend-section">
+        <h2>Subagent types</h2>
+        <p style="color: var(--color-text-secondary)">
+          A subagent is a separate agent invocation Claude Code can spawn mid-session — it does
+          its own work (with its own tool calls) and reports back, instead of the main session
+          doing everything itself directly. These are the types available in this environment.
+        </p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>What it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>fork</code></td>
+              <td>
+                Clones the <em>current</em> session's full conversation context into a
+                background copy of itself, which keeps working while the main session stays
+                free to keep talking to the user. Used when a task needs a lot of exploratory
+                tool output (file reads, tool results) that isn't worth keeping in the main
+                conversation's context — the fork absorbs that noise and returns only its
+                findings. Always runs on the same model as the session that forked it. The only
+                type used on this project so far.
+              </td>
+            </tr>
+            <tr>
+              <td><code>general-purpose</code></td>
+              <td>
+                A fresh agent with no memory of the calling session, given full tool access. For
+                open-ended research or multi-step work where a clean, unbiased starting point
+                matters more than inherited context.
+              </td>
+            </tr>
+            <tr>
+              <td><code>Explore</code></td>
+              <td>
+                A fast, read-only agent restricted to search/read tools (no edits). For narrowly
+                locating code — "find where X is defined," "which files reference Y" — where
+                broader analysis or judgment isn't needed.
+              </td>
+            </tr>
+            <tr>
+              <td><code>Plan</code></td>
+              <td>
+                A read-only "software architect" agent for designing an implementation approach:
+                trade-offs, critical files, step-by-step plan. Used from within Claude Code's own
+                plan mode when a task is non-trivial enough to warrant explicit user sign-off
+                before writing code.
+              </td>
+            </tr>
+            <tr>
+              <td><code>claude-code-guide</code></td>
+              <td>
+                Answers questions about Claude Code itself (the CLI, hooks, slash commands, MCP
+                config), the Claude Agent SDK, or the Claude API. Not used for this project's own
+                code — only for "how does Claude Code do X" questions.
+              </td>
+            </tr>
+            <tr>
+              <td><code>statusline-setup</code></td>
+              <td>Narrowly configures the Claude Code terminal status line. Unrelated to project work.</td>
+            </tr>
+            <tr>
+              <td><code>claude</code></td>
+              <td>The generic catch-all when no more specific type fits; equivalent to not specifying a type at all.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wend-section">
+        <h2>Session log</h2>
+
+        <div style="margin-bottom: var(--spacing-500)">
+          <h3 style="margin: 0 0 var(--spacing-100)">2026-09-08 — Figma MCP re-authentication</h3>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>Task:</strong> MCP was authenticated as the wrong Figma account after a logout/login in the desktop app.</p>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>Subagents:</strong> none.</p>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>MCP tools/servers:</strong> <code>plugin:figma:figma</code> (<code>whoami</code>).</p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Other tooling notes:</strong> the Figma MCP connection has its own OAuth
+            session, separate from the desktop app's login — fixed via <code>claude mcp
+            logout</code>/<code>claude mcp login</code>, which requires an interactive terminal
+            (doesn't work through the session's own non-interactive shell or the <code>!</code>
+            prefix; had to be run in a real terminal window).
+          </p>
+          <p style="margin: 0"><strong>Outcome:</strong> no code changes — auth only.</p>
+        </div>
+
+        <div style="margin-bottom: var(--spacing-500)">
+          <h3 style="margin: 0 0 var(--spacing-100)">2026-09-08 — Token drift audits and Figma↔code syncs (multiple)</h3>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Task:</strong> several rounds of "diff tokens against Figma" and "sync the
+            change I just made in Figma," plus one explicit push from code to Figma.
+          </p>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>Subagents:</strong> none.</p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>MCP tools/servers:</strong> <code>wend-ui-design-sync</code> (<code>get_tokens</code>,
+            <code>diff_tokens</code>), <code>plugin:figma:figma</code> (<code>use_figma</code> —
+            read-only variable dumps, and later a write to rebind three semantic variables and
+            update one literal RGBA value).
+          </p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Other tooling notes:</strong> <code>use_figma</code> read-only script output
+            truncates around ~20KB — large variable dumps (the full global+semantic collections)
+            had to be split into two calls (one per collection) to avoid silent truncation
+            partway through.
+          </p>
+          <p style="margin: 0">
+            <strong>Outcome:</strong> amber→yellow global color ramp replacement, dark-mode
+            <code>action.*</code> token overrides, button text-color fix, border-color light-step
+            sync, <code>color/ui/background/warning</code> pushed to Figma. See
+            <code>packages/tokens/README.md</code> and
+            <code>packages/design-sync-mcp/figma-sync-state.json</code> for the detailed
+            rationale on each.
+          </p>
+        </div>
+
+        <div style="margin-bottom: var(--spacing-500)">
+          <h3 style="margin: 0 0 var(--spacing-100)">2026-09-08 — Light/dark mode toggle (doc site + Storybook)</h3>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>Task:</strong> add a light/dark toggle to the web-components doc site, then to Storybook.</p>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>Subagents:</strong> none.</p>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>MCP tools/servers:</strong> none — plain file edits/builds.</p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Other tooling notes:</strong> the Chrome browser extension was connected for
+            the doc site work but dropped and never reconnected for the rest of the session —
+            every subsequent "look at it in a real browser" need was done via headless Chrome
+            instead (see later entries).
+          </p>
+          <p style="margin: 0">
+            <strong>Outcome:</strong> <code>data-theme</code> toggle wired into
+            <code>packages/web-components/src/*.html</code> (inline script + <code>localStorage</code>),
+            <code>@storybook/addon-themes</code> added and configured in <code>.storybook/</code>.
+          </p>
+        </div>
+
+        <div style="margin-bottom: var(--spacing-500)">
+          <h3 style="margin: 0 0 var(--spacing-100)">2026-09-08 — wend-select / wend-option (new component from Figma)</h3>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Task:</strong> build a single-select dropdown from three new Figma
+            components (Option, Selection Panel, Select), using Floating UI for panel
+            positioning.
+          </p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Subagents:</strong> 1 <code>fork</code> — "Survey existing component-adding
+            conventions" (file layout, keyboard/interaction precedent, third-party dependency
+            convention, schema shape, docs-site pattern) — used to front-load research without
+            filling the main session's context with file listings before planning.
+          </p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>MCP tools/servers:</strong> <code>plugin:figma:figma</code>
+            (<code>use_figma</code> extensively — component-set/variant discovery, resolving
+            bound variables to hex, <code>get_metadata</code> for node structure),
+            <code>wend-ui-design-sync</code> (<code>get_tokens</code>, <code>diff_tokens</code>).
+          </p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Other tooling notes:</strong> used plan mode given the size of the change
+            (new component + new runtime dependency); asked the user two direct questions
+            mid-plan (disabled-state styling, approval to add <code>@floating-ui/dom</code>). For
+            live verification, the browser extension was still unavailable, so interactivity
+            (clicks, keyboard nav, Floating UI positioning, dark mode, viewport-edge flip
+            behavior) was verified with a small hand-written Chrome DevTools Protocol script
+            (the <code>ws</code> npm package, already present transitively — headless Chrome
+            launched with <code>--remote-debugging-port</code>, driven over the CDP WebSocket).
+            This caught a real coordinate-math bug (double-counted panel padding in the "cap at 5
+            options" logic) that a static screenshot alone wouldn't have.
+          </p>
+          <p style="margin: 0">
+            <strong>Outcome:</strong> <code>wend-select</code>/<code>wend-option</code> Stencil
+            components, tokens (<code>selection</code> role-based category,
+            <code>component/option.json</code>, <code>component/select.json</code>), schemas,
+            stories (both packages), docs-site section, <code>@floating-ui/dom</code> dependency.
+          </p>
+        </div>
+
+        <div>
+          <h3 style="margin: 0 0 var(--spacing-100)">2026-09-08 — Storybook Docs view clipping the open Select panel</h3>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>Task:</strong> the Select's option panel was cut off in Storybook's Docs view.</p>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>Subagents:</strong> none.</p>
+          <p style="margin: 0 0 var(--spacing-50)"><strong>MCP tools/servers:</strong> none.</p>
+          <p style="margin: 0 0 var(--spacing-50)">
+            <strong>Other tooling notes:</strong> two separate bugs, found only by walking the
+            live DOM via the same CDP approach (not visible from a screenshot alone): (1)
+            <code>wend-select</code>/<code>wend-option</code> were never registered via
+            <code>defineCustomElement</code> in <code>.storybook/preview.ts</code>, so they
+            silently rendered as unstyled text; (2) even after fixing that, the panel —
+            <code>position: fixed</code> specifically to avoid ancestor clipping — was still
+            clipped, because CSS <code>overflow</code> on an ancestor clips
+            <code>position: fixed</code> descendants regardless (fixed only escapes the
+            <em>positioning</em> containing block, not paint-clipping). Two nested Storybook
+            wrappers had <code>overflow: auto</code>/<code>hidden</code>
+            (<code>.docs-story</code> and its parent <code>.sbdocs-preview</code>) — the first
+            fix attempt only caught the inner one; walking the <em>entire</em> ancestor chain to
+            <code>&lt;html&gt;</code> was what confirmed both, and confirmed there wasn't a
+            third.
+          </p>
+          <p style="margin: 0">
+            <strong>Outcome:</strong> <code>.storybook/preview.ts</code> (missing
+            <code>defineCustomElement</code> calls), <code>.storybook/preview-head.html</code>
+            (<code>overflow: visible !important</code> on both wrapper classes).
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

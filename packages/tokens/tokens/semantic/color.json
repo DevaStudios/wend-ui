@@ -22,9 +22,9 @@
       "default": { "value": "{color.gray.700}" },
       "focus": { "value": "{color.gray.975}" },
       "input": { "value": "{color.gray.800}" },
-      "success": { "value": "{color.green.800}" },
-      "warning": { "value": "{color.yellow.700}" },
-      "danger": { "value": "{color.red.700}" }
+      "success": { "value": "{color.green.700}" },
+      "warning": { "value": "{color.yellow.600}" },
+      "danger": { "value": "{color.red.500}" }
     },
     "action": {
       "primary": {
@@ -32,7 +32,7 @@
         "background-hover": { "value": "{color.gray.975}" },
         "background-active": { "value": "{color.gray.1000}" },
         "background-disabled": { "value": "{color.gray.200}" },
-        "foreground": { "value": "{color.gray.50}" },
+        "foreground": { "value": "{color.gray.25}" },
         "foreground-disabled": { "value": "{color.gray.500}" }
       },
       "secondary": {
@@ -79,6 +79,12 @@
       "danger": {
         "background": { "value": "{color.red.600}" },
         "background-subtle": { "value": "#BB2B1B40" }
+      }
+    },
+    "selection": {
+      "option": {
+        "background-hover": { "value": "{color.gray.100}" },
+        "background-selected": { "value": "{color.gray.200}" }
       }
     }
   }

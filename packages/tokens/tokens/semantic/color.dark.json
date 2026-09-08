@@ -31,7 +31,8 @@
         "background": { "value": "{color.gray.700}" },
         "background-hover": { "value": "{color.gray.600}" },
         "background-active": { "value": "{color.gray.25}" },
-        "background-disabled": { "value": "{color.gray.900}" }
+        "background-disabled": { "value": "{color.gray.900}" },
+        "foreground": { "value": "{color.gray.975}" }
       },
       "secondary": {
         "foreground": { "value": "{color.gray.600}" },
@@ -72,6 +73,12 @@
       "danger": {
         "background": { "value": "{color.red.500}" },
         "background-subtle": { "value": "#E4342180" }
+      }
+    },
+    "selection": {
+      "option": {
+        "background-hover": { "value": "{color.gray.800}" },
+        "background-selected": { "value": "{color.gray.700}" }
       }
     }
   }

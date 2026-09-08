@@ -14,4 +14,20 @@
     background-color: var(--color-surface-canvas) !important;
     border-color: var(--color-border-default) !important;
   }
+
+  /* wend-select's option panel is `position: fixed` specifically so it isn't clipped by
+     ancestor containers — but CSS overflow still clips position:fixed descendants unless
+     they're moved outside the clipping ancestor's DOM subtree entirely (position:fixed only
+     escapes the positioning containing block, not paint-clipping). TWO Storybook docs
+     wrappers clip: `.docs-story` (overflow:auto) AND its own ancestor `.sbdocs-preview`
+     (overflow:hidden, easy to miss since it's not the box with the visible border — that's
+     .docs-story one level in) — fixing only .docs-story still left the panel cut off by
+     .sbdocs-preview's tighter overflow:hidden bounds. Every existing story's content already
+     fits within its own natural height (nothing here currently overflows either box) so this
+     has no effect other than letting a floating panel render outside them, which is what we
+     want. */
+  .docs-story,
+  .sbdocs-preview {
+    overflow: visible !important;
+  }
 </style>

@@ -777,6 +777,198 @@
           </tbody>
         </table>
       </div>
+
+      <div class="wend-section">
+        <h2>Option</h2>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div
+          style="
+            margin-bottom: var(--spacing-300);
+            width: 200px;
+            padding: var(--spacing-50);
+            border-radius: var(--radius-medium);
+            box-shadow: 0 1px 2px rgba(51, 51, 51, 0.2);
+          "
+        >
+          <wend-option value="apple" selected>Apple</wend-option>
+          <wend-option value="banana">Banana</wend-option>
+          <wend-option value="cherry" active>Cherry</wend-option>
+          <wend-option value="durian" disabled>Durian (out of stock)</wend-option>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-select&gt; &lt;wend-option value="a"&gt;A&lt;/wend-option&gt; &lt;wend-option
+          value="b"&gt;B&lt;/wend-option&gt; &lt;/wend-select&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>value</code></td>
+              <td><code>value</code></td>
+              <td>Value submitted for this option when selected by its parent wend-select.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>selected</code></td>
+              <td><code>selected</code></td>
+              <td>Whether this option is the currently selected one. Set by the parent wend-select.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>active</code></td>
+              <td><code>active</code></td>
+              <td>Whether this option is the keyboard-active one (highlighted, not necessarily selected). Set by the parent wend-select.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables this option, excluding it from selection and keyboard navigation.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wend-section">
+        <h2>Select</h2>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div style="margin-bottom: var(--spacing-300); max-width: 320px">
+          <wend-select label="Favorite fruit" help-text="Choose one" name="docs-select-example">
+            <wend-option value="apple">Apple</wend-option>
+            <wend-option value="banana">Banana</wend-option>
+            <wend-option value="cherry">Cherry</wend-option>
+            <wend-option value="durian" disabled>Durian (out of stock)</wend-option>
+            <wend-option value="elderberry">Elderberry</wend-option>
+          </wend-select>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">
+          More than 5 options — the panel caps at 5 rows and scrolls for the rest
+        </p>
+        <div style="margin-bottom: var(--spacing-300); max-width: 320px">
+          <wend-select label="Country" help-text="Scroll to see more" name="docs-select-scroll-example">
+            <wend-option value="ar">Argentina</wend-option>
+            <wend-option value="au">Australia</wend-option>
+            <wend-option value="br">Brazil</wend-option>
+            <wend-option value="ca">Canada</wend-option>
+            <wend-option value="de">Germany</wend-option>
+            <wend-option value="fr">France</wend-option>
+            <wend-option value="jp">Japan</wend-option>
+            <wend-option value="mx">Mexico</wend-option>
+            <wend-option value="us">United States</wend-option>
+          </wend-select>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-select label="Label"&gt; &lt;wend-option value="a"&gt;A&lt;/wend-option&gt; &lt;wend-option
+          value="b"&gt;B&lt;/wend-option&gt; &lt;/wend-select&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The select's label text. Can be an empty string for a label-less select.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showLabel</code></td>
+              <td><code>show-label</code></td>
+              <td>Whether the label is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>value</code></td>
+              <td><code>value</code></td>
+              <td>Value of the currently selected wend-option child.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>placeholder</code></td>
+              <td><code>placeholder</code></td>
+              <td>Text shown in the trigger when no option is selected.</td>
+              <td><code>string</code></td>
+              <td><code>'Select…'</code></td>
+            </tr>
+            <tr>
+              <td><code>helpText</code></td>
+              <td><code>help-text</code></td>
+              <td>Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showHelpText</code></td>
+              <td><code>show-help-text</code></td>
+              <td>Whether the help text is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>state</code></td>
+              <td><code>state</code></td>
+              <td>Validation state of the field. Drives the field's border color and the help text's tone.</td>
+              <td><code>'default' | 'success' | 'warning' | 'error'</code></td>
+              <td><code>'default'</code></td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the select and every wend-option child.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>required</code></td>
+              <td><code>required</code></td>
+              <td>Marks the select as required. Renders a marker after the label and sets aria-required on the trigger.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td><code>name</code></td>
+              <td>Name submitted for this select when part of a form.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </body>
 </html>

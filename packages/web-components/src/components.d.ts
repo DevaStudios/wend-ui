@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { WendButtonVariant } from "./components/wend-button/wend-button";
 import { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
+import { WendSelectState } from "./components/wend-select/wend-select";
 import { WendTextAreaState } from "./components/wend-text-area/wend-text-area";
 import { WendTextInputState } from "./components/wend-text-input/wend-text-input";
 export { WendButtonVariant } from "./components/wend-button/wend-button";
 export { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
+export { WendSelectState } from "./components/wend-select/wend-select";
 export { WendTextAreaState } from "./components/wend-text-area/wend-text-area";
 export { WendTextInputState } from "./components/wend-text-input/wend-text-input";
 export namespace Components {
@@ -89,6 +91,31 @@ export namespace Components {
          */
         "size": string;
     }
+    interface WendOption {
+        /**
+          * Whether this option is the keyboard-active one (highlighted, not necessarily selected). Set by the parent wend-select.
+          * @default false
+         */
+        "active": boolean;
+        /**
+          * Disables this option, excluding it from selection and keyboard navigation.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * DOM id applied to the option's role="option" element. Set by the parent wend-select (not by the consumer) so its trigger button's aria-activedescendant can reference the keyboard-active option directly.
+         */
+        "optionId"?: string;
+        /**
+          * Whether this option is the currently selected one. Set by the parent wend-select, not by the consumer directly.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Value submitted for this option when selected by its parent wend-select.
+         */
+        "value": string;
+    }
     interface WendRadio {
         /**
           * Disables the radio button.
@@ -131,6 +158,56 @@ export namespace Components {
         "name": string;
         /**
           * Value of the currently selected radio in the group.
+         */
+        "value"?: string;
+    }
+    interface WendSelect {
+        /**
+          * Disables the select and every wend-option child.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText": string;
+        /**
+          * The select's label text. Can be an empty string for a label-less select.
+          * @default ''
+         */
+        "label": string;
+        /**
+          * Name submitted for this select when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Text shown in the trigger when no option is selected.
+          * @default 'Select…'
+         */
+        "placeholder": string;
+        /**
+          * Marks the select as required. Renders a marker after the label and sets aria-required on the trigger.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText": boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel": boolean;
+        /**
+          * Validation state of the field. Drives the field's border color and the help text's tone.
+          * @default 'default'
+         */
+        "state": WendSelectState;
+        /**
+          * Value of the currently selected wend-option child.
          */
         "value"?: string;
     }
@@ -251,6 +328,10 @@ export interface WendCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendCheckboxElement;
 }
+export interface WendOptionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendOptionElement;
+}
 export interface WendRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendRadioElement;
@@ -258,6 +339,10 @@ export interface WendRadioCustomEvent<T> extends CustomEvent<T> {
 export interface WendRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendRadioGroupElement;
+}
+export interface WendSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendSelectElement;
 }
 export interface WendTextAreaCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -307,6 +392,23 @@ declare global {
         prototype: HTMLWendIconElement;
         new (): HTMLWendIconElement;
     };
+    interface HTMLWendOptionElementEventMap {
+        "wendChange": boolean;
+    }
+    interface HTMLWendOptionElement extends Components.WendOption, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendOptionElementEventMap>(type: K, listener: (this: HTMLWendOptionElement, ev: WendOptionCustomEvent<HTMLWendOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendOptionElementEventMap>(type: K, listener: (this: HTMLWendOptionElement, ev: WendOptionCustomEvent<HTMLWendOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendOptionElement: {
+        prototype: HTMLWendOptionElement;
+        new (): HTMLWendOptionElement;
+    };
     interface HTMLWendRadioElementEventMap {
         "wendChange": boolean;
     }
@@ -340,6 +442,23 @@ declare global {
     var HTMLWendRadioGroupElement: {
         prototype: HTMLWendRadioGroupElement;
         new (): HTMLWendRadioGroupElement;
+    };
+    interface HTMLWendSelectElementEventMap {
+        "wendChange": string;
+    }
+    interface HTMLWendSelectElement extends Components.WendSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendSelectElementEventMap>(type: K, listener: (this: HTMLWendSelectElement, ev: WendSelectCustomEvent<HTMLWendSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendSelectElementEventMap>(type: K, listener: (this: HTMLWendSelectElement, ev: WendSelectCustomEvent<HTMLWendSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendSelectElement: {
+        prototype: HTMLWendSelectElement;
+        new (): HTMLWendSelectElement;
     };
     interface HTMLWendTextAreaElementEventMap {
         "wendChange": string;
@@ -397,8 +516,10 @@ declare global {
         "wend-checkbox": HTMLWendCheckboxElement;
         "wend-help-text": HTMLWendHelpTextElement;
         "wend-icon": HTMLWendIconElement;
+        "wend-option": HTMLWendOptionElement;
         "wend-radio": HTMLWendRadioElement;
         "wend-radio-group": HTMLWendRadioGroupElement;
+        "wend-select": HTMLWendSelectElement;
         "wend-text-area": HTMLWendTextAreaElement;
         "wend-text-input": HTMLWendTextInputElement;
         "wend-toggle": HTMLWendToggleElement;
@@ -486,6 +607,36 @@ declare namespace LocalJSX {
          */
         "size"?: string;
     }
+    interface WendOption {
+        /**
+          * Whether this option is the keyboard-active one (highlighted, not necessarily selected). Set by the parent wend-select.
+          * @default false
+         */
+        "active"?: boolean;
+        /**
+          * Disables this option, excluding it from selection and keyboard navigation.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Emitted when the option is clicked. Mirrors wend-radio's wendChange shape (a boolean, always true here since clicking an option only ever means "select me") so the parent wend-select can reuse the same
+          * @Listen ('wendChange') coordinator pattern wend-radio-group uses for wend-radio.
+         */
+        "onWendChange"?: (event: WendOptionCustomEvent<boolean>) => void;
+        /**
+          * DOM id applied to the option's role="option" element. Set by the parent wend-select (not by the consumer) so its trigger button's aria-activedescendant can reference the keyboard-active option directly.
+         */
+        "optionId"?: string;
+        /**
+          * Whether this option is the currently selected one. Set by the parent wend-select, not by the consumer directly.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Value submitted for this option when selected by its parent wend-select.
+         */
+        "value": string;
+    }
     interface WendRadio {
         /**
           * Disables the radio button.
@@ -536,6 +687,60 @@ declare namespace LocalJSX {
         "onWendChange"?: (event: WendRadioGroupCustomEvent<string>) => void;
         /**
           * Value of the currently selected radio in the group.
+         */
+        "value"?: string;
+    }
+    interface WendSelect {
+        /**
+          * Disables the select and every wend-option child.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText"?: string;
+        /**
+          * The select's label text. Can be an empty string for a label-less select.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Name submitted for this select when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Emitted when the selected value changes.
+         */
+        "onWendChange"?: (event: WendSelectCustomEvent<string>) => void;
+        /**
+          * Text shown in the trigger when no option is selected.
+          * @default 'Select…'
+         */
+        "placeholder"?: string;
+        /**
+          * Marks the select as required. Renders a marker after the label and sets aria-required on the trigger.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText"?: boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel"?: boolean;
+        /**
+          * Validation state of the field. Drives the field's border color and the help text's tone.
+          * @default 'default'
+         */
+        "state"?: WendSelectState;
+        /**
+          * Value of the currently selected wend-option child.
          */
         "value"?: string;
     }
@@ -686,6 +891,13 @@ declare namespace LocalJSX {
         "size": string;
         "color": string;
     }
+    interface WendOptionAttributes {
+        "value": string;
+        "selected": boolean;
+        "active": boolean;
+        "disabled": boolean;
+        "optionId": string;
+    }
     interface WendRadioAttributes {
         "selected": boolean;
         "name": string;
@@ -698,6 +910,18 @@ declare namespace LocalJSX {
         "name": string;
         "value": string;
         "disabled": boolean;
+    }
+    interface WendSelectAttributes {
+        "label": string;
+        "showLabel": boolean;
+        "value": string;
+        "placeholder": string;
+        "helpText": string;
+        "showHelpText": boolean;
+        "state": WendSelectState;
+        "disabled": boolean;
+        "required": boolean;
+        "name": string;
     }
     interface WendTextAreaAttributes {
         "label": string;
@@ -733,8 +957,10 @@ declare namespace LocalJSX {
         "wend-checkbox": Omit<WendCheckbox, keyof WendCheckboxAttributes> & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes]?: WendCheckbox[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `attr:${K}`]?: WendCheckboxAttributes[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `prop:${K}`]?: WendCheckbox[K] };
         "wend-help-text": Omit<WendHelpText, keyof WendHelpTextAttributes> & { [K in keyof WendHelpText & keyof WendHelpTextAttributes]?: WendHelpText[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `attr:${K}`]?: WendHelpTextAttributes[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `prop:${K}`]?: WendHelpText[K] };
         "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
+        "wend-option": Omit<WendOption, keyof WendOptionAttributes> & { [K in keyof WendOption & keyof WendOptionAttributes]?: WendOption[K] } & { [K in keyof WendOption & keyof WendOptionAttributes as `attr:${K}`]?: WendOptionAttributes[K] } & { [K in keyof WendOption & keyof WendOptionAttributes as `prop:${K}`]?: WendOption[K] } & OneOf<"value", WendOption["value"], WendOptionAttributes["value"]>;
         "wend-radio": Omit<WendRadio, keyof WendRadioAttributes> & { [K in keyof WendRadio & keyof WendRadioAttributes]?: WendRadio[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `attr:${K}`]?: WendRadioAttributes[K] } & { [K in keyof WendRadio & keyof WendRadioAttributes as `prop:${K}`]?: WendRadio[K] };
         "wend-radio-group": Omit<WendRadioGroup, keyof WendRadioGroupAttributes> & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes]?: WendRadioGroup[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `attr:${K}`]?: WendRadioGroupAttributes[K] } & { [K in keyof WendRadioGroup & keyof WendRadioGroupAttributes as `prop:${K}`]?: WendRadioGroup[K] } & OneOf<"name", WendRadioGroup["name"], WendRadioGroupAttributes["name"]>;
+        "wend-select": Omit<WendSelect, keyof WendSelectAttributes> & { [K in keyof WendSelect & keyof WendSelectAttributes]?: WendSelect[K] } & { [K in keyof WendSelect & keyof WendSelectAttributes as `attr:${K}`]?: WendSelectAttributes[K] } & { [K in keyof WendSelect & keyof WendSelectAttributes as `prop:${K}`]?: WendSelect[K] };
         "wend-text-area": Omit<WendTextArea, keyof WendTextAreaAttributes> & { [K in keyof WendTextArea & keyof WendTextAreaAttributes]?: WendTextArea[K] } & { [K in keyof WendTextArea & keyof WendTextAreaAttributes as `attr:${K}`]?: WendTextAreaAttributes[K] } & { [K in keyof WendTextArea & keyof WendTextAreaAttributes as `prop:${K}`]?: WendTextArea[K] };
         "wend-text-input": Omit<WendTextInput, keyof WendTextInputAttributes> & { [K in keyof WendTextInput & keyof WendTextInputAttributes]?: WendTextInput[K] } & { [K in keyof WendTextInput & keyof WendTextInputAttributes as `attr:${K}`]?: WendTextInputAttributes[K] } & { [K in keyof WendTextInput & keyof WendTextInputAttributes as `prop:${K}`]?: WendTextInput[K] };
         "wend-toggle": Omit<WendToggle, keyof WendToggleAttributes> & { [K in keyof WendToggle & keyof WendToggleAttributes]?: WendToggle[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `attr:${K}`]?: WendToggleAttributes[K] } & { [K in keyof WendToggle & keyof WendToggleAttributes as `prop:${K}`]?: WendToggle[K] };
@@ -748,8 +974,10 @@ declare module "@stencil/core" {
             "wend-checkbox": LocalJSX.IntrinsicElements["wend-checkbox"] & JSXBase.HTMLAttributes<HTMLWendCheckboxElement>;
             "wend-help-text": LocalJSX.IntrinsicElements["wend-help-text"] & JSXBase.HTMLAttributes<HTMLWendHelpTextElement>;
             "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
+            "wend-option": LocalJSX.IntrinsicElements["wend-option"] & JSXBase.HTMLAttributes<HTMLWendOptionElement>;
             "wend-radio": LocalJSX.IntrinsicElements["wend-radio"] & JSXBase.HTMLAttributes<HTMLWendRadioElement>;
             "wend-radio-group": LocalJSX.IntrinsicElements["wend-radio-group"] & JSXBase.HTMLAttributes<HTMLWendRadioGroupElement>;
+            "wend-select": LocalJSX.IntrinsicElements["wend-select"] & JSXBase.HTMLAttributes<HTMLWendSelectElement>;
             "wend-text-area": LocalJSX.IntrinsicElements["wend-text-area"] & JSXBase.HTMLAttributes<HTMLWendTextAreaElement>;
             "wend-text-input": LocalJSX.IntrinsicElements["wend-text-input"] & JSXBase.HTMLAttributes<HTMLWendTextInputElement>;
             "wend-toggle": LocalJSX.IntrinsicElements["wend-toggle"] & JSXBase.HTMLAttributes<HTMLWendToggleElement>;

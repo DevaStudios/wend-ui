@@ -15,6 +15,8 @@ import { defineCustomElement as defineWendIcon } from '@devastudios/web-componen
 import { defineCustomElement as defineWendHelpText } from '@devastudios/web-components/dist/components/wend-help-text.js';
 import { defineCustomElement as defineWendTextInput } from '@devastudios/web-components/dist/components/wend-text-input.js';
 import { defineCustomElement as defineWendTextArea } from '@devastudios/web-components/dist/components/wend-text-area.js';
+import { defineCustomElement as defineWendOption } from '@devastudios/web-components/dist/components/wend-option.js';
+import { defineCustomElement as defineWendSelect } from '@devastudios/web-components/dist/components/wend-select.js';
 import '@devastudios/styles';
 
 defineWendButton();
@@ -26,6 +28,8 @@ defineWendIcon();
 defineWendHelpText();
 defineWendTextInput();
 defineWendTextArea();
+defineWendOption();
+defineWendSelect();
 
 const preview: Preview = {
   tags: ['autodocs'],

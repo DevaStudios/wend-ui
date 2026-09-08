@@ -1,0 +1,105 @@
+:host {
+  display: block;
+  position: relative;
+  font-family: var(--font-family-base, sans-serif);
+}
+
+div.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.label-row {
+  display: block;
+  margin-bottom: var(--select-gap, 8px);
+}
+
+.label-text {
+  font-size: var(--select-label-font-size, 14px);
+  color: var(--color-select-label-foreground-default, #1a1a1a);
+}
+
+.required-marker {
+  margin-inline-start: var(--select-required-marker-gap, 2px);
+  color: var(--color-select-required-marker-foreground-default, #93261a);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--select-height, 40px);
+  padding: var(--select-padding-block, 4px) var(--select-padding-inline, 16px);
+  border-radius: var(--select-radius, 8px);
+  border: var(--select-border-width, 1px) solid var(--color-select-default-border-default, #676565);
+  background-color: var(--color-select-default-background-default, #ffffff);
+  font-family: inherit;
+  font-size: var(--select-value-font-size, 14px);
+  color: var(--color-select-content-foreground-default, #1a1a1a);
+  cursor: pointer;
+}
+
+.field:disabled {
+  cursor: not-allowed;
+}
+
+.field:focus-visible {
+  outline: var(--select-focus-outline-width, 1px) solid var(--select-focus-outline-color, #1a1a1a);
+  outline-offset: var(--select-focus-outline-offset, 0);
+}
+
+.field.success {
+  border-color: var(--color-select-success-border-default, #206a47);
+}
+
+.field.warning {
+  border-color: var(--color-select-warning-border-default, #a36b0a);
+}
+
+.field.error {
+  border-color: var(--color-select-error-border-default, #93261a);
+}
+
+.field .value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: start;
+}
+
+.field .value.placeholder {
+  color: var(--color-text-secondary, #676565);
+}
+
+.field wend-icon {
+  flex-shrink: 0;
+  color: var(--color-select-chevron-foreground-default, #676565);
+}
+
+.field + wend-help-text {
+  display: block;
+  margin-top: var(--select-gap, 8px);
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  min-width: max-content;
+  /* max-height is set inline by wend-select.tsx, measured from the actual rendered
+     options so it caps at exactly MAX_VISIBLE_OPTIONS rows and then scrolls. */
+  overflow-y: auto;
+  padding: var(--select-panel-padding, 4px);
+  border-radius: var(--select-panel-radius, 8px);
+  background-color: var(--color-select-panel-background-default, #ffffff);
+  box-shadow: var(--select-panel-shadow, 0 1px 2px rgba(51, 51, 51, 0.2));
+  display: none;
+}
+
+.panel.open {
+  display: block;
+}

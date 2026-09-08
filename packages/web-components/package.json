@@ -46,7 +46,8 @@
   "dependencies": {
     "@devastudios/icons": "^0.1.0",
     "@devastudios/styles": "^0.2.0",
-    "@devastudios/tokens": "^0.2.0"
+    "@devastudios/tokens": "^0.2.0",
+    "@floating-ui/dom": "^1.8.0"
   },
   "devDependencies": {
     "@stencil/core": "^4.20.0",

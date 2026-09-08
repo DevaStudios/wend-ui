@@ -1,0 +1,21 @@
+{
+  "option": {
+    "padding-block": { "value": "{spacing.50}" },
+    "padding-inline": { "value": "{spacing.100}" },
+    "radius": { "value": "{radius.regular}" }
+  },
+  "color": {
+    "option": {
+      "row": {
+        "background": {
+          "default": { "value": "transparent" },
+          "hover": { "value": "{color.selection.option.background-hover}" },
+          "selected": { "value": "{color.selection.option.background-selected}" }
+        },
+        "foreground": {
+          "default": { "value": "{color.text.primary}" }
+        }
+      }
+    }
+  }
+}

@@ -17,12 +17,14 @@
 
 ### Used by
 
+ - [wend-select](../wend-select)
  - [wend-text-area](../wend-text-area)
  - [wend-text-input](../wend-text-input)
 
 ### Graph
 ```mermaid
 graph TD;
+  wend-select --> wend-help-text
   wend-text-area --> wend-help-text
   wend-text-input --> wend-help-text
   style wend-help-text fill:#f9f,stroke:#333,stroke-width:4px

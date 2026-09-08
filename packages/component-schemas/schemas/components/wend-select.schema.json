@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-select.schema.json",
+  "title": "WendSelect",
+  "description": "A labeled, single-select dropdown with optional help text. Renders a button trigger and a Floating UI-positioned option panel; consumers slot in wend-option children.",
+  "type": "object",
+  "x-wend-component": "wend-select",
+  "x-wend-slots": [
+    {
+      "name": "(default)",
+      "description": "wend-option elements this select can choose between."
+    }
+  ],
+  "x-wend-tokens": [
+    "select.height",
+    "select.padding-block",
+    "select.padding-inline",
+    "select.radius",
+    "select.border-width",
+    "select.gap",
+    "select.label-font-size",
+    "select.value-font-size",
+    "select.chevron-size",
+    "select.focus.outline-color",
+    "select.focus.outline-width",
+    "select.focus.outline-offset",
+    "select.required-marker.gap",
+    "select.panel.radius",
+    "select.panel.padding",
+    "select.panel.offset",
+    "select.panel.shadow",
+    "color.select.label.foreground.default",
+    "color.select.content.foreground.default",
+    "color.select.chevron.foreground.default",
+    "color.select.default.background.default",
+    "color.select.default.border.default",
+    "color.select.success.border.default",
+    "color.select.warning.border.default",
+    "color.select.error.border.default",
+    "color.select.required-marker.foreground.default",
+    "color.select.panel.background.default"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The select's label text. Can be an empty string for a label-less select."
+    },
+    "show-label": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the label is rendered."
+    },
+    "value": {
+      "type": "string",
+      "description": "Value of the currently selected wend-option child."
+    },
+    "placeholder": {
+      "type": "string",
+      "default": "Select…",
+      "description": "Text shown in the trigger when no option is selected."
+    },
+    "help-text": {
+      "type": "string",
+      "default": "",
+      "description": "Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing."
+    },
+    "show-help-text": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the help text is rendered."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["default", "success", "warning", "error"],
+      "default": "default",
+      "description": "Validation state of the field. Drives the field's border color and the help text's tone."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the select and every wend-option child."
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Marks the select as required. Renders a marker after the label and sets aria-required on the trigger."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name submitted for this select when part of a form."
+    }
+  },
+  "additionalProperties": false
+}

@@ -21,7 +21,7 @@ const SELF_EVIDENT_CATEGORIES = ['text', 'surface', 'border'];
 // doesn't say whether a variant is a background, foreground, or border color) — these
 // require an explicit property segment. Add a new category here if it has the same
 // ambiguity.
-const ROLE_BASED_CATEGORIES = ['action', 'feedback'];
+const ROLE_BASED_CATEGORIES = ['action', 'feedback', 'selection'];
 
 const errors = [];
 

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-option.schema.json",
+  "title": "WendOption",
+  "description": "A single selectable row inside a wend-select's option panel.",
+  "type": "object",
+  "x-wend-component": "wend-option",
+  "x-wend-slots": [
+    {
+      "name": "(default)",
+      "description": "The option's visible label content."
+    }
+  ],
+  "x-wend-tokens": [
+    "option.padding-block",
+    "option.padding-inline",
+    "option.radius",
+    "color.option.row.background.default",
+    "color.option.row.background.hover",
+    "color.option.row.background.selected",
+    "color.option.row.foreground.default"
+  ],
+  "properties": {
+    "value": {
+      "type": "string",
+      "description": "Value submitted for this option when selected by its parent wend-select."
+    },
+    "selected": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this option is the currently selected one. Set by the parent wend-select, not by the consumer directly."
+    },
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this option is the keyboard-active one (highlighted, not necessarily selected). Set by the parent wend-select."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables this option, excluding it from selection and keyboard navigation."
+    }
+  },
+  "required": ["value"],
+  "additionalProperties": false
+}

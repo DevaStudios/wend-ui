@@ -20,12 +20,16 @@
 
  - [wend-button](../wend-button)
  - [wend-checkbox](../wend-checkbox)
+ - [wend-option](../wend-option)
+ - [wend-select](../wend-select)
 
 ### Graph
 ```mermaid
 graph TD;
   wend-button --> wend-icon
   wend-checkbox --> wend-icon
+  wend-option --> wend-icon
+  wend-select --> wend-icon
   style wend-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

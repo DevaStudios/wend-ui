@@ -9,6 +9,9 @@ body {
   padding: 0 var(--spacing-300);
   border-bottom: 1px solid var(--color-border-default);
   background-color: var(--color-surface-canvas);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .wend-nav__brand {
@@ -23,7 +26,8 @@ body {
   align-items: stretch;
   height: 100%;
   gap: var(--spacing-300);
-  margin-left: var(--spacing-400);
+  margin-left: auto;
+  margin-right: var(--spacing-400);
 }
 
 .wend-nav__section-link {
@@ -49,7 +53,6 @@ body {
   display: flex;
   align-items: center;
   gap: var(--spacing-300);
-  margin-left: auto;
 }
 
 .wend-nav__storybook-link {
@@ -127,6 +130,7 @@ body {
   .wend-nav__sections {
     height: auto;
     margin-left: 0;
+    margin-right: 0;
     flex-wrap: wrap;
   }
 
@@ -226,6 +230,23 @@ body {
 .wend-scale-row__box {
   background-color: var(--color-action-primary-background);
   flex-shrink: 0;
+}
+
+.wend-storybook-embed {
+  width: 100%;
+  height: 600px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-regular);
+}
+
+.wend-storybook-embed--canvas {
+  height: 160px;
+}
+
+.wend-storybook-embed--docs {
+  /* Resized to fit its actual content via wendResizeStorybookEmbed() once loaded (see the
+     component page's own script) — this is only the placeholder height before that runs. */
+  height: 800px;
 }
 
 .wend-type-row {

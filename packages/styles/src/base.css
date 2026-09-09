@@ -2,8 +2,11 @@
   padding: var(--spacing-200);
 }
 
-.wend-stack > * + * {
-  margin-top: var(--spacing-100);
+.wend-stack {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .wend-surface {

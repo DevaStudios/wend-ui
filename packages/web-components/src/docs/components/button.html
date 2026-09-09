@@ -213,8 +213,44 @@
           </tbody>
         </table>
       </div>
+
+      <!-- Storybook embed prototype — hidden 2026-09-09, not deleted. Remove the `hidden`
+           attribute below to bring it back; see the Agent Log for the full evaluation
+           (tried the full manager UI, then the canvas-only story embed, then this autodocs
+           embed with the auto-resize script further down this file). -->
+      <div class="wend-section" hidden>
+        <h2>Storybook (prototype embed)</h2>
+        <p style="margin: 0 0 var(--spacing-100); color: var(--color-text-secondary); font-size: var(--font-size-175)">
+          Testing the autodocs page embed — same no-manager-chrome iframe as the single-story
+          version, pointed at the component's Docs entry instead: title, description, every
+          variant, and the args/controls table, all authored once in Storybook rather than
+          duplicated by hand here.
+        </p>
+        <iframe
+          class="wend-storybook-embed wend-storybook-embed--docs"
+          src="../../storybook/iframe.html?id=web-components-button--docs&viewMode=docs"
+          title="Button — Storybook Docs"
+          loading="lazy"
+          onload="wendResizeStorybookEmbed(this)"
+        ></iframe>
+      </div>
         </div>
       </main>
     </div>
+    <script>
+      function wendResizeStorybookEmbed(iframe) {
+        function resize() {
+          var doc = iframe.contentDocument;
+          if (!doc || !doc.body) return;
+          iframe.style.height = doc.body.scrollHeight + 'px';
+        }
+        resize();
+        try {
+          new ResizeObserver(resize).observe(iframe.contentDocument.body);
+        } catch (e) {
+          // Cross-origin or ResizeObserver unavailable — the one-time resize above still applies.
+        }
+      }
+    </script>
   </body>
 </html>

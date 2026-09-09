@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>wend-ui</title>
+    <title>wend-ui — Using with React</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <script>
       (function () {
@@ -44,22 +44,22 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
     />
-    <link rel="stylesheet" href="build/wend-ui-web-components.css" />
-    <link rel="stylesheet" href="global/docs.css" />
-    <script type="module" src="build/wend-ui-web-components.esm.js"></script>
-    <script nomodule src="build/wend-ui-web-components.js"></script>
+    <link rel="stylesheet" href="../../build/wend-ui-web-components.css" />
+    <link rel="stylesheet" href="../../global/docs.css" />
+    <script type="module" src="../../build/wend-ui-web-components.esm.js"></script>
+    <script nomodule src="../../build/wend-ui-web-components.js"></script>
   </head>
   <body>
     <nav class="wend-nav">
-      <a class="wend-nav__brand" href="index.html">wend-ui</a>
+      <a class="wend-nav__brand" href="../../index.html">wend-ui</a>
       <div class="wend-nav__sections">
-        <a class="wend-nav__section-link" href="docs/get-started/installation.html">Get Started</a>
-        <a class="wend-nav__section-link" href="docs/components/button.html">Components</a>
-        <a class="wend-nav__section-link" href="docs/foundations/color.html">Foundations</a>
-        <a class="wend-nav__section-link" href="agent-log.html">Agent Log</a>
+        <a class="wend-nav__section-link" href="../../docs/get-started/installation.html" aria-current="page">Get Started</a>
+        <a class="wend-nav__section-link" href="../../docs/components/button.html">Components</a>
+        <a class="wend-nav__section-link" href="../../docs/foundations/color.html">Foundations</a>
+        <a class="wend-nav__section-link" href="../../agent-log.html">Agent Log</a>
       </div>
       <div class="wend-nav__right">
-        <a class="wend-nav__storybook-link" href="storybook/index.html">Storybook</a>
+        <a class="wend-nav__storybook-link" href="../../storybook/index.html">Storybook</a>
         <button
           type="button"
           class="wend-theme-toggle"
@@ -72,23 +72,30 @@
       </div>
     </nav>
 
-    <div class="wend-page">
-      <div class="wend-hero">
-        <h1>wend-ui</h1>
-        <p>A calm, considered design system.</p>
-        <div class="wend-hero__ctas">
-          <wend-button
-            variant="primary"
-            label="Get Started"
-            onclick="location.href = 'docs/get-started/installation.html'"
-          ></wend-button>
-          <wend-button
-            variant="secondary"
-            label="View Components"
-            onclick="location.href = 'docs/components/button.html'"
-          ></wend-button>
+    <div class="wend-layout">
+      <nav class="wend-sidebar" aria-label="Get Started pages">
+        <span class="wend-sidebar__label">Get Started</span>
+        <a class="wend-sidebar__link" href="installation.html">Installation</a>
+        <a class="wend-sidebar__link" href="basic-usage.html">Basic usage</a>
+        <a class="wend-sidebar__link" href="using-with-react.html" aria-current="page">Using with React</a>
+      </nav>
+      <main class="wend-main">
+        <div class="wend-page">
+      <div class="wend-section">
+        <h1>Using with React</h1>
+        <p>
+          A generated set of React wrapper components ships from <code>@devastudios/react</code>, so components can be
+          used the same way as any other React component, with full prop typing:
+        </p>
+        <code class="wend-code"
+          >import { WendButton } from '@devastudios/react';<br /><br />
+          function App() {<br />
+          &nbsp;&nbsp;return &lt;WendButton variant="primary" label="Click me" /&gt;;<br />
+          }</code
+        >
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   </body>
 </html>

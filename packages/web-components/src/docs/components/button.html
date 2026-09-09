@@ -1,0 +1,220 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>wend-ui — Button</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var STORAGE_KEY = 'wend-theme';
+        function currentTheme() {
+          return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function applyTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+        }
+        function syncToggleButtons() {
+          var isDark = currentTheme() === 'dark';
+          document.querySelectorAll('.wend-theme-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          });
+        }
+
+        var stored = localStorage.getItem(STORAGE_KEY);
+        applyTheme(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+        window.wendToggleTheme = function () {
+          var next = currentTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+          syncToggleButtons();
+        };
+
+        document.addEventListener('DOMContentLoaded', syncToggleButtons);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="../../build/wend-ui-web-components.css" />
+    <link rel="stylesheet" href="../../global/docs.css" />
+    <script type="module" src="../../build/wend-ui-web-components.esm.js"></script>
+    <script nomodule src="../../build/wend-ui-web-components.js"></script>
+  </head>
+  <body>
+    <nav class="wend-nav">
+      <a class="wend-nav__brand" href="../../index.html">wend-ui</a>
+      <div class="wend-nav__sections">
+        <a class="wend-nav__section-link" href="../../docs/get-started/installation.html">Get Started</a>
+        <a class="wend-nav__section-link" href="../../docs/components/button.html" aria-current="page">Components</a>
+        <a class="wend-nav__section-link" href="../../docs/foundations/color.html">Foundations</a>
+        <a class="wend-nav__section-link" href="../../agent-log.html">Agent Log</a>
+      </div>
+      <div class="wend-nav__right">
+        <a class="wend-nav__storybook-link" href="../../storybook/index.html">Storybook</a>
+        <button
+          type="button"
+          class="wend-theme-toggle"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          onclick="wendToggleTheme()"
+        >
+          <wend-icon name="dark-mode" size="20px"></wend-icon>
+        </button>
+      </div>
+    </nav>
+
+    <div class="wend-layout">
+      <nav class="wend-sidebar" aria-label="Components pages">
+        <span class="wend-sidebar__label">Components</span>
+        <a class="wend-sidebar__link" href="button.html" aria-current="page">Button</a>
+        <a class="wend-sidebar__link" href="checkbox.html">Checkbox</a>
+        <a class="wend-sidebar__link" href="help-text.html">Help Text</a>
+        <a class="wend-sidebar__link" href="icon.html">Icon</a>
+        <a class="wend-sidebar__link" href="option.html">Option</a>
+        <a class="wend-sidebar__link" href="radio.html">Radio</a>
+        <a class="wend-sidebar__link" href="radio-group.html">Radio Group</a>
+        <a class="wend-sidebar__link" href="select.html">Select</a>
+        <a class="wend-sidebar__link" href="text-area.html">Text Area</a>
+        <a class="wend-sidebar__link" href="text-input.html">Text Input</a>
+        <a class="wend-sidebar__link" href="toggle.html">Toggle</a>
+      </nav>
+      <main class="wend-main">
+        <div class="wend-page">
+      <div class="wend-section">
+        <h1>Button</h1>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-button variant="primary" label="Primary button"></wend-button>
+          <wend-button variant="secondary" label="Secondary button"></wend-button>
+          <wend-button variant="tertiary" label="Tertiary button"></wend-button>
+          <wend-button variant="destructive-primary" label="Destructive primary button"></wend-button>
+          <wend-button variant="destructive-secondary" label="Destructive secondary button"></wend-button>
+          <wend-button variant="destructive-tertiary" label="Destructive tertiary button"></wend-button>
+          <wend-button variant="primary" label="Disabled button" disabled></wend-button>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">With icons</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-button variant="primary" label="Save" icon-left="add"></wend-button>
+          <wend-button variant="secondary" label="Next" icon-right="arrow-right"></wend-button>
+          <wend-button
+            variant="tertiary"
+            label="Sync"
+            icon-left="synchronize-arrows"
+            icon-right="arrow-right"
+          ></wend-button>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Icon-only</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-button variant="primary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="secondary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="tertiary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="primary" icon-left="add" icon-only disabled></wend-button>
+          <wend-button variant="destructive-primary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="destructive-secondary" icon-left="add" icon-only></wend-button>
+          <wend-button variant="destructive-tertiary" icon-left="add" icon-only></wend-button>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">States (primary)</p>
+        <p style="margin: 0 0 var(--spacing-100); color: var(--color-text-secondary); font-size: var(--font-size-175)">
+          Hover and Active are shown as static swatches here since they're pointer-driven pseudo-states — try the
+          Default button above to see them live.
+        </p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-button variant="primary" label="Default"></wend-button>
+          <wend-button
+            variant="primary"
+            label="Hover"
+            style="--color-button-primary-background-default: var(--color-button-primary-background-hover)"
+          ></wend-button>
+          <wend-button
+            variant="primary"
+            label="Active"
+            style="--color-button-primary-background-default: var(--color-button-primary-background-active)"
+          ></wend-button>
+          <wend-button variant="primary" label="Disabled" disabled></wend-button>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-button variant="primary" label="Label"&gt;&lt;/wend-button&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the button.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>variant</code></td>
+              <td><code>variant</code></td>
+              <td>Visual style of the button.</td>
+              <td>
+                <code
+                  >"primary" | "secondary" | "tertiary" | "destructive-primary" | "destructive-secondary" |
+                  "destructive-tertiary"</code
+                >
+              </td>
+              <td><code>'primary'</code></td>
+            </tr>
+            <tr>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The button's label text. Can be an empty string for an icon-only button.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>iconLeft</code></td>
+              <td><code>icon-left</code></td>
+              <td>Name of a wend-ui icon to render on the left of the label.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>iconRight</code></td>
+              <td><code>icon-right</code></td>
+              <td>Name of a wend-ui icon to render on the right of the label.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+            <tr>
+              <td><code>iconOnly</code></td>
+              <td><code>icon-only</code></td>
+              <td>Renders a square, label-less button containing only icon-left. Ignores the label and icon-right.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

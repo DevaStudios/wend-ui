@@ -1,0 +1,139 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>wend-ui — Toggle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var STORAGE_KEY = 'wend-theme';
+        function currentTheme() {
+          return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function applyTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+        }
+        function syncToggleButtons() {
+          var isDark = currentTheme() === 'dark';
+          document.querySelectorAll('.wend-theme-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          });
+        }
+
+        var stored = localStorage.getItem(STORAGE_KEY);
+        applyTheme(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+        window.wendToggleTheme = function () {
+          var next = currentTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+          syncToggleButtons();
+        };
+
+        document.addEventListener('DOMContentLoaded', syncToggleButtons);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="../../build/wend-ui-web-components.css" />
+    <link rel="stylesheet" href="../../global/docs.css" />
+    <script type="module" src="../../build/wend-ui-web-components.esm.js"></script>
+    <script nomodule src="../../build/wend-ui-web-components.js"></script>
+  </head>
+  <body>
+    <nav class="wend-nav">
+      <a class="wend-nav__brand" href="../../index.html">wend-ui</a>
+      <div class="wend-nav__sections">
+        <a class="wend-nav__section-link" href="../../docs/get-started/installation.html">Get Started</a>
+        <a class="wend-nav__section-link" href="../../docs/components/button.html" aria-current="page">Components</a>
+        <a class="wend-nav__section-link" href="../../docs/foundations/color.html">Foundations</a>
+        <a class="wend-nav__section-link" href="../../agent-log.html">Agent Log</a>
+      </div>
+      <div class="wend-nav__right">
+        <a class="wend-nav__storybook-link" href="../../storybook/index.html">Storybook</a>
+        <button
+          type="button"
+          class="wend-theme-toggle"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          onclick="wendToggleTheme()"
+        >
+          <wend-icon name="dark-mode" size="20px"></wend-icon>
+        </button>
+      </div>
+    </nav>
+
+    <div class="wend-layout">
+      <nav class="wend-sidebar" aria-label="Components pages">
+        <span class="wend-sidebar__label">Components</span>
+        <a class="wend-sidebar__link" href="button.html">Button</a>
+        <a class="wend-sidebar__link" href="checkbox.html">Checkbox</a>
+        <a class="wend-sidebar__link" href="help-text.html">Help Text</a>
+        <a class="wend-sidebar__link" href="icon.html">Icon</a>
+        <a class="wend-sidebar__link" href="option.html">Option</a>
+        <a class="wend-sidebar__link" href="radio.html">Radio</a>
+        <a class="wend-sidebar__link" href="radio-group.html">Radio Group</a>
+        <a class="wend-sidebar__link" href="select.html">Select</a>
+        <a class="wend-sidebar__link" href="text-area.html">Text Area</a>
+        <a class="wend-sidebar__link" href="text-input.html">Text Input</a>
+        <a class="wend-sidebar__link" href="toggle.html" aria-current="page">Toggle</a>
+      </nav>
+      <main class="wend-main">
+        <div class="wend-page">
+      <div class="wend-section">
+        <h1>Toggle</h1>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
+          <wend-toggle></wend-toggle>
+          <wend-toggle checked></wend-toggle>
+          <wend-toggle disabled></wend-toggle>
+          <wend-toggle checked disabled></wend-toggle>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)">&lt;wend-toggle&gt;&lt;/wend-toggle&gt;</code>
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>checked</code></td>
+              <td><code>checked</code></td>
+              <td>Whether the toggle is on.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the toggle.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

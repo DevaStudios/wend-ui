@@ -1,0 +1,176 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>wend-ui — Spacing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var STORAGE_KEY = 'wend-theme';
+        function currentTheme() {
+          return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function applyTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+        }
+        function syncToggleButtons() {
+          var isDark = currentTheme() === 'dark';
+          document.querySelectorAll('.wend-theme-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          });
+        }
+
+        var stored = localStorage.getItem(STORAGE_KEY);
+        applyTheme(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+        window.wendToggleTheme = function () {
+          var next = currentTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+          syncToggleButtons();
+        };
+
+        document.addEventListener('DOMContentLoaded', syncToggleButtons);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="../../build/wend-ui-web-components.css" />
+    <link rel="stylesheet" href="../../global/docs.css" />
+    <script type="module" src="../../build/wend-ui-web-components.esm.js"></script>
+    <script nomodule src="../../build/wend-ui-web-components.js"></script>
+  </head>
+  <body>
+    <nav class="wend-nav">
+      <a class="wend-nav__brand" href="../../index.html">wend-ui</a>
+      <div class="wend-nav__sections">
+        <a class="wend-nav__section-link" href="../../docs/get-started/installation.html">Get Started</a>
+        <a class="wend-nav__section-link" href="../../docs/components/button.html">Components</a>
+        <a class="wend-nav__section-link" href="../../docs/foundations/color.html" aria-current="page">Foundations</a>
+        <a class="wend-nav__section-link" href="../../agent-log.html">Agent Log</a>
+      </div>
+      <div class="wend-nav__right">
+        <a class="wend-nav__storybook-link" href="../../storybook/index.html">Storybook</a>
+        <button
+          type="button"
+          class="wend-theme-toggle"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          onclick="wendToggleTheme()"
+        >
+          <wend-icon name="dark-mode" size="20px"></wend-icon>
+        </button>
+      </div>
+    </nav>
+
+    <div class="wend-layout">
+      <nav class="wend-sidebar" aria-label="Foundations pages">
+        <span class="wend-sidebar__label">Foundations</span>
+        <a class="wend-sidebar__link" href="color.html">Color</a>
+        <a class="wend-sidebar__link" href="spacing.html" aria-current="page">Spacing</a>
+        <a class="wend-sidebar__link" href="radius.html">Radius</a>
+        <a class="wend-sidebar__link" href="typography.html">Typography</a>
+      </nav>
+      <main class="wend-main">
+        <div class="wend-page">
+      <div class="wend-section">
+        <h1>Spacing</h1>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-0 (0px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-0); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-25 (2px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-25); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-50 (4px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-50); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-100 (8px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-100); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-125 (10px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-125); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-150 (12px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-150); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-200 (16px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-200); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-250 (20px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-250); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-275 (22px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-275); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-300 (24px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-300); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-350 (28px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-350); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-400 (32px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-400); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-500 (40px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-500); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-550 (44px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-550); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-600 (48px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-600); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-700 (54px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-700); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-800 (64px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-800); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-1000 (88px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-1000); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-1200 (96px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-1200); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-1600 (128px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-1600); height: 24px"></div>
+        </div>
+        <div class="wend-scale-row">
+          <span class="wend-scale-row__label">spacing-3200 (256px)</span>
+          <div class="wend-scale-row__box" style="width: var(--spacing-3200); height: 24px"></div>
+        </div>
+      </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

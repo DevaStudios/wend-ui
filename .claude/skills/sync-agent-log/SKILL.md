@@ -55,7 +55,7 @@ their own pairs of files.
    config picks up the edited file automatically (no entry to add anywhere), and this is what
    actually updates the served page. Never hand-edit `packages/web-components/www/agent-log.html`
    directly — it's gitignored generated output that gets silently overwritten on the next build
-   (see `update-component-schema`'s own note on this exact gotcha for `components.html`).
+   (see `update-component-schema`'s own note on this exact gotcha for `src/docs/components/*.html`).
 
 5. **Verify.** Load `agent-log.html` (dev server or the `www/` build output) and check the new
    entry/row actually rendered — a stray unescaped `<`/`&` or an unclosed tag will silently
@@ -65,8 +65,8 @@ their own pairs of files.
 ## Common mistakes
 
 - Adding a new dated entry to only one file. Nothing fails the build if you do this — it's
-  purely a discipline thing, same as `update-component-schema`'s step 9 (`components.html`)
-  having no automated check either.
+  purely a discipline thing, same as `update-component-schema`'s step 9
+  (`src/docs/components/*.html`) having no automated check either.
 - Editing `packages/web-components/www/agent-log.html` instead of `src/agent-log.html`. `www/`
   is gitignored build output; an edit there is invisible in git and gets clobbered by the next
   `npm run build -w packages/web-components`.

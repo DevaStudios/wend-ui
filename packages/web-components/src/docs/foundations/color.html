@@ -1,0 +1,181 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>wend-ui — Color</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var STORAGE_KEY = 'wend-theme';
+        function currentTheme() {
+          return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function applyTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+        }
+        function syncToggleButtons() {
+          var isDark = currentTheme() === 'dark';
+          document.querySelectorAll('.wend-theme-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          });
+        }
+
+        var stored = localStorage.getItem(STORAGE_KEY);
+        applyTheme(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+        window.wendToggleTheme = function () {
+          var next = currentTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+          syncToggleButtons();
+        };
+
+        document.addEventListener('DOMContentLoaded', syncToggleButtons);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="../../build/wend-ui-web-components.css" />
+    <link rel="stylesheet" href="../../global/docs.css" />
+    <script type="module" src="../../build/wend-ui-web-components.esm.js"></script>
+    <script nomodule src="../../build/wend-ui-web-components.js"></script>
+  </head>
+  <body>
+    <nav class="wend-nav">
+      <a class="wend-nav__brand" href="../../index.html">wend-ui</a>
+      <div class="wend-nav__sections">
+        <a class="wend-nav__section-link" href="../../docs/get-started/installation.html">Get Started</a>
+        <a class="wend-nav__section-link" href="../../docs/components/button.html">Components</a>
+        <a class="wend-nav__section-link" href="../../docs/foundations/color.html" aria-current="page">Foundations</a>
+        <a class="wend-nav__section-link" href="../../agent-log.html">Agent Log</a>
+      </div>
+      <div class="wend-nav__right">
+        <a class="wend-nav__storybook-link" href="../../storybook/index.html">Storybook</a>
+        <button
+          type="button"
+          class="wend-theme-toggle"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          onclick="wendToggleTheme()"
+        >
+          <wend-icon name="dark-mode" size="20px"></wend-icon>
+        </button>
+      </div>
+    </nav>
+
+    <div class="wend-layout">
+      <nav class="wend-sidebar" aria-label="Foundations pages">
+        <span class="wend-sidebar__label">Foundations</span>
+        <a class="wend-sidebar__link" href="color.html" aria-current="page">Color</a>
+        <a class="wend-sidebar__link" href="spacing.html">Spacing</a>
+        <a class="wend-sidebar__link" href="radius.html">Radius</a>
+        <a class="wend-sidebar__link" href="typography.html">Typography</a>
+      </nav>
+      <main class="wend-main">
+        <div class="wend-page">
+          <div class="wend-section">
+        <h1>Color</h1>
+        <p style="margin: 0 0 var(--spacing-100)">Neutral scale (global/color.json)</p>
+        <div class="wend-ramp-grid">
+          <span></span>
+          <span class="wend-ramp-step-label">50</span>
+          <span class="wend-ramp-step-label">100</span>
+          <span class="wend-ramp-step-label">200</span>
+          <span class="wend-ramp-step-label">300</span>
+          <span class="wend-ramp-step-label">400</span>
+          <span class="wend-ramp-step-label">500</span>
+          <span class="wend-ramp-step-label">600</span>
+          <span class="wend-ramp-step-label">700</span>
+          <span class="wend-ramp-step-label">800</span>
+          <span class="wend-ramp-step-label">900</span>
+          <span class="wend-ramp-step-label">950</span>
+          <span class="wend-ramp-step-label">975</span>
+        </div>
+        <div id="ramp-rows"></div>
+
+        <p style="margin: var(--spacing-300) 0 var(--spacing-100)">Notification colors (global/color.json)</p>
+        <div class="wend-ramp-grid">
+          <span></span>
+          <span class="wend-ramp-step-label">50</span>
+          <span class="wend-ramp-step-label">100</span>
+          <span class="wend-ramp-step-label">200</span>
+          <span class="wend-ramp-step-label">300</span>
+          <span class="wend-ramp-step-label">400</span>
+          <span class="wend-ramp-step-label">500</span>
+          <span class="wend-ramp-step-label">600</span>
+          <span class="wend-ramp-step-label">700</span>
+          <span class="wend-ramp-step-label">800</span>
+          <span class="wend-ramp-step-label">900</span>
+        </div>
+        <div id="notification-rows"></div>
+
+        <div style="max-width: 360px; margin-top: var(--spacing-300)">
+          <div class="wend-surface" style="padding: var(--spacing-200)">
+            <p style="margin: 0 0 var(--spacing-100)">Surface (.wend-surface, color-surface-canvas)</p>
+            <div
+              style="
+                background-color: var(--color-surface-canvas-recessed);
+                border-radius: var(--radius-regular);
+                padding: var(--spacing-100);
+              "
+            >
+              Recessed well (color-surface-canvas-recessed)
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </main>
+    </div>
+        <script>
+      const ramps = ['gray'];
+      const steps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950', '975'];
+      const rows = document.getElementById('ramp-rows');
+      for (const name of ramps) {
+        const row = document.createElement('div');
+        row.className = 'wend-ramp-grid';
+        const label = document.createElement('span');
+        label.textContent = name;
+        label.className = 'wend-ramp-name-label';
+        row.appendChild(label);
+        for (const step of steps) {
+          const swatch = document.createElement('div');
+          swatch.className = 'wend-ramp-swatch';
+          swatch.style.backgroundColor = `var(--color-${name}-${step})`;
+          if (step === '500') swatch.classList.add('wend-ramp-swatch--base');
+          row.appendChild(swatch);
+        }
+        rows.appendChild(row);
+      }
+
+      const notificationRamps = ['yellow', 'green', 'red'];
+      const notificationSteps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
+      const notificationRows = document.getElementById('notification-rows');
+      for (const name of notificationRamps) {
+        const row = document.createElement('div');
+        row.className = 'wend-ramp-grid';
+        const label = document.createElement('span');
+        label.textContent = name;
+        label.className = 'wend-ramp-name-label';
+        row.appendChild(label);
+        for (const step of notificationSteps) {
+          const swatch = document.createElement('div');
+          swatch.className = 'wend-ramp-swatch';
+          swatch.style.backgroundColor = `var(--color-${name}-${step})`;
+          if (step === '500') swatch.classList.add('wend-ramp-swatch--base');
+          row.appendChild(swatch);
+        }
+        notificationRows.appendChild(row);
+      }
+    </script>
+  </body>
+</html>

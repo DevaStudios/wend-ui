@@ -29,6 +29,7 @@ export const config: Config = {
       serviceWorker: null,
       copy: [
         { src: '*.html' },
+        { src: 'docs', dest: 'docs' },
         { src: 'global/docs.css' }
       ]
     }

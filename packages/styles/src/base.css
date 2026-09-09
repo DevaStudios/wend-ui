@@ -7,6 +7,6 @@
 }
 
 .wend-surface {
-  background-color: var(--color-surface-card);
+  background-color: var(--color-surface-canvas);
   border-radius: var(--radius-medium);
 }

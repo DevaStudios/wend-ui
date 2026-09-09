@@ -3,7 +3,6 @@
     "text": {
       "primary": { "value": "{color.gray.25}" },
       "secondary": { "value": "{color.gray.300}" },
-      "on-primary": { "value": "{color.gray.950}" },
       "on-secondary": { "value": "{color.gray.950}" },
       "disabled": { "value": "{color.gray.700}" },
       "hover": { "value": "{color.gray.100}" },
@@ -14,8 +13,6 @@
     "surface": {
       "canvas": { "value": "{color.gray.950}" },
       "canvas-recessed": { "value": "{color.gray.900}" },
-      "card": { "value": "{color.gray.950}" },
-      "card-recessed": { "value": "{color.gray.900}" },
       "input": { "value": "{color.gray.900}" }
     },
     "border": {
@@ -51,7 +48,7 @@
       },
       "destructive-secondary": {
         "foreground": { "value": "{color.red.400}" },
-        "background": { "value": "{color.red.900}" },
+        "background": { "value": "{color.red.700}" },
         "background-hover": { "value": "{color.red.800}" }
       },
       "destructive-tertiary": {

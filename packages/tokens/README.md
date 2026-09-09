@@ -77,17 +77,34 @@ Same conversion mechanism as spacing: unitless px-equivalent source values, conv
 
 ## Font size scale
 
-`tokens/global/typography.json`'s `font.size` uses the same numeric scale convention as spacing (key ≈ px × 12.5, anchored so `200` = 16px, matching `spacing-200`):
+`tokens/global/typography.json`'s `font.size` uses the same numeric scale convention as spacing (key ≈ px × 12.5, anchored so `200` = 16px, matching `spacing-200`). As of 2026-09-09 it's a full 22-step scale — the same 21 steps as `spacing`/`sizing` (`0`→`3200`), plus `175` (14px), which predates the alignment effort and isn't part of the shared spacing/sizing step set:
 
-| Token           | px  | rem        |
-| --------------- | --- | ---------- |
-| `font-size-150` | 12  | `0.75rem`  |
-| `font-size-175` | 14  | `0.875rem` |
-| `font-size-200` | 16  | `1rem`     |
-| `font-size-250` | 20  | `1.25rem`  |
-| `font-size-350` | 28  | `1.75rem`  |
+| Token            | px  | rem        |
+| ---------------- | --- | ---------- |
+| `font-size-0`    | 0   | `0`        |
+| `font-size-25`   | 2   | `0.125rem` |
+| `font-size-50`   | 4   | `0.25rem`  |
+| `font-size-100`  | 8   | `0.5rem`   |
+| `font-size-125`  | 10  | `0.625rem` |
+| `font-size-150`  | 12  | `0.75rem`  |
+| `font-size-175`  | 14  | `0.875rem` |
+| `font-size-200`  | 16  | `1rem`     |
+| `font-size-250`  | 20  | `1.25rem`  |
+| `font-size-275`  | 22  | `1.375rem` |
+| `font-size-300`  | 24  | `1.5rem`   |
+| `font-size-350`  | 28  | `1.75rem`  |
+| `font-size-400`  | 32  | `2rem`     |
+| `font-size-500`  | 40  | `2.5rem`   |
+| `font-size-550`  | 44  | `2.75rem`  |
+| `font-size-600`  | 48  | `3rem`     |
+| `font-size-700`  | 54  | `3.375rem` |
+| `font-size-800`  | 64  | `4rem`     |
+| `font-size-1000` | 88  | `5.5rem`   |
+| `font-size-1200` | 96  | `6rem`     |
+| `font-size-1600` | 128 | `8rem`     |
+| `font-size-3200` | 256 | `16rem`    |
 
-`font-size-150` was added for the Help Text / Text Input pull (2026-08-24) — Figma's `font-size/150` variable, matching the `150` step already established on the spacing/sizing scales (12px).
+`font-size-150` was added for the Help Text / Text Input pull (2026-08-24) — Figma's `font-size/150` variable, matching the `150` step already established on the spacing/sizing scales (12px). The remaining 17 steps (`0`/`25`/`50`/`100`/`125`/`275`/`300`/`400`/`500`/`550`/`600`/`700`/`800`/`1000`/`1200`/`1600`/`3200`) were added 2026-09-09, code-first — no component needed them yet, this was purely completing the scale to match `spacing`/`sizing` step-for-step — and pushed to Figma as 17 new `font-size/*` variables in the `global` collection (`ALL_SCOPES`, same convention as every existing `font-size/*` variable there). Every value at a shared step number is numerically identical to the matching `spacing`/`sizing` step (e.g. `font-size-400` = `spacing-400` = `sizing-400` = 32px) — same formula, just a separate token per scale, consistent with how `sizing` itself deliberately duplicates `spacing`'s steps rather than aliasing it (see the Sizing scale section above).
 
 Same conversion mechanism as spacing: unitless px-equivalent source values, converted to `rem` for `css`/`scss` only (via `size/font-size-rem` in `scripts/rem-transforms.js`), left as raw numbers for `js`/`figma`.
 
@@ -168,6 +185,22 @@ For `button`/`checkbox`/`toggle`/`radio`/`radio-group`/`text-area` specifically,
 `text-area-height` (`{sizing.1000}`, 88px), `text-area-gap` (`{spacing.100}`, 8px, same value as `text-input-gap` but its own independent token per the established per-component convention), `text-area-label-font-size`/`text-area-value-font-size` (`{font.size.175}`), `text-area-required-marker-gap` (`{spacing.25}`), and `text-area-focus-outline-color`/`-width`/`-offset` all mirror `text-input`'s equivalent tokens exactly (same scale references, same values including `0` offset, same "outline instead of border-thickening" focus treatment — see the `text-input-focus-outline-*` note above; Figma authors `text-area`'s `Focus` variant with the identical thicker-same-color-border pattern `text-input` has, not reproduced here for the same layout-shift reason). The one genuine difference is `text-area-padding-inline` (`{spacing.100}`, 8px) — Figma authored the textarea field with half `text-input`'s horizontal padding (`spacing/condensed` vs. `spacing/default`), so code follows that exactly rather than reusing `text-input-padding-inline`; `text-area-padding-block` (`{spacing.50}`, 4px) matches `text-input` as authored. Figma's Text Area also shows a custom "Resize Handle" graphic in the field's bottom-right corner; code does not reproduce this as an image asset — a native `<textarea>` already renders the browser's own resize gripper in that exact corner once `resize: vertical` is set (see `packages/styles/src/components/wend-text-area.css`), which is both more correct (matches actual resize behavior, unlike a static Figma decoration) and avoids importing/maintaining a duplicate icon asset for something the platform already provides.
 
 References use Style Dictionary's `{color.gray.900}` syntax and are preserved as CSS `var()` chains in the output (`outputReferences: true`) — e.g. `--color-button-primary-background-default: var(--color-action-primary-background)`. This is what makes dark mode work efficiently: overriding a handful of leaf `color.*` values under `[data-theme="dark"]` cascades through every semantic and component token that references them, with no dark-specific redeclaration needed at those tiers.
+
+## Text styles
+
+`tokens/semantic/text-style.json` (added 2026-09-09) pulls in Figma's local **Text Styles** — a separate Figma feature from Variables, with its own panel and its own naming (`body/regular/extra-large`, not a `color/`-style Variable path). Figma's five styles are all named `body/regular/{extra-large,large,medium,small,extra-small}`; each is just a bundle of properties already tracked as individual global tokens (`font.family.base`, `font.weight.regular`, and one `font.size.*` step per size), confirmed via each style's own `boundVariables` before pulling — nothing here introduces a new primitive, only a named combination of existing ones:
+
+| Token | `font-family` | `font-size` | `font-weight` |
+| ----- | -------------- | ----------- | -------------- |
+| `text-style-body-regular-extra-large` | `{font.family.base}` | `{font.size.250}` (20px) | `{font.weight.regular}` (400) |
+| `text-style-body-regular-large`       | `{font.family.base}` | `{font.size.200}` (16px) | `{font.weight.regular}` (400) |
+| `text-style-body-regular-medium`      | `{font.family.base}` | `{font.size.175}` (14px) | `{font.weight.regular}` (400) |
+| `text-style-body-regular-small`       | `{font.family.base}` | `{font.size.150}` (12px) | `{font.weight.regular}` (400) |
+| `text-style-body-regular-extra-small` | `{font.family.base}` | `{font.size.125}` (10px) | `{font.weight.regular}` (400) |
+
+No `line-height` leaf on any of these — Figma's own styles have `lineHeight: { unit: 'AUTO' }` (the font's natural metric, not an explicit value), so none is bound to a Variable there either; adding one on the code side would be inventing a value Figma itself doesn't specify, not pulling in real design data. If a future Figma edit sets an explicit line-height on one of these styles, add a `line-height` leaf aliasing `{font.line-height.tight}`/`{font.line-height.base}` (whichever it resolves to) at that point — don't add it preemptively.
+
+This tier has no current component consumer — added purely to have the named combination available, the same "code-first, ahead of a real usage" precedent already established for `sizing.*` and the font-size scale's completed steps (see `packages/design-sync-mcp/figma-sync-state.json`'s `_owner_note`/`_fontSizeNote`). Nothing needed pushing to Figma for this pull — the Styles already existed there; this only added their representation on the code side. Style Dictionary's `source` config had to be updated for this file to build at all — see the "Adding a new file under `tokens/semantic/*.json`" note in the `sync-tokens-to-figma` skill's Common mistakes.
 
 ## Light/dark mode
 

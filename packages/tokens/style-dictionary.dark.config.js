@@ -26,6 +26,7 @@ module.exports = {
     'tokens/global/**/*.json',
     'tokens/semantic/color.json',
     'tokens/semantic/color.dark.json',
+    'tokens/semantic/text-style.json',
     'tokens/component/**/*.json'
   ],
   hooks: {

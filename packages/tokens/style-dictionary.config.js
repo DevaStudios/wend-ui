@@ -3,7 +3,12 @@ const { spacingRemTransform, sizingRemTransform, fontSizeRemTransform } = requir
 const { radiusPxTransform } = require('./scripts/radius-px-transform.js');
 
 module.exports = {
-  source: ['tokens/global/**/*.json', 'tokens/semantic/color.json', 'tokens/component/**/*.json'],
+  source: [
+    'tokens/global/**/*.json',
+    'tokens/semantic/color.json',
+    'tokens/semantic/text-style.json',
+    'tokens/component/**/*.json'
+  ],
   hooks: {
     formats: {
       'figma/flat-tokens': figmaFlatTokensFormat

@@ -18,6 +18,24 @@
         "font-size/200": "VariableID:49:40",
         "font-size/250": "VariableID:49:41",
         "font-size/350": "VariableID:49:42",
+        "font-size/150": "VariableID:390:25",
+        "font-size/0": "VariableID:545:2",
+        "font-size/25": "VariableID:545:3",
+        "font-size/50": "VariableID:545:4",
+        "font-size/100": "VariableID:545:5",
+        "font-size/125": "VariableID:545:6",
+        "font-size/275": "VariableID:545:7",
+        "font-size/300": "VariableID:545:8",
+        "font-size/400": "VariableID:545:9",
+        "font-size/500": "VariableID:545:10",
+        "font-size/550": "VariableID:545:11",
+        "font-size/600": "VariableID:545:12",
+        "font-size/700": "VariableID:545:13",
+        "font-size/800": "VariableID:545:14",
+        "font-size/1000": "VariableID:545:15",
+        "font-size/1200": "VariableID:545:16",
+        "font-size/1600": "VariableID:545:17",
+        "font-size/3200": "VariableID:545:18",
         "font-weight/regular": "VariableID:49:43",
         "font-weight/medium": "VariableID:49:44",
         "font-weight/bold": "VariableID:49:45",
@@ -115,7 +133,8 @@
       "_naming_note": "Naming is inconsistent by when each variable was added, not by any semantic rule: the original gray-25..600 and most spacing/radius/font-* steps use slash-style (color/gray/25, spacing/100), while gray-700..1000 and every green/red step added later use dash-style (color-gray-700, color-green-800). Code's own token names are always dash-style (color-gray-*), so a diff_tokens comparison against this collection's slash-named entries will report those as onlyInProject/onlyInFigma purely from the naming mismatch even when the resolved hex is identical -- normalize slashes to dashes before diffing (see sync-tokens-to-figma skill). color-green-500/color-red-500 (the dark-mode feedback shades) now live in this collection's variableIds normally -- the prior '_orphaned, detached from variableIds' state noted here as of 2026-08-03 no longer applies as of this refresh.",
       "_yellow_note": "Added 2026-09-08, PULLED FROM Figma (variables color/yellow/50 through color/yellow/900, slash-style, VariableID:510:52-61) -- replaces the old amber ramp wholesale, not a rename: Figma authored yellow as an entirely new set of variables with different hex values (e.g. yellow.500 #F5A20B vs amber.500's old #FDA308) and a hue that drifts warmer at higher steps (~48 degrees at 50 down to ~23 degrees at 900) rather than amber/green/red's shared fixed-hue HSL formula. The old amber variables (VariableID:211:18/19, 242:2-9) were NOT deleted -- they were detached from this collection's variableIds (getVariableByIdAsync still resolves several of them directly by ID, e.g. 211:18 still returns name 'color/amber/500'), so they're orphaned clutter in the file rather than a clean removal; a few (211:19, 242:2/3/4/9) return null/undefined even via direct ID lookup, meaning those specific ones actually were deleted. Not cleaned up from the Figma side (the orphaned amber variables still exist, invisible in the normal Variables panel but present in the file) -- code updated every color.amber.N reference to color.yellow.N at the same step number (packages/tokens/tokens/global/color.json, semantic/color.json, semantic/color.dark.json) and adopted Figma's actual yellow hex values rather than keeping the old amber values under a new name. RESOLVED same day: the semantic collection's 3 warning-role variables that still aliased the orphaned amber IDs (color/ui/text/warning VariableID:393:88, color-feedback-warning-background VariableID:49:62, color/ui/border/warning VariableID:393:77 -- 6 mode-bindings total across Light/Dark) were rebound via use_figma's setValueForMode to alias the matching yellow variable at the same step instead (e.g. text/warning Light: amber/800 211:18-family id 242:8 -> yellow/800 510:60). Verified via a fresh read-only scan that no variable in the file aliases any of the 10 old amber IDs anymore.",
       "_size_note": "sizing/0..sizing/3200 (VariableID:357:2 through :357:22, added 2026-08-23 as size/*, renamed in place to sizing/* the same day -- IDs unchanged) is a new code-originated scale, pushed FROM tokens/global/sizing.json TO Figma -- the reverse direction of most entries in this cache. It deliberately duplicates spacing/*'s step names and px values 1:1 (same ALL_SCOPES convention, same slash-style naming) rather than aliasing spacing, per packages/tokens/README.md's Sizing scale section: kept separate so width/height and padding/gap can diverge later even though they're numerically identical today. No Figma component currently binds to sizing/* -- it exists so future width/height properties have a token to reach for.",
-      "_owner_note": "sizing/* is the one entry in this collection code created rather than pulled -- everything else here originated in Figma and was pulled into code. Don't assume push-then-verify (steps 2-3 of sync-tokens-to-figma) is unnecessary just because this collection is 'usually' Figma-authoritative."
+      "_owner_note": "sizing/* is the one entry in this collection code created rather than pulled -- everything else here originated in Figma and was pulled into code. Don't assume push-then-verify (steps 2-3 of sync-tokens-to-figma) is unnecessary just because this collection is 'usually' Figma-authoritative. font-size/* below (added 2026-09-09) is a second such entry -- see _fontSizeNote.",
+      "_fontSizeNote": "font-size/0 through font-size/3200 (VariableID:545:2 through :545:18, 17 new variables) added 2026-09-09, CODE-FIRST like sizing/* above -- completing tokens/global/typography.json's font.size scale to match spacing/sizing step-for-step (0/25/50/100/125/275/300/400/500/550/600/700/800/1000/1200/1600/3200; 150/175/200/250/350 already existed). Same ALL_SCOPES convention as the pre-existing font-size/* variables. font-size/150 (VariableID:390:25) was already present in Figma from an earlier pull but had never been added to this cache until now -- if a future diff shows it missing, that's why. font-size/175 (14px) is the one step with no spacing/sizing equivalent, predating this alignment effort -- deliberately left as-is, not removed or renamed."
     },
     "semantic": {
       "collectionId": "VariableCollectionId:49:48",
@@ -416,5 +435,19 @@
     "secondaryDefault": { "id": "10:9", "label": "10:10" },
     "secondaryDisabled": { "id": "10:11", "label": "10:12" },
     "_variants_note": "10:13's other 11 variants (Hover/Active states, Tertiary, Destructive Primary/Secondary/Tertiary) aren't individually enumerated here, same as the pre-2026-08-19 state of this file -- discover by name (e.g. `set.children.find(c => c.name === 'Variant=Tertiary, State=Hover')`) rather than assuming an ID."
+  },
+  "styles": {
+    "_comment": "Figma Styles (Text/Effect/Paint/Grid) are a SEPARATE feature from Variables -- different API (figma.getLocalTextStylesAsync() etc.), different ID namespace (style IDs look like 'S:<hash>,' not 'VariableID:...'). First checked 2026-09-09, per explicit user request to always check Styles going forward, not just Variables -- see the sync-tokens-to-figma skill's 'When to use' note. Re-run figma.getLocal{Text,Effect,Paint,Grid}StylesAsync() to refresh this section; nothing else in this cache covers Styles.",
+    "effect": { "_comment": "Empty as of 2026-09-09 -- figma.getLocalEffectStylesAsync() returned []." },
+    "paint": { "_comment": "Empty as of 2026-09-09 -- figma.getLocalPaintStylesAsync() returned []." },
+    "grid": { "_comment": "Empty as of 2026-09-09 -- figma.getLocalGridStylesAsync() returned []." },
+    "text": {
+      "_comment": "5 styles, all named 'body/regular/<size>', all bound to existing global font-family/weight/size Variables (fontSize differs per style, fontFamily/fontWeight identical across all 5) -- pulled into code as tokens/semantic/text-style.json (text-style.body.regular.<size>), see packages/tokens/README.md's 'Text styles' section for the full mapping and why line-height was deliberately left out (Figma's own lineHeight is { unit: 'AUTO' }, unbound -- not a real value to pull).",
+      "body/regular/extra-large": { "id": "S:972482ff72c4f8a45c78eae5c23182fd383d23cc,", "fontSizeVariable": "VariableID:49:41" },
+      "body/regular/large": { "id": "S:9c08e8dbefd9d1894ebe9c7e0bb9651c9478a47c,", "fontSizeVariable": "VariableID:49:40" },
+      "body/regular/medium": { "id": "S:c15c9af39850e223f421798845fce3b6d84b2698,", "fontSizeVariable": "VariableID:49:39" },
+      "body/regular/small": { "id": "S:df84ad7ab2279b09f0a7f8b70b5d9fde550d276e,", "fontSizeVariable": "VariableID:390:25" },
+      "body/regular/extra-small": { "id": "S:69a44461b77640559bc9b36f0333ed41bb965f1b,", "fontSizeVariable": "VariableID:545:6" }
+    }
   }
 }

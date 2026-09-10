@@ -452,7 +452,21 @@
       "id": "10:11",
       "label": "10:12"
     },
-    "_variants_note": "10:13's other 11 variants (Hover/Active states, Tertiary, Destructive Primary/Secondary/Tertiary) aren't individually enumerated here, same as the pre-2026-08-19 state of this file -- discover by name (e.g. `set.children.find(c => c.name === 'Variant=Tertiary, State=Hover')`) rather than assuming an ID."
+    "_variants_note": "10:13's other 11 variants (Hover/Active states, Tertiary, Destructive Primary/Secondary/Tertiary) aren't individually enumerated here, same as the pre-2026-08-19 state of this file -- discover by name (e.g. `set.children.find(c => c.name === 'Variant=Tertiary, State=Hover')`) rather than assuming an ID.",
+    "chip": {
+      "page": "the file has a dedicated 'Chip' top-level page (sibling of Button/Checkbox/etc, not nested under 'user interface' the way icons are)",
+      "componentSet": "565:2457",
+      "variants": {
+        "default": "565:2407",
+        "disabled": "565:2458",
+        "hover": "565:2462"
+      },
+      "componentProperties": {
+        "focus": "Focus#575:15",
+        "closeAction": "Close action#575:19"
+      },
+      "_note": "Added 2026-09-09 (user's own code scaffold existed first -- src/components/wend-chip/wend-chip.tsx and an empty wend-chip.css -- but the .tsx never returned its render() JSX and the CSS had no content; both fixed as part of this pull, not carried over). 3-variant State axis (Default/Hover/Disabled) plus two independent booleans: Focus (toggles the 'focus ring' frame's visibility, 74x28 vs the pill's own 70x24 -- a 2px offset on every side, matching the button/checkbox/toggle/radio 1px-width/2px-offset focus-outline convention, NOT text-input/select's flush 0-offset style) and 'Close action' (toggles the wend-icon-close-solid instance's visibility -- pulled into code as the `closable` prop, default true matching Figma). Root fill: Default and Disabled BOTH alias VariableID:49:53 (color/ui/background/canvas, code: color.surface.canvas) -- identical value, no separate disabled-background token; Hover aliases VariableID:418:281 (color/selection/background/hover), the exact same variable option.row.background.hover already uses -- code reuses {color.selection.option.background-hover} directly rather than adding a new leaf, since Figma itself treats this as one shared variable, not two coincidentally-equal ones. Label + close-icon color: VariableID:337:1707 (color/ui/text/primary/default, code: color.text.primary) for Default/Hover, VariableID:231:11 (code: color.text.disabled) for Disabled -- a real color change, not opacity-dimming, so code pulls color.text.disabled directly. Close icon is an INSTANCE of wend-icon-close-solid (16x16, code: chip.icon-size = sizing.200) -- already fixed to a filled path earlier this same session (see the icons._note above), so its fill-based coloring here needed no special handling. IMPORTANT CAVEAT surfaced to the user, not silently changed: chip.background.default aliases the SAME token (surface.canvas) this docs site itself uses as its own page background, so a resting/disabled chip renders with no visible fill on packages/web-components/src/docs/**/*.html specifically (canvas-on-canvas) -- correct per Figma's actual bound variable (confirmed via a direct get_screenshot of node 565:2457, which DOES show a visible pill against Figma's own white canvas), just a cross-context contrast gap between Figma's preview background and this site's page background. No component-tier border/stroke on the pill itself -- only the focus-ring frame has a stroke."
+    }
   },
   "styles": {
     "_comment": "Figma Styles (Text/Effect/Paint/Grid) are a SEPARATE feature from Variables -- different API (figma.getLocalTextStylesAsync() etc.), different ID namespace (style IDs look like 'S:<hash>,' not 'VariableID:...'). First checked 2026-09-09, per explicit user request to always check Styles going forward, not just Variables -- see the sync-tokens-to-figma skill's 'When to use' note. Re-run figma.getLocal{Text,Effect,Paint,Grid}StylesAsync() to refresh this section; nothing else in this cache covers Styles.",

@@ -63,6 +63,23 @@ export namespace Components {
          */
         "label": string;
     }
+    interface WendChip {
+        /**
+          * Whether the chip renders a close button for removing it.
+          * @default true
+         */
+        "closable": boolean;
+        /**
+          * Disables the chip and its close button.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * The chip's label text.
+          * @default ''
+         */
+        "label": string;
+    }
     interface WendHelpText {
         /**
           * The help text's message. Can be an empty string to render nothing.
@@ -328,6 +345,10 @@ export interface WendCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendCheckboxElement;
 }
+export interface WendChipCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendChipElement;
+}
 export interface WendOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendOptionElement;
@@ -379,6 +400,23 @@ declare global {
     var HTMLWendCheckboxElement: {
         prototype: HTMLWendCheckboxElement;
         new (): HTMLWendCheckboxElement;
+    };
+    interface HTMLWendChipElementEventMap {
+        "wendClose": void;
+    }
+    interface HTMLWendChipElement extends Components.WendChip, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendChipElementEventMap>(type: K, listener: (this: HTMLWendChipElement, ev: WendChipCustomEvent<HTMLWendChipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendChipElementEventMap>(type: K, listener: (this: HTMLWendChipElement, ev: WendChipCustomEvent<HTMLWendChipElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendChipElement: {
+        prototype: HTMLWendChipElement;
+        new (): HTMLWendChipElement;
     };
     interface HTMLWendHelpTextElement extends Components.WendHelpText, HTMLStencilElement {
     }
@@ -514,6 +552,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "wend-button": HTMLWendButtonElement;
         "wend-checkbox": HTMLWendCheckboxElement;
+        "wend-chip": HTMLWendChipElement;
         "wend-help-text": HTMLWendHelpTextElement;
         "wend-icon": HTMLWendIconElement;
         "wend-option": HTMLWendOptionElement;
@@ -578,6 +617,27 @@ declare namespace LocalJSX {
           * Emitted when the checkbox is toggled by the user.
          */
         "onWendChange"?: (event: WendCheckboxCustomEvent<boolean>) => void;
+    }
+    interface WendChip {
+        /**
+          * Whether the chip renders a close button for removing it.
+          * @default true
+         */
+        "closable"?: boolean;
+        /**
+          * Disables the chip and its close button.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The chip's label text.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Emitted when the close button is activated. Not emitted while disabled.
+         */
+        "onWendClose"?: (event: WendChipCustomEvent<void>) => void;
     }
     interface WendHelpText {
         /**
@@ -882,6 +942,11 @@ declare namespace LocalJSX {
         "label": string;
         "disabled": boolean;
     }
+    interface WendChipAttributes {
+        "label": string;
+        "disabled": boolean;
+        "closable": boolean;
+    }
     interface WendHelpTextAttributes {
         "text": string;
         "type": WendHelpTextType;
@@ -955,6 +1020,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "wend-button": Omit<WendButton, keyof WendButtonAttributes> & { [K in keyof WendButton & keyof WendButtonAttributes]?: WendButton[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `attr:${K}`]?: WendButtonAttributes[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `prop:${K}`]?: WendButton[K] };
         "wend-checkbox": Omit<WendCheckbox, keyof WendCheckboxAttributes> & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes]?: WendCheckbox[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `attr:${K}`]?: WendCheckboxAttributes[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `prop:${K}`]?: WendCheckbox[K] };
+        "wend-chip": Omit<WendChip, keyof WendChipAttributes> & { [K in keyof WendChip & keyof WendChipAttributes]?: WendChip[K] } & { [K in keyof WendChip & keyof WendChipAttributes as `attr:${K}`]?: WendChipAttributes[K] } & { [K in keyof WendChip & keyof WendChipAttributes as `prop:${K}`]?: WendChip[K] };
         "wend-help-text": Omit<WendHelpText, keyof WendHelpTextAttributes> & { [K in keyof WendHelpText & keyof WendHelpTextAttributes]?: WendHelpText[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `attr:${K}`]?: WendHelpTextAttributes[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `prop:${K}`]?: WendHelpText[K] };
         "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
         "wend-option": Omit<WendOption, keyof WendOptionAttributes> & { [K in keyof WendOption & keyof WendOptionAttributes]?: WendOption[K] } & { [K in keyof WendOption & keyof WendOptionAttributes as `attr:${K}`]?: WendOptionAttributes[K] } & { [K in keyof WendOption & keyof WendOptionAttributes as `prop:${K}`]?: WendOption[K] } & OneOf<"value", WendOption["value"], WendOptionAttributes["value"]>;
@@ -972,6 +1038,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "wend-button": LocalJSX.IntrinsicElements["wend-button"] & JSXBase.HTMLAttributes<HTMLWendButtonElement>;
             "wend-checkbox": LocalJSX.IntrinsicElements["wend-checkbox"] & JSXBase.HTMLAttributes<HTMLWendCheckboxElement>;
+            "wend-chip": LocalJSX.IntrinsicElements["wend-chip"] & JSXBase.HTMLAttributes<HTMLWendChipElement>;
             "wend-help-text": LocalJSX.IntrinsicElements["wend-help-text"] & JSXBase.HTMLAttributes<HTMLWendHelpTextElement>;
             "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
             "wend-option": LocalJSX.IntrinsicElements["wend-option"] & JSXBase.HTMLAttributes<HTMLWendOptionElement>;

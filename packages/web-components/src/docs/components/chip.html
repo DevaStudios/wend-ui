@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>wend-ui — Help Text</title>
+    <title>wend-ui — Chip</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <script>
       (function () {
@@ -77,8 +77,8 @@
         <span class="wend-sidebar__label">Components</span>
         <a class="wend-sidebar__link" href="button.html">Button</a>
         <a class="wend-sidebar__link" href="checkbox.html">Checkbox</a>
-        <a class="wend-sidebar__link" href="chip.html">Chip</a>
-        <a class="wend-sidebar__link" href="help-text.html" aria-current="page">Help Text</a>
+        <a class="wend-sidebar__link" href="chip.html" aria-current="page">Chip</a>
+        <a class="wend-sidebar__link" href="help-text.html">Help Text</a>
         <a class="wend-sidebar__link" href="icon.html">Icon</a>
         <a class="wend-sidebar__link" href="option.html">Option</a>
         <a class="wend-sidebar__link" href="radio.html">Radio</a>
@@ -91,19 +91,19 @@
       <main class="wend-main">
         <div class="wend-page">
       <div class="wend-section">
-        <h1>Help Text</h1>
+        <h1>Chip</h1>
 
         <p style="margin: 0 0 var(--spacing-100)">Examples</p>
         <div class="wend-stack" style="margin-bottom: var(--spacing-300)">
-          <wend-help-text text="Lorem ipsum dolor sit amet" type="default"></wend-help-text>
-          <wend-help-text text="Lorem ipsum dolor sit amet" type="success"></wend-help-text>
-          <wend-help-text text="Lorem ipsum dolor sit amet" type="warning"></wend-help-text>
-          <wend-help-text text="Lorem ipsum dolor sit amet" type="error"></wend-help-text>
+          <wend-chip label="Label"></wend-chip>
+          <wend-chip label="Not closable" closable="false"></wend-chip>
+          <wend-chip label="Disabled" disabled></wend-chip>
+          <wend-chip label="Disabled, not closable" disabled closable="false"></wend-chip>
         </div>
 
         <p style="margin: 0 0 var(--spacing-100)">Usage</p>
         <code class="wend-code" style="margin-bottom: var(--spacing-300)"
-          >&lt;wend-help-text text="Message" type="success"&gt;&lt;/wend-help-text&gt;</code
+          >&lt;wend-chip label="Label"&gt;&lt;/wend-chip&gt;</code
         >
 
         <p style="margin: 0 0 var(--spacing-100)">Props</p>
@@ -119,18 +119,43 @@
           </thead>
           <tbody>
             <tr>
-              <td><code>text</code></td>
-              <td><code>text</code></td>
-              <td>The help text's message. Can be an empty string to render nothing.</td>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The chip's label text.</td>
               <td><code>string</code></td>
               <td><code>''</code></td>
             </tr>
             <tr>
-              <td><code>type</code></td>
-              <td><code>type</code></td>
-              <td>Visual tone of the help text.</td>
-              <td><code>"default" | "success" | "warning" | "error"</code></td>
-              <td><code>'default'</code></td>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the chip and its close button.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>closable</code></td>
+              <td><code>closable</code></td>
+              <td>Whether the chip renders a close button for removing it.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin: var(--spacing-300) 0 var(--spacing-100)">Events</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Description</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>wendClose</code></td>
+              <td>Emitted when the close button is activated. Not emitted while disabled.</td>
+              <td><code>CustomEvent&lt;void&gt;</code></td>
             </tr>
           </tbody>
         </table>

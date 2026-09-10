@@ -1,0 +1,60 @@
+:host {
+  display: inline-flex;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--chip-height, 24px);
+  padding-inline: var(--chip-padding-inline, 8px);
+  gap: var(--chip-gap, 4px);
+  border-radius: var(--chip-radius, 9999px);
+  background-color: var(--color-chip-pill-background-default, #faf9f9);
+  color: var(--color-chip-pill-foreground-default, #1a1a1a);
+  font-family: var(--font-family-base, sans-serif);
+  font-size: var(--chip-font-size, 14px);
+}
+
+.chip:hover:not(.disabled) {
+  background-color: var(--color-chip-pill-background-hover, #f4f2f2);
+  color: var(--color-chip-pill-foreground-hover, #1a1a1a);
+}
+
+.chip.disabled {
+  background-color: var(--color-chip-pill-background-disabled, #faf9f9);
+  color: var(--color-chip-pill-foreground-disabled, #8d8b8b);
+}
+
+.chip:focus-within {
+  outline: var(--chip-focus-outline-width, 1px) solid var(--chip-focus-outline-color, #1a1a1a);
+  outline-offset: var(--chip-focus-outline-offset, 2px);
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--chip-icon-size, 16px);
+  height: var(--chip-icon-size, 16px);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.close:disabled {
+  cursor: not-allowed;
+}
+
+.close:focus-visible {
+  outline: none;
+}

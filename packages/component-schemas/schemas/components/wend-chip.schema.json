@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-chip.schema.json",
+  "title": "WendChip",
+  "description": "A dismissible label pill with an optional close button.",
+  "type": "object",
+  "x-wend-component": "wend-chip",
+  "x-wend-slots": [],
+  "x-wend-tokens": [
+    "chip.height",
+    "chip.padding-inline",
+    "chip.gap",
+    "chip.radius",
+    "chip.icon-size",
+    "chip.font-size",
+    "chip.focus.outline-color",
+    "chip.focus.outline-width",
+    "chip.focus.outline-offset",
+    "color.chip.pill.background.default",
+    "color.chip.pill.background.hover",
+    "color.chip.pill.background.disabled",
+    "color.chip.pill.foreground.default",
+    "color.chip.pill.foreground.hover",
+    "color.chip.pill.foreground.disabled"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The chip's label text."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the chip and its close button."
+    },
+    "closable": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the chip renders a close button for removing it."
+    }
+  },
+  "additionalProperties": false
+}

@@ -6,6 +6,7 @@
 /* eslint-disable */
 export { WendButton } from "./wend-button.js";
 export { WendCheckbox } from "./wend-checkbox.js";
+export { WendChip } from "./wend-chip.js";
 export { WendHelpText } from "./wend-help-text.js";
 export { WendIcon } from "./wend-icon.js";
 export { WendOption } from "./wend-option.js";

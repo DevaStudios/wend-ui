@@ -1,0 +1,31 @@
+{
+  "chip": {
+    "height": { "value": "{sizing.300}" },
+    "padding-inline": { "value": "{spacing.100}" },
+    "gap": { "value": "{spacing.50}" },
+    "radius": { "value": "{radius.circle}" },
+    "icon-size": { "value": "{sizing.200}" },
+    "font-size": { "value": "{font.size.175}" },
+    "focus": {
+      "outline-color": { "value": "{color.border.focus}" },
+      "outline-width": { "value": "1px" },
+      "outline-offset": { "value": "2px" }
+    }
+  },
+  "color": {
+    "chip": {
+      "pill": {
+        "background": {
+          "default": { "value": "{color.surface.canvas}" },
+          "hover": { "value": "{color.selection.option.background-hover}" },
+          "disabled": { "value": "{color.surface.canvas}" }
+        },
+        "foreground": {
+          "default": { "value": "{color.text.primary}" },
+          "hover": { "value": "{color.text.primary}" },
+          "disabled": { "value": "{color.text.disabled}" }
+        }
+      }
+    }
+  }
+}

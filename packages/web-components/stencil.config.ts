@@ -30,7 +30,9 @@ export const config: Config = {
       copy: [
         { src: '*.html' },
         { src: 'docs', dest: 'docs' },
-        { src: 'global/docs.css' }
+        { src: 'global/docs.css' },
+        { src: 'global/docs-sidebar.js' },
+        { src: 'global/docs-nav.js' }
       ]
     }
   ]

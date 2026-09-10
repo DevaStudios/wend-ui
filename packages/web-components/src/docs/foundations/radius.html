@@ -46,40 +46,16 @@
     />
     <link rel="stylesheet" href="../../build/wend-ui-web-components.css" />
     <link rel="stylesheet" href="../../global/docs.css" />
+    <script src="../../global/docs-nav.js"></script>
+    <script src="../../global/docs-sidebar.js"></script>
     <script type="module" src="../../build/wend-ui-web-components.esm.js"></script>
     <script nomodule src="../../build/wend-ui-web-components.js"></script>
   </head>
   <body>
-    <nav class="wend-nav">
-      <a class="wend-nav__brand" href="../../index.html">wend-ui</a>
-      <div class="wend-nav__sections">
-        <a class="wend-nav__section-link" href="../../docs/get-started/installation.html">Get Started</a>
-        <a class="wend-nav__section-link" href="../../docs/components/button.html">Components</a>
-        <a class="wend-nav__section-link" href="../../docs/foundations/color.html" aria-current="page">Foundations</a>
-        <a class="wend-nav__section-link" href="../../agent-log.html">Agent Log</a>
-      </div>
-      <div class="wend-nav__right">
-        <a class="wend-nav__storybook-link" href="../../storybook/index.html">Storybook</a>
-        <button
-          type="button"
-          class="wend-theme-toggle"
-          aria-pressed="false"
-          aria-label="Switch to dark mode"
-          onclick="wendToggleTheme()"
-        >
-          <wend-icon name="dark-mode" size="20px"></wend-icon>
-        </button>
-      </div>
-    </nav>
+    <wend-docs-nav base="../../" current="foundations"></wend-docs-nav>
 
     <div class="wend-layout">
-      <nav class="wend-sidebar" aria-label="Foundations pages">
-        <span class="wend-sidebar__label">Foundations</span>
-        <a class="wend-sidebar__link" href="color.html">Color</a>
-        <a class="wend-sidebar__link" href="spacing.html">Spacing</a>
-        <a class="wend-sidebar__link" href="radius.html" aria-current="page">Radius</a>
-        <a class="wend-sidebar__link" href="typography.html">Typography</a>
-      </nav>
+      <wend-docs-sidebar section="foundations" current="radius"></wend-docs-sidebar>
       <main class="wend-main">
         <div class="wend-page">
       <div class="wend-section">

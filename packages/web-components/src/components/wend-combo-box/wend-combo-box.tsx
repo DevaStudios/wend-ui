@@ -1,5 +1,5 @@
 import { Component, Prop, State, Watch, Element, Event, EventEmitter, Listen, h } from '@stencil/core';
-import { computePosition, offset, flip, shift, autoUpdate } from '@floating-ui/dom';
+import { positionFloatingPanel, startFloatingPanelAutoUpdate, capPanelRows, onOutsideMouseDown } from '../../utils/floating-ui';
 
 export type WendComboBoxState = 'default' | 'success' | 'warning' | 'error';
 
@@ -79,6 +79,7 @@ export class WendComboBox {
   private fieldEl?: HTMLDivElement;
   private panelEl?: HTMLDivElement;
   private stopAutoUpdate?: () => void;
+  private stopOutsideClick?: () => void;
   private readonly instanceId = `wend-combo-box-${++instanceCount}`;
 
   componentWillLoad() {
@@ -100,7 +101,7 @@ export class WendComboBox {
 
   disconnectedCallback() {
     this.stopAutoUpdate?.();
-    document.removeEventListener('mousedown', this.onDocumentMouseDown, true);
+    this.stopOutsideClick?.();
   }
 
   /** Same coordinator pattern wend-select uses for wend-option — see its own note for why. */
@@ -170,31 +171,16 @@ export class WendComboBox {
     if (!this.fieldEl || !this.panelEl) {
       return;
     }
-    const { x, y } = await computePosition(this.fieldEl, this.panelEl, {
-      placement: 'bottom-start',
-      strategy: 'fixed',
-      middleware: [offset(4), flip(), shift({ padding: 8 })]
-    });
-    Object.assign(this.panelEl.style, {
-      left: `${x}px`,
-      top: `${y}px`,
-      minWidth: `${this.fieldEl.offsetWidth}px`
-    });
+    await positionFloatingPanel(this.fieldEl, this.panelEl);
     this.updatePanelMaxHeight();
   };
 
-  /** Identical measuring approach to wend-select's own updatePanelMaxHeight — see its comment for why. */
+  /** Caps the panel to MAX_VISIBLE_OPTIONS rows, scrolling beyond that — see capPanelRows's own doc comment for why. */
   private updatePanelMaxHeight() {
     if (!this.panelEl) {
       return;
     }
-    const options = this.getOptions();
-    if (options.length <= MAX_VISIBLE_OPTIONS) {
-      this.panelEl.style.maxHeight = '';
-      return;
-    }
-    const lastVisible = options[MAX_VISIBLE_OPTIONS - 1];
-    this.panelEl.style.maxHeight = `${lastVisible.offsetTop + lastVisible.offsetHeight}px`;
+    capPanelRows(this.panelEl, this.getOptions(), MAX_VISIBLE_OPTIONS);
   }
 
   private openPanel = (initialActive?: string) => {
@@ -206,10 +192,10 @@ export class WendComboBox {
     requestAnimationFrame(() => {
       this.updatePosition();
       if (this.fieldEl && this.panelEl) {
-        this.stopAutoUpdate = autoUpdate(this.fieldEl, this.panelEl, this.updatePosition);
+        this.stopAutoUpdate = startFloatingPanelAutoUpdate(this.fieldEl, this.panelEl, this.updatePosition);
       }
     });
-    document.addEventListener('mousedown', this.onDocumentMouseDown, true);
+    this.stopOutsideClick = onOutsideMouseDown(this.el, () => this.closePanel());
   };
 
   private closePanel = () => {
@@ -219,7 +205,8 @@ export class WendComboBox {
     this.isOpen = false;
     this.stopAutoUpdate?.();
     this.stopAutoUpdate = undefined;
-    document.removeEventListener('mousedown', this.onDocumentMouseDown, true);
+    this.stopOutsideClick?.();
+    this.stopOutsideClick = undefined;
   };
 
   private toggleOpen = () => {
@@ -227,12 +214,6 @@ export class WendComboBox {
       this.closePanel();
     } else {
       this.openPanel();
-    }
-  };
-
-  private onDocumentMouseDown = (event: MouseEvent) => {
-    if (!this.el.contains(event.target as Node)) {
-      this.closePanel();
     }
   };
 

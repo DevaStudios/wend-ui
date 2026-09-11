@@ -1,5 +1,5 @@
 import { Component, Prop, State, Watch, Element, Event, EventEmitter, Listen, h } from '@stencil/core';
-import { computePosition, offset, flip, shift, autoUpdate } from '@floating-ui/dom';
+import { positionFloatingPanel, startFloatingPanelAutoUpdate, capPanelRows, onOutsideMouseDown } from '../../utils/floating-ui';
 
 export type WendSelectState = 'default' | 'success' | 'warning' | 'error';
 
@@ -75,6 +75,7 @@ export class WendSelect {
   private triggerEl?: HTMLButtonElement;
   private panelEl?: HTMLDivElement;
   private stopAutoUpdate?: () => void;
+  private stopOutsideClick?: () => void;
   private readonly instanceId = `wend-select-${++instanceCount}`;
 
   componentWillLoad() {
@@ -96,7 +97,7 @@ export class WendSelect {
 
   disconnectedCallback() {
     this.stopAutoUpdate?.();
-    document.removeEventListener('mousedown', this.onDocumentMouseDown, true);
+    this.stopOutsideClick?.();
   }
 
   /**
@@ -150,42 +151,16 @@ export class WendSelect {
     if (!this.triggerEl || !this.panelEl) {
       return;
     }
-    const { x, y } = await computePosition(this.triggerEl, this.panelEl, {
-      placement: 'bottom-start',
-      strategy: 'fixed',
-      middleware: [offset(4), flip(), shift({ padding: 8 })]
-    });
-    Object.assign(this.panelEl.style, {
-      left: `${x}px`,
-      top: `${y}px`,
-      minWidth: `${this.triggerEl.offsetWidth}px`
-    });
+    await positionFloatingPanel(this.triggerEl, this.panelEl);
     this.updatePanelMaxHeight();
   };
 
-  /**
-   * Caps the panel to MAX_VISIBLE_OPTIONS rows, scrolling beyond that, rather than growing
-   * to fit every option. Measured from the actual rendered option elements (not a hardcoded
-   * pixel guess) so it stays correct regardless of font metrics or option content — the panel
-   * bottom edge is set just past the Nth option's own bottom edge, plus the panel's own
-   * bottom padding.
-   */
+  /** Caps the panel to MAX_VISIBLE_OPTIONS rows, scrolling beyond that — see capPanelRows's own doc comment for why. */
   private updatePanelMaxHeight() {
     if (!this.panelEl) {
       return;
     }
-    const options = this.getOptions();
-    if (options.length <= MAX_VISIBLE_OPTIONS) {
-      this.panelEl.style.maxHeight = '';
-      return;
-    }
-    // offsetTop is already measured from the panel's padding edge (i.e. it bakes in the
-    // panel's own padding-top), so it's not added again here. Padding-bottom is deliberately
-    // NOT added either — it's a trailing value that only renders after the true last child;
-    // adding it here would just let the 6th option's top edge peek through the cutoff instead
-    // of landing exactly on it.
-    const lastVisible = options[MAX_VISIBLE_OPTIONS - 1];
-    this.panelEl.style.maxHeight = `${lastVisible.offsetTop + lastVisible.offsetHeight}px`;
+    capPanelRows(this.panelEl, this.getOptions(), MAX_VISIBLE_OPTIONS);
   }
 
   private openPanel = (initialActive?: string) => {
@@ -198,10 +173,10 @@ export class WendSelect {
     requestAnimationFrame(() => {
       this.updatePosition();
       if (this.triggerEl && this.panelEl) {
-        this.stopAutoUpdate = autoUpdate(this.triggerEl, this.panelEl, this.updatePosition);
+        this.stopAutoUpdate = startFloatingPanelAutoUpdate(this.triggerEl, this.panelEl, this.updatePosition);
       }
     });
-    document.addEventListener('mousedown', this.onDocumentMouseDown, true);
+    this.stopOutsideClick = onOutsideMouseDown(this.el, () => this.closePanel());
   };
 
   private closePanel = () => {
@@ -211,7 +186,8 @@ export class WendSelect {
     this.isOpen = false;
     this.stopAutoUpdate?.();
     this.stopAutoUpdate = undefined;
-    document.removeEventListener('mousedown', this.onDocumentMouseDown, true);
+    this.stopOutsideClick?.();
+    this.stopOutsideClick = undefined;
   };
 
   private toggleOpen = () => {
@@ -219,12 +195,6 @@ export class WendSelect {
       this.closePanel();
     } else {
       this.openPanel();
-    }
-  };
-
-  private onDocumentMouseDown = (event: MouseEvent) => {
-    if (!this.el.contains(event.target as Node)) {
-      this.closePanel();
     }
   };
 

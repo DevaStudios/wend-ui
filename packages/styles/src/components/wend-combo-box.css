@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  position: relative;
+  font-family: var(--font-family-base, sans-serif);
+}
+
+.label-row {
+  display: block;
+  margin-bottom: var(--combo-box-gap, 8px);
+}
+
+.label-text {
+  font-size: var(--combo-box-label-font-size, 14px);
+  color: var(--color-combo-box-label-foreground-default, #1a1a1a);
+}
+
+.required-marker {
+  margin-inline-start: var(--combo-box-required-marker-gap, 2px);
+  color: var(--color-combo-box-required-marker-foreground-default, #93261a);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--combo-box-field-gap, 10px);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--combo-box-min-height, 40px);
+  padding: var(--combo-box-padding-block, 4px) var(--combo-box-padding-inline, 8px);
+  border-radius: var(--combo-box-radius, 8px);
+  border: var(--combo-box-border-width, 1px) solid var(--color-combo-box-default-border-default, #676565);
+  background-color: var(--color-combo-box-default-background-default, #ffffff);
+  max-width: 550px;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.field.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.field:focus-visible {
+  outline: var(--combo-box-focus-outline-width, 1px) solid var(--combo-box-focus-outline-color, #1a1a1a);
+  outline-offset: var(--combo-box-focus-outline-offset, 0);
+}
+
+.field.success {
+  border-color: var(--color-combo-box-success-border-default, #206a47);
+}
+
+.field.warning {
+  border-color: var(--color-combo-box-warning-border-default, #a36b0a);
+}
+
+.field.error {
+  border-color: var(--color-combo-box-error-border-default, #93261a);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--combo-box-chip-gap, 8px);
+  flex: 1;
+  min-width: 0;
+  min-height: var(--combo-box-icon-size, 16px);
+}
+
+.placeholder {
+  font-family: inherit;
+  font-size: var(--font-size-175, 14px);
+  color: var(--color-text-secondary, #676565);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--combo-box-icons-gap, 8px);
+  /* Aligns with the first row of chips even when the chip row has wrapped to multiple lines. */
+  height: var(--combo-box-icon-size, 16px);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--combo-box-icon-size, 16px);
+  height: var(--combo-box-icon-size, 16px);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-combo-box-icon-foreground-default, #1a1a1a);
+  cursor: pointer;
+}
+
+.field.disabled .icon-button {
+  cursor: not-allowed;
+}
+
+.chevron {
+  display: inline-flex;
+  color: var(--color-combo-box-icon-foreground-default, #1a1a1a);
+}
+
+.field + wend-help-text {
+  display: block;
+  margin-top: var(--combo-box-gap, 8px);
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  min-width: max-content;
+  /* max-height is set inline by wend-combo-box.tsx, measured from the actual rendered
+     options so it caps at exactly MAX_VISIBLE_OPTIONS rows and then scrolls. */
+  overflow-y: auto;
+  padding: var(--combo-box-panel-padding, 4px);
+  border-radius: var(--combo-box-panel-radius, 8px);
+  background-color: var(--color-combo-box-panel-background-default, #ffffff);
+  box-shadow: var(--combo-box-panel-shadow, 0 1px 2px rgba(51, 51, 51, 0.2));
+  display: none;
+}
+
+.panel.open {
+  display: block;
+}

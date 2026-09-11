@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.wend-ui.dev/components/wend-combo-box.schema.json",
+  "title": "WendComboBox",
+  "description": "A labeled, multi-select dropdown with optional help text. Selected options render as removable wend-chip pills inside the field; renders a Floating UI-positioned option panel where each wend-option shows a checkbox indicator. Consumers slot in wend-option children.",
+  "type": "object",
+  "x-wend-component": "wend-combo-box",
+  "x-wend-slots": [
+    {
+      "name": "(default)",
+      "description": "wend-option elements this combo box can choose between."
+    }
+  ],
+  "x-wend-tokens": [
+    "combo-box.min-height",
+    "combo-box.gap",
+    "combo-box.padding-block",
+    "combo-box.padding-inline",
+    "combo-box.radius",
+    "combo-box.border-width",
+    "combo-box.field-gap",
+    "combo-box.chip-gap",
+    "combo-box.icon-size",
+    "combo-box.icons-gap",
+    "combo-box.label-font-size",
+    "combo-box.focus.outline-color",
+    "combo-box.focus.outline-width",
+    "combo-box.focus.outline-offset",
+    "combo-box.required-marker.gap",
+    "combo-box.panel.radius",
+    "combo-box.panel.padding",
+    "combo-box.panel.offset",
+    "combo-box.panel.shadow",
+    "color.combo-box.label.foreground.default",
+    "color.combo-box.icon.foreground.default",
+    "color.combo-box.default.background.default",
+    "color.combo-box.default.border.default",
+    "color.combo-box.success.border.default",
+    "color.combo-box.warning.border.default",
+    "color.combo-box.error.border.default",
+    "color.combo-box.required-marker.foreground.default",
+    "color.combo-box.panel.background.default"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "default": "",
+      "description": "The combo box's label text. Can be an empty string for a label-less field."
+    },
+    "show-label": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the label is rendered."
+    },
+    "values": {
+      "type": "array",
+      "default": [],
+      "description": "Values (string[]) of the currently selected wend-option children. A complex (array) prop — set via the JS property (el.values = [...]), not an HTML attribute."
+    },
+    "placeholder": {
+      "type": "string",
+      "default": "Select…",
+      "description": "Text shown in the field when no option is selected."
+    },
+    "help-text": {
+      "type": "string",
+      "default": "",
+      "description": "Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing."
+    },
+    "show-help-text": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the help text is rendered."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["default", "success", "warning", "error"],
+      "default": "default",
+      "description": "Validation state of the field. Drives the field's border color and the help text's tone."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disables the combo box and every wend-option child."
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Marks the field as required. Renders a marker after the label and sets aria-required on the field."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name submitted for this combo box when part of a form."
+    }
+  },
+  "additionalProperties": false
+}

@@ -20,6 +20,15 @@ export class WendOption {
   @Prop() disabled = false;
 
   /**
+   * Renders a decorative checkbox indicator on the left instead of the trailing checkmark
+   * icon on the right. Set by a multi-select coordinator (wend-combo-box), never by the
+   * consumer directly — mirrors how `selected`/`active`/`optionId` are also coordinator-set.
+   * Purely visual: the real selection state is still carried by `aria-selected` on this same
+   * element, exactly like the single-select checkmark it replaces.
+   */
+  @Prop() multi = false;
+
+  /**
    * DOM id applied to the option's role="option" element. Set by the parent wend-select
    * (not by the consumer) so its trigger button's aria-activedescendant can reference the
    * keyboard-active option directly.
@@ -42,7 +51,7 @@ export class WendOption {
   };
 
   render() {
-    const { selected, active, disabled, optionId } = this;
+    const { selected, active, disabled, optionId, multi } = this;
     return (
       <div
         id={optionId}
@@ -52,10 +61,15 @@ export class WendOption {
         class={{ row: true, selected, active, disabled }}
         onClick={this.onClick}
       >
+        {multi && (
+          <span class={{ checkbox: true, checked: selected }} aria-hidden="true">
+            {selected && <wend-icon name="check-solid" size="12px"></wend-icon>}
+          </span>
+        )}
         <span class="value">
           <slot></slot>
         </span>
-        {selected && <wend-icon name="check-solid" size="16px"></wend-icon>}
+        {!multi && selected && <wend-icon name="check-solid" size="16px"></wend-icon>}
       </div>
     );
   }

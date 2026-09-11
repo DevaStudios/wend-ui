@@ -1,0 +1,231 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>wend-ui — Combo Box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var STORAGE_KEY = 'wend-theme';
+        function currentTheme() {
+          return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function applyTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+        }
+        function syncToggleButtons() {
+          var isDark = currentTheme() === 'dark';
+          document.querySelectorAll('.wend-theme-toggle').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          });
+        }
+
+        var stored = localStorage.getItem(STORAGE_KEY);
+        applyTheme(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+        window.wendToggleTheme = function () {
+          var next = currentTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+          syncToggleButtons();
+        };
+
+        document.addEventListener('DOMContentLoaded', syncToggleButtons);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="../../build/wend-ui-web-components.css" />
+    <link rel="stylesheet" href="../../global/docs.css" />
+    <script src="../../global/docs-nav.js"></script>
+    <script src="../../global/docs-sidebar.js"></script>
+    <script type="module" src="../../build/wend-ui-web-components.esm.js"></script>
+    <script nomodule src="../../build/wend-ui-web-components.js"></script>
+  </head>
+  <body>
+    <wend-docs-nav base="../../" current="components"></wend-docs-nav>
+
+    <div class="wend-layout">
+      <wend-docs-sidebar section="components" current="combo-box"></wend-docs-sidebar>
+      <main class="wend-main">
+        <div class="wend-page">
+      <div class="wend-section">
+        <h1>Combo Box</h1>
+
+        <p style="margin: 0 0 var(--spacing-100)">Examples</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300); align-items: flex-start">
+          <wend-combo-box label="Favorite fruits" id="combo-box-demo" placeholder="Select fruits…">
+            <wend-option value="apple">Apple</wend-option>
+            <wend-option value="banana">Banana</wend-option>
+            <wend-option value="cherry">Cherry</wend-option>
+            <wend-option value="durian" disabled>Durian (out of stock)</wend-option>
+            <wend-option value="elderberry">Elderberry</wend-option>
+          </wend-combo-box>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Pre-selected</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300); align-items: flex-start">
+          <wend-combo-box label="Favorite fruits" id="combo-box-preselected">
+            <wend-option value="apple">Apple</wend-option>
+            <wend-option value="banana">Banana</wend-option>
+            <wend-option value="cherry">Cherry</wend-option>
+          </wend-combo-box>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Disabled</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300); align-items: flex-start">
+          <wend-combo-box label="Favorite fruits" disabled id="combo-box-disabled">
+            <wend-option value="apple">Apple</wend-option>
+            <wend-option value="banana">Banana</wend-option>
+          </wend-combo-box>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">More than 5 options — the panel caps at 5 rows and scrolls for the rest</p>
+        <div class="wend-stack" style="margin-bottom: var(--spacing-300); align-items: flex-start">
+          <wend-combo-box label="Countries" help-text="Scroll to see more" id="combo-box-scroll-example" placeholder="Select countries…">
+            <wend-option value="ar">Argentina</wend-option>
+            <wend-option value="au">Australia</wend-option>
+            <wend-option value="br">Brazil</wend-option>
+            <wend-option value="ca">Canada</wend-option>
+            <wend-option value="de">Germany</wend-option>
+            <wend-option value="fr">France</wend-option>
+            <wend-option value="jp">Japan</wend-option>
+            <wend-option value="mx">Mexico</wend-option>
+            <wend-option value="us">United States</wend-option>
+          </wend-combo-box>
+        </div>
+
+        <p style="margin: 0 0 var(--spacing-100)">Usage</p>
+        <code class="wend-code" style="margin-bottom: var(--spacing-300)"
+          >&lt;wend-combo-box label="Label"&gt; &lt;wend-option value="a"&gt;A&lt;/wend-option&gt;
+          &lt;wend-option value="b"&gt;B&lt;/wend-option&gt; &lt;/wend-combo-box&gt;<br /><br />
+          &lt;script&gt;<br />
+          &nbsp;&nbsp;// values is a complex (array) prop — set it via the JS property, not an HTML attribute<br />
+          &nbsp;&nbsp;document.querySelector('wend-combo-box').values = ['a'];<br />
+          &lt;/script&gt;</code
+        >
+
+        <p style="margin: 0 0 var(--spacing-100)">Props</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Attribute</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td><code>label</code></td>
+              <td>The combo box's label text. Can be an empty string for a label-less field.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showLabel</code></td>
+              <td><code>show-label</code></td>
+              <td>Whether the label is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>values</code></td>
+              <td>—</td>
+              <td>
+                Values of the currently selected wend-option children. A complex (array) prop —
+                set via the JS property (<code>el.values = [...]</code>), not an HTML attribute.
+              </td>
+              <td><code>string[]</code></td>
+              <td><code>[]</code></td>
+            </tr>
+            <tr>
+              <td><code>placeholder</code></td>
+              <td><code>placeholder</code></td>
+              <td>Text shown in the field when no option is selected.</td>
+              <td><code>string</code></td>
+              <td><code>'Select…'</code></td>
+            </tr>
+            <tr>
+              <td><code>helpText</code></td>
+              <td><code>help-text</code></td>
+              <td>Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing.</td>
+              <td><code>string</code></td>
+              <td><code>''</code></td>
+            </tr>
+            <tr>
+              <td><code>showHelpText</code></td>
+              <td><code>show-help-text</code></td>
+              <td>Whether the help text is rendered.</td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>state</code></td>
+              <td><code>state</code></td>
+              <td>Validation state of the field. Drives the field's border color and the help text's tone.</td>
+              <td><code>"default" | "success" | "warning" | "error"</code></td>
+              <td><code>'default'</code></td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td><code>disabled</code></td>
+              <td>Disables the combo box and every wend-option child.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>required</code></td>
+              <td><code>required</code></td>
+              <td>Marks the field as required. Renders a marker after the label and sets aria-required on the field.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td><code>name</code></td>
+              <td>Name submitted for this combo box when part of a form.</td>
+              <td><code>string</code></td>
+              <td><code>undefined</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin: var(--spacing-300) 0 var(--spacing-100)">Events</p>
+        <table class="wend-props-table">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Description</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>wendChange</code></td>
+              <td>Emitted whenever the selection changes: an option toggled, a chip removed, or clear-all.</td>
+              <td><code>CustomEvent&lt;string[]&gt;</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      document.getElementById('combo-box-preselected').values = ['apple', 'cherry'];
+      document.getElementById('combo-box-disabled').values = ['apple'];
+    </script>
+  </body>
+</html>

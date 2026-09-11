@@ -17,6 +17,7 @@
 
 ### Used by
 
+ - [wend-combo-box](../wend-combo-box)
  - [wend-select](../wend-select)
  - [wend-text-area](../wend-text-area)
  - [wend-text-input](../wend-text-input)
@@ -24,6 +25,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  wend-combo-box --> wend-help-text
   wend-select --> wend-help-text
   wend-text-area --> wend-help-text
   wend-text-input --> wend-help-text

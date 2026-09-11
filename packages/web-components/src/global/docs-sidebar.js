@@ -14,6 +14,7 @@
         { slug: 'button', label: 'Button' },
         { slug: 'checkbox', label: 'Checkbox' },
         { slug: 'chip', label: 'Chip' },
+        { slug: 'combo-box', label: 'Combo Box' },
         { slug: 'help-text', label: 'Help Text' },
         { slug: 'icon', label: 'Icon' },
         { slug: 'option', label: 'Option' },

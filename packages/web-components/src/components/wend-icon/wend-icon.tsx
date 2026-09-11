@@ -4,6 +4,7 @@ import { getIconSvg } from '@devastudios/icons/get-icon-svg';
 
 @Component({
   tag: 'wend-icon',
+  styleUrl: '../../../../styles/src/components/wend-icon.css',
   shadow: false,
   scoped: false
 })

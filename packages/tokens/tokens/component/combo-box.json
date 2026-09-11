@@ -1,0 +1,76 @@
+{
+  "combo-box": {
+    "min-height": { "value": "{sizing.500}" },
+    "gap": { "value": "{spacing.100}" },
+    "padding-block": { "value": "{spacing.50}" },
+    "padding-inline": { "value": "{spacing.100}" },
+    "radius": { "value": "{radius.medium}" },
+    "border-width": { "value": "1px" },
+    "field-gap": { "value": "{spacing.125}" },
+    "chip-gap": { "value": "{spacing.100}" },
+    "icon-size": { "value": "{sizing.200}" },
+    "icons-gap": { "value": "{spacing.100}" },
+    "label-font-size": { "value": "{font.size.175}" },
+    "focus": {
+      "outline-color": { "value": "{color.border.focus}" },
+      "outline-width": { "value": "1px" },
+      "outline-offset": { "value": "0" }
+    },
+    "required-marker": {
+      "gap": { "value": "{spacing.25}" }
+    },
+    "panel": {
+      "radius": { "value": "{radius.medium}" },
+      "padding": { "value": "{spacing.50}" },
+      "offset": { "value": "{spacing.50}" },
+      "shadow": { "value": "0 1px 2px rgba(51, 51, 51, 0.2)" }
+    }
+  },
+  "color": {
+    "combo-box": {
+      "label": {
+        "foreground": {
+          "default": { "value": "{color.text.primary}" }
+        }
+      },
+      "default": {
+        "background": {
+          "default": { "value": "{color.surface.input}" }
+        },
+        "border": {
+          "default": { "value": "{color.border.input}" }
+        }
+      },
+      "success": {
+        "border": {
+          "default": { "value": "{color.border.success}" }
+        }
+      },
+      "warning": {
+        "border": {
+          "default": { "value": "{color.border.warning}" }
+        }
+      },
+      "error": {
+        "border": {
+          "default": { "value": "{color.border.danger}" }
+        }
+      },
+      "required-marker": {
+        "foreground": {
+          "default": { "value": "{color.text.danger}" }
+        }
+      },
+      "icon": {
+        "foreground": {
+          "default": { "value": "{color.text.primary}" }
+        }
+      },
+      "panel": {
+        "background": {
+          "default": { "value": "{color.surface.input}" }
+        }
+      }
+    }
+  }
+}

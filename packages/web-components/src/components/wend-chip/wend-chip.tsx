@@ -19,7 +19,11 @@ export class WendChip {
   /** Emitted when the close button is activated. Not emitted while disabled. */
   @Event() wendClose!: EventEmitter<void>;
 
-  private onClose = () => {
+  private onClose = (event: MouseEvent) => {
+    // A chip is frequently nested inside another clickable container (e.g. wend-combo-box's
+    // field, which opens/closes its panel on click) — stop the native click from bubbling so
+    // removing one chip doesn't also trigger whatever the container's own click handler does.
+    event.stopPropagation();
     this.wendClose.emit();
   };
 

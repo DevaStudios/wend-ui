@@ -18,7 +18,15 @@
     "color.option.row.background.default",
     "color.option.row.background.hover",
     "color.option.row.background.selected",
-    "color.option.row.foreground.default"
+    "color.option.row.foreground.default",
+    "checkbox.size",
+    "checkbox.radius",
+    "checkbox.border-width",
+    "color.checkbox.unchecked.background.default",
+    "color.checkbox.unchecked.border.default",
+    "color.checkbox.checked.background.default",
+    "color.checkbox.checked.border.default",
+    "color.checkbox.checked.foreground.default"
   ],
   "properties": {
     "value": {
@@ -39,6 +47,11 @@
       "type": "boolean",
       "default": false,
       "description": "Disables this option, excluding it from selection and keyboard navigation."
+    },
+    "multi": {
+      "type": "boolean",
+      "default": false,
+      "description": "Renders a decorative checkbox indicator on the left instead of the trailing checkmark icon on the right. Set by a multi-select coordinator (wend-combo-box), not by the consumer directly."
     }
   },
   "required": ["value"],

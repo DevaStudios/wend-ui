@@ -23,6 +23,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [wend-combo-box](../wend-combo-box)
+
 ### Depends on
 
 - [wend-icon](../wend-icon)
@@ -31,6 +35,7 @@
 ```mermaid
 graph TD;
   wend-chip --> wend-icon
+  wend-combo-box --> wend-chip
   style wend-chip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

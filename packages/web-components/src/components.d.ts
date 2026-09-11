@@ -6,11 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { WendButtonVariant } from "./components/wend-button/wend-button";
+import { WendComboBoxState } from "./components/wend-combo-box/wend-combo-box";
 import { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
 import { WendSelectState } from "./components/wend-select/wend-select";
 import { WendTextAreaState } from "./components/wend-text-area/wend-text-area";
 import { WendTextInputState } from "./components/wend-text-input/wend-text-input";
 export { WendButtonVariant } from "./components/wend-button/wend-button";
+export { WendComboBoxState } from "./components/wend-combo-box/wend-combo-box";
 export { WendHelpTextType } from "./components/wend-help-text/wend-help-text";
 export { WendSelectState } from "./components/wend-select/wend-select";
 export { WendTextAreaState } from "./components/wend-text-area/wend-text-area";
@@ -80,6 +82,57 @@ export namespace Components {
          */
         "label": string;
     }
+    interface WendComboBox {
+        /**
+          * Disables the combo box and every wend-option child.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText": string;
+        /**
+          * The combo box's label text. Can be an empty string for a label-less field.
+          * @default ''
+         */
+        "label": string;
+        /**
+          * Name submitted for this combo box when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Text shown in the field when no option is selected.
+          * @default 'Select…'
+         */
+        "placeholder": string;
+        /**
+          * Marks the field as required. Renders a marker after the label and sets aria-required on the field.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText": boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel": boolean;
+        /**
+          * Validation state of the field. Drives the field's border color and the help text's tone.
+          * @default 'default'
+         */
+        "state": WendComboBoxState;
+        /**
+          * Values of the currently selected wend-option children. A complex (array) prop — set this via the JS property (`el.values = [...]`), not an HTML attribute; Stencil doesn't parse array-typed attributes automatically.
+          * @default []
+         */
+        "values": string[];
+    }
     interface WendHelpText {
         /**
           * The help text's message. Can be an empty string to render nothing.
@@ -119,6 +172,11 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Renders a decorative checkbox indicator on the left instead of the trailing checkmark icon on the right. Set by a multi-select coordinator (wend-combo-box), never by the consumer directly — mirrors how `selected`/`active`/`optionId` are also coordinator-set. Purely visual: the real selection state is still carried by `aria-selected` on this same element, exactly like the single-select checkmark it replaces.
+          * @default false
+         */
+        "multi": boolean;
         /**
           * DOM id applied to the option's role="option" element. Set by the parent wend-select (not by the consumer) so its trigger button's aria-activedescendant can reference the keyboard-active option directly.
          */
@@ -349,6 +407,10 @@ export interface WendChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendChipElement;
 }
+export interface WendComboBoxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWendComboBoxElement;
+}
 export interface WendOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWendOptionElement;
@@ -417,6 +479,23 @@ declare global {
     var HTMLWendChipElement: {
         prototype: HTMLWendChipElement;
         new (): HTMLWendChipElement;
+    };
+    interface HTMLWendComboBoxElementEventMap {
+        "wendChange": string[];
+    }
+    interface HTMLWendComboBoxElement extends Components.WendComboBox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLWendComboBoxElementEventMap>(type: K, listener: (this: HTMLWendComboBoxElement, ev: WendComboBoxCustomEvent<HTMLWendComboBoxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLWendComboBoxElementEventMap>(type: K, listener: (this: HTMLWendComboBoxElement, ev: WendComboBoxCustomEvent<HTMLWendComboBoxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLWendComboBoxElement: {
+        prototype: HTMLWendComboBoxElement;
+        new (): HTMLWendComboBoxElement;
     };
     interface HTMLWendHelpTextElement extends Components.WendHelpText, HTMLStencilElement {
     }
@@ -553,6 +632,7 @@ declare global {
         "wend-button": HTMLWendButtonElement;
         "wend-checkbox": HTMLWendCheckboxElement;
         "wend-chip": HTMLWendChipElement;
+        "wend-combo-box": HTMLWendComboBoxElement;
         "wend-help-text": HTMLWendHelpTextElement;
         "wend-icon": HTMLWendIconElement;
         "wend-option": HTMLWendOptionElement;
@@ -639,6 +719,61 @@ declare namespace LocalJSX {
          */
         "onWendClose"?: (event: WendChipCustomEvent<void>) => void;
     }
+    interface WendComboBox {
+        /**
+          * Disables the combo box and every wend-option child.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Supplementary message shown below the field, e.g. a validation message. Can be an empty string to render nothing.
+          * @default ''
+         */
+        "helpText"?: string;
+        /**
+          * The combo box's label text. Can be an empty string for a label-less field.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Name submitted for this combo box when part of a form.
+         */
+        "name"?: string;
+        /**
+          * Emitted whenever the selection changes: an option toggled, a chip removed, or clear-all.
+         */
+        "onWendChange"?: (event: WendComboBoxCustomEvent<string[]>) => void;
+        /**
+          * Text shown in the field when no option is selected.
+          * @default 'Select…'
+         */
+        "placeholder"?: string;
+        /**
+          * Marks the field as required. Renders a marker after the label and sets aria-required on the field.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Whether the help text is rendered.
+          * @default true
+         */
+        "showHelpText"?: boolean;
+        /**
+          * Whether the label is rendered.
+          * @default true
+         */
+        "showLabel"?: boolean;
+        /**
+          * Validation state of the field. Drives the field's border color and the help text's tone.
+          * @default 'default'
+         */
+        "state"?: WendComboBoxState;
+        /**
+          * Values of the currently selected wend-option children. A complex (array) prop — set this via the JS property (`el.values = [...]`), not an HTML attribute; Stencil doesn't parse array-typed attributes automatically.
+          * @default []
+         */
+        "values"?: string[];
+    }
     interface WendHelpText {
         /**
           * The help text's message. Can be an empty string to render nothing.
@@ -678,6 +813,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Renders a decorative checkbox indicator on the left instead of the trailing checkmark icon on the right. Set by a multi-select coordinator (wend-combo-box), never by the consumer directly — mirrors how `selected`/`active`/`optionId` are also coordinator-set. Purely visual: the real selection state is still carried by `aria-selected` on this same element, exactly like the single-select checkmark it replaces.
+          * @default false
+         */
+        "multi"?: boolean;
         /**
           * Emitted when the option is clicked. Mirrors wend-radio's wendChange shape (a boolean, always true here since clicking an option only ever means "select me") so the parent wend-select can reuse the same
           * @Listen ('wendChange') coordinator pattern wend-radio-group uses for wend-radio.
@@ -947,6 +1087,17 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "closable": boolean;
     }
+    interface WendComboBoxAttributes {
+        "label": string;
+        "showLabel": boolean;
+        "placeholder": string;
+        "helpText": string;
+        "showHelpText": boolean;
+        "state": WendComboBoxState;
+        "disabled": boolean;
+        "required": boolean;
+        "name": string;
+    }
     interface WendHelpTextAttributes {
         "text": string;
         "type": WendHelpTextType;
@@ -961,6 +1112,7 @@ declare namespace LocalJSX {
         "selected": boolean;
         "active": boolean;
         "disabled": boolean;
+        "multi": boolean;
         "optionId": string;
     }
     interface WendRadioAttributes {
@@ -1021,6 +1173,7 @@ declare namespace LocalJSX {
         "wend-button": Omit<WendButton, keyof WendButtonAttributes> & { [K in keyof WendButton & keyof WendButtonAttributes]?: WendButton[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `attr:${K}`]?: WendButtonAttributes[K] } & { [K in keyof WendButton & keyof WendButtonAttributes as `prop:${K}`]?: WendButton[K] };
         "wend-checkbox": Omit<WendCheckbox, keyof WendCheckboxAttributes> & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes]?: WendCheckbox[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `attr:${K}`]?: WendCheckboxAttributes[K] } & { [K in keyof WendCheckbox & keyof WendCheckboxAttributes as `prop:${K}`]?: WendCheckbox[K] };
         "wend-chip": Omit<WendChip, keyof WendChipAttributes> & { [K in keyof WendChip & keyof WendChipAttributes]?: WendChip[K] } & { [K in keyof WendChip & keyof WendChipAttributes as `attr:${K}`]?: WendChipAttributes[K] } & { [K in keyof WendChip & keyof WendChipAttributes as `prop:${K}`]?: WendChip[K] };
+        "wend-combo-box": Omit<WendComboBox, keyof WendComboBoxAttributes> & { [K in keyof WendComboBox & keyof WendComboBoxAttributes]?: WendComboBox[K] } & { [K in keyof WendComboBox & keyof WendComboBoxAttributes as `attr:${K}`]?: WendComboBoxAttributes[K] } & { [K in keyof WendComboBox & keyof WendComboBoxAttributes as `prop:${K}`]?: WendComboBox[K] };
         "wend-help-text": Omit<WendHelpText, keyof WendHelpTextAttributes> & { [K in keyof WendHelpText & keyof WendHelpTextAttributes]?: WendHelpText[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `attr:${K}`]?: WendHelpTextAttributes[K] } & { [K in keyof WendHelpText & keyof WendHelpTextAttributes as `prop:${K}`]?: WendHelpText[K] };
         "wend-icon": Omit<WendIcon, keyof WendIconAttributes> & { [K in keyof WendIcon & keyof WendIconAttributes]?: WendIcon[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `attr:${K}`]?: WendIconAttributes[K] } & { [K in keyof WendIcon & keyof WendIconAttributes as `prop:${K}`]?: WendIcon[K] } & OneOf<"name", WendIcon["name"], WendIconAttributes["name"]>;
         "wend-option": Omit<WendOption, keyof WendOptionAttributes> & { [K in keyof WendOption & keyof WendOptionAttributes]?: WendOption[K] } & { [K in keyof WendOption & keyof WendOptionAttributes as `attr:${K}`]?: WendOptionAttributes[K] } & { [K in keyof WendOption & keyof WendOptionAttributes as `prop:${K}`]?: WendOption[K] } & OneOf<"value", WendOption["value"], WendOptionAttributes["value"]>;
@@ -1039,6 +1192,7 @@ declare module "@stencil/core" {
             "wend-button": LocalJSX.IntrinsicElements["wend-button"] & JSXBase.HTMLAttributes<HTMLWendButtonElement>;
             "wend-checkbox": LocalJSX.IntrinsicElements["wend-checkbox"] & JSXBase.HTMLAttributes<HTMLWendCheckboxElement>;
             "wend-chip": LocalJSX.IntrinsicElements["wend-chip"] & JSXBase.HTMLAttributes<HTMLWendChipElement>;
+            "wend-combo-box": LocalJSX.IntrinsicElements["wend-combo-box"] & JSXBase.HTMLAttributes<HTMLWendComboBoxElement>;
             "wend-help-text": LocalJSX.IntrinsicElements["wend-help-text"] & JSXBase.HTMLAttributes<HTMLWendHelpTextElement>;
             "wend-icon": LocalJSX.IntrinsicElements["wend-icon"] & JSXBase.HTMLAttributes<HTMLWendIconElement>;
             "wend-option": LocalJSX.IntrinsicElements["wend-option"] & JSXBase.HTMLAttributes<HTMLWendOptionElement>;

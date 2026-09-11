@@ -21,6 +21,7 @@
  - [wend-button](../wend-button)
  - [wend-checkbox](../wend-checkbox)
  - [wend-chip](../wend-chip)
+ - [wend-combo-box](../wend-combo-box)
  - [wend-option](../wend-option)
  - [wend-select](../wend-select)
 
@@ -30,6 +31,7 @@ graph TD;
   wend-button --> wend-icon
   wend-checkbox --> wend-icon
   wend-chip --> wend-icon
+  wend-combo-box --> wend-icon
   wend-option --> wend-icon
   wend-select --> wend-icon
   style wend-icon fill:#f9f,stroke:#333,stroke-width:4px
